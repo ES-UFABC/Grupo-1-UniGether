@@ -5,5 +5,6 @@
 1. Thales Cunha da Paixão
 1. Beatriz Freitas
 1. Paloma Cristina Santana
+1. Gustavo Mantovani Fonseca
 
 Desenvolvimento de um app concorrente do Umatch para a UFABC, com módulo para festas da universidade onde o aluno pode acessar por token quais de seus amigos irão comparecer e entidades podem realizar a venda de ingressos.
