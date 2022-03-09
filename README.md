@@ -1,4 +1,4 @@
-# Grupo 1.1 - Concorrente para Umatch
+# Grupo 1 - Concorrente para Umatch
 
 1. Igor Milhomens dos Santos
 1. Guilherme Rocha Muzi Franco
