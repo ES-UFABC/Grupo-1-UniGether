@@ -1,5 +1,7 @@
 # Grupo 1 - UniGether
 
+[![CI](https://github.com/ES-UFABC/Grupo-1-UniGether/actions/workflows/main.yml/badge.svg)](https://github.com/ES-UFABC/Grupo-1-UniGether/actions/workflows/main.yml)
+
 <p>Projeto voltado para a disciplina de Eng de Software 2022.1 do Prof. Dr. Paulo Meirelles<p>
 
 <strong>Equipe composta por</strong>:
