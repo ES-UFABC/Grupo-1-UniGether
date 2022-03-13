@@ -4,19 +4,15 @@ on:
   push:
     branches:
       - main
-      
-defaults:
-  run:
-    working-directory: backend
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    working-directory: client
     steps:
       - uses: actions/checkout@v2
       - uses: akhileshns/heroku-deploy@v3.12.12
         with:
+          appdir: ./backend
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "unigether"
           heroku_email: "paloma.santana@aluno.ufabc.edu.br"
