@@ -4,11 +4,16 @@ on:
   push:
     branches:
       - main
+      
+defaults:
+  run:
+    working-directory: backend
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - working-directory: backend
       - uses: actions/checkout@v2
       - uses: akhileshns/heroku-deploy@v3.12.12
         with:
