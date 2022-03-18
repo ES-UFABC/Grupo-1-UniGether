@@ -35,14 +35,14 @@ Por exemplo, matriculados na disciplina Engenharia de Software: link para grupos
 </ul>
 
 <p align="left"> <a href="https://angular.io" target="_blank" rel="noreferrer"> <img src="https://angular.io/assets/images/logos/angular/angular.svg" alt="angular" width="40" height="40"/> </a> <a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40"/> </a> <a href="https://www.figma.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/figma/figma-icon.svg" alt="figma" width="40" height="40"/> </a> <a href="https://heroku.com" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/heroku/heroku-icon.svg" alt="heroku" width="40" height="40"/> </a> <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40"/> </a> <a href="https://www.mysql.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg" alt="mysql" width="40" height="40"/> </a> <a href="https://nodejs.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg" alt="nodejs" width="40" height="40"/> </a> </p>
-------------------------------------------------------------------------
+
+<p class="has-line-data" data-line-start="12" data-line-end="13">
 <h2 class="code-line" data-line-start=20 data-line-end=21 ><a id="CRIAR_PROJETO"></a>Criando o projeto</h2>
 <p> Instalar <a href="https://nodejs.org/en/">Node</a>, criar a pasta em que deseja criar o projeto, no caso deste exemplo,seria backend</p>
 <pre><code>mkdir backend
 cd backend
 </code></pre>
 <p class="has-line-data" data-line-start="29" data-line-end="30"><strong>Para instalar todas as dependências necessárias para o projeto rodar</strong></p>
-<p> Instalar <a href="https://nodejs.org/en/">Node</a></p>
 <pre><code>npm init -y
 </code></pre>
 <p> Instalar o Angular</p>
@@ -55,8 +55,9 @@ cd backend
 <h2 class="code-line" data-line-start=20 data-line-end=21 ><a id="ANTES_DE_COMEAR_A_DESENVOLVER_20"></a>Após clonar o repositório</h2>
 <pre><code>npm install
 </code></pre>
-<p class="has-line-data" data-line-start="29" data-line-end="30"><strong>Crie um Banco de Dados no MySql</strong></p>
+<p class="has-line-data" data-line-start="29" data-line-end="30"><strong>Crie um Banco de Dados no MySql e utilize-o nas futuras pesquisas</strong></p>
 <pre><code>CREATE DATABASE db_unigether;
+USE db_unigether;
 </code></pre>
 <p class="has-line-data" data-line-start="29" data-line-end="30"><strong>Agora crie as tabelas no banco de dados, rode esse comando no seu terminal
 </strong></p>
@@ -67,5 +68,52 @@ npx sequelize-cli db:migrate
 <pre><code>npm start
 </code></pre>
 
-<p>Para demais informações, consultar <a href="https://plume-lodge-46a.notion.site/Projeto-MVC-Node-Angular-bc305f55ab064c75ac5897c7f00b0437">Notion</a></p>
+<p class="has-line-data" data-line-start="29" data-line-end="30"><strong>Selecione os dados na tabela de usuários
+</strong></p>
+<pre><code>SELECT * FROM users;
+</code></pre>
 
+<h2 class="code-line" data-line-start=68 data-line-end=69 ><a id="Linkedin_dos_integrantes_68"></a>Rotas Principais:</h2>
+
+Aqui ficam disponibilizadas todas nossas rotas devidamente testadas no Insonmia
+
+| ROTA: | USUÁRIO |
+| ------ | ------ |
+| Criar Usuário | http://localhost:8080/users |
+| ------------------------| ----------------------------------|
+|<strong>ROTA:</strong>  | <strong>SESSION </strong>  |
+| Login | http://localhost:8080/session |
+| ------------------------| ----------------------------------|
+
+
+
+<h2 class="code-line" data-line-start=44 data-line-end=45 ><a id=""></a>Entrada esperada no Insonmia/Postman
+<p class="has-line-data" data-line-start="45" data-line-end="46"><strong></strong></p>
+
+
+#### 
+	
+- Criar - Usuário
+
+    ```json
+    {
+        "name": "Nome Usuário",
+        "email": "email@exemplo.com",
+        "phone": "(11)99999-9999",
+        "password": "sua_senha",
+        "confirmPassword": "sua_senha"
+    }
+    ```
+
+- Login 
+
+    ```json
+    {
+    	"email": "email@exemplo.com",
+    	"password": "sua_senha"
+    }
+    ```
+
+
+
+<p>Para demais informações, consultar <a href="https://plume-lodge-46a.notion.site/Projeto-MVC-Node-Angular-bc305f55ab064c75ac5897c7f00b0437">Notion</a></p>
