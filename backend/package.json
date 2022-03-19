@@ -15,10 +15,12 @@
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
+    "express-async-errors": "^3.1.1",
     "jsonwebtoken": "^8.5.1",
     "multer": "^1.4.4",
     "mysql2": "^2.3.3",
     "path": "^0.12.7",
+    "reflect-metadata": "^0.1.13",
     "sequelize": "^6.17.0",
     "yup": "^0.32.11"
   },
