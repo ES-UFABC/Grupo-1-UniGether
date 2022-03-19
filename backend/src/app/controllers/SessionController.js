@@ -1,14 +1,20 @@
 import jwt from 'jsonwebtoken';
+import { UserRepository } from '../repositories/UserRepository';
 
-import User from '../models/Users';
-import authConfig from '../../config/auth';
+const userRepository = new UserRepository();
 
+class SessionOutput{
+    constructor(outputUser, ){
+        this.outputUser = outputUser;
+        this.token = token;
+    }
+}
 
 class SessionController {
-    async store(request, response) {
+    async getSession(request, response) {
         const { email, password } = request.body;
 
-        const user = await User.findOne({ where: { email } } );
+        const user = await userRepository.getByEmail(email);
 
         if (!user) {
             return response.status(401).json({ error: 'Usuário não existe' });
@@ -18,20 +24,16 @@ class SessionController {
             return response.status(401).json({ error: 'Senha não confere'});
         }
 
-        const { id, name} = user;
+        const {id, name} = user;
+        const token = jwt.sign(
+            { id }, 
+            "d0dcb7b225d9a93c5cc3aa93ddc2dd88aa563e0d", {
+            expiresIn: "2 days",
+        });
 
-        return response.json({
-            user: {
-                id,
-                name,
-                email,
-            },
-            token: jwt.sign({ id }, authConfig.secret, {
-                expiresIn: authConfig.expiresIn,
-            }),
-        })
+        return response.json(new SessionOutput({id, name, email}, token))
     }
 }
 
 
-export default new SessionController();
+export {SessionController};
