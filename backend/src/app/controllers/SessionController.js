@@ -4,7 +4,7 @@ import { UserRepository } from '../repositories/UserRepository';
 const userRepository = new UserRepository();
 
 class SessionOutput{
-    constructor(outputUser, ){
+    constructor(outputUser, token){
         this.outputUser = outputUser;
         this.token = token;
     }

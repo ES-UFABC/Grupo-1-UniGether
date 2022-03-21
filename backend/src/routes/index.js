@@ -7,4 +7,4 @@ const routes = new Router()
 routes.use("/users", users)
 routes.use("/sessions", sessions)
 
-export default routes
+export default routes;
