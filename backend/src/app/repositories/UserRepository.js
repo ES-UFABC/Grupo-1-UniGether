@@ -8,7 +8,6 @@ class UserRepository{
 
     async getById(id) {
         const user = await User.findByPk(id)
-        if(user == null) throw new Error("Usuario não encontrado");
         return user;
     }
 
@@ -23,7 +22,6 @@ class UserRepository{
 
     async update(id, newUser){
         const user = await User.findByPk(id);
-        if(user == null) throw new Error("Usuario não encontrado")
         await user.update(newUser);
         return user;
     }
