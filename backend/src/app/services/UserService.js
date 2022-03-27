@@ -2,7 +2,7 @@ import { UserRepository } from "../repositories/UserRepository";
 import { AppError } from "../../errors/AppError";
 
 class OutputUser{
-    constructor(name, email,age,initial_year,gender,shift,bio,search_for){
+    constructor(name, email,age,initial_year,gender,shift,bio,search_for,image_url){
         this.name = name;
         this.email = email;
         this.age = age;
@@ -11,6 +11,7 @@ class OutputUser{
         this.shift = shift;
         this.bio = bio;
         this.search_for = search_for;
+        this.image_url=image_url;
     }
 }
 
@@ -23,7 +24,7 @@ class OutputUserCreate{
 }
 
 class OutputUserUpdate{
-    constructor(id, name, email,age,initial_year,gender,shift,bio,search_for,oldPassword,password,confirmPassword,imageUrl){
+    constructor(id, name, email,age,initial_year,gender,shift,bio,search_for,oldPassword,password,confirmPassword){
         this.id = id;
         this.name = name;
         this.email = email;
@@ -36,7 +37,7 @@ class OutputUserUpdate{
         this.oldPassword = oldPassword;
         this.password = password;
         this.confirmPassword = confirmPassword;
-        this.imageUrl = imageUrl;
+        //this.image_url = image_url;
     }
 }
 
@@ -48,8 +49,8 @@ class UserService{
     async listUser(userId){
         var user = await this.repository.getById(userId);
         if (!user) throw new AppError("Usuário não existe");
-        const {id, name, email,age,initial_year,gender,shift,bio,search_for} = user;
-        return new OutputUser(id, name, email,age,initial_year,gender,shift,bio,search_for);
+        const {id, name, email,age,initial_year,gender,shift,bio,search_for,image_url} = user;
+        return new OutputUser(id, name, email,age,initial_year,gender,shift,bio,search_for,image_url);
     }
 
     async listUsers(){
@@ -69,7 +70,7 @@ class UserService{
     }
 
     async updateUser(userId, inputUser){
-        const url= request.file.filename;
+        //const url= request.file.filename;
         const user = await this.repository.getById(userId);
         if (!user) throw new AppError("Usuário não existe");
 
@@ -86,8 +87,8 @@ class UserService{
             throw new AppError("Senha não corresponde");
         }
 
-        const {id, name, email,age,initial_year,gender,shift,bio,search_for,oldPassword,password,confirmPassword,imageUrl} = await this.repository.update(userId, inputUser);
-        return new OutputUserUpdate(id, name, email,age,initial_year,gender,shift,bio,search_for,oldPassword,password,confirmPassword,imageUrl);
+        const {id, name, email,age,initial_year,gender,shift,bio,search_for,oldPassword,password,confirmPassword} = await this.repository.update(userId, inputUser);
+        return new OutputUserUpdate(id, name, email,age,initial_year,gender,shift,bio,search_for,oldPassword,password,confirmPassword);
     }
 
     async deleteUser(userId){

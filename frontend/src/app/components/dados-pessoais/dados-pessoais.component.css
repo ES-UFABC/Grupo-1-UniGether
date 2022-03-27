@@ -1,0 +1,105 @@
+.container{
+  margin-top: 20vh;
+}
+
+.contato {
+  display: flex;
+  justify-content: space-between;
+}
+
+.contato form textarea,
+.contato form select{
+  width: 100%;
+  padding: 5px;
+}
+
+.contato form textarea:focus,
+.contato form select:focus {
+  outline-color: #00796B;
+}
+
+.contato form fieldset {
+  margin: 15px 0;
+  border-color: #fff;
+}
+
+.contato form textarea {
+  resize: none;
+  height: 100px;
+}
+
+.contato form label {
+  margin: 10px 0 5px;
+}
+
+.contato .info {
+  padding: 15px 30px;
+}
+
+
+textarea,select,input{
+  width: 100%;
+  border-radius: 5px;
+  border: 0;
+  background-color:#F2F2F2;
+}
+button{
+  width: 60%;
+  border-radius: 30px;
+  background-color:#719489;
+  margin-top: 15px;
+}
+
+button:hover{
+  background-color: #009688;
+  transition-duration: 0.4s;
+}
+
+p {
+  font-family: Lato;
+}
+
+img {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+}
+.hoverable{
+  position: relative;
+  display: block;
+  cursor: pointer;
+  height: 200px;
+  width: 200px;
+  border: 5px solid #000;
+  border-radius: 50%;
+}
+.hoverable .hover-text{
+  position: absolute;
+  display: none;
+  top: 50%;
+  left:  50%;
+  transform: translate(-50%,-50%);
+  z-index: 2;
+}
+.hoverable .background{
+  position: absolute;
+  display: none;
+  top: 0;
+  left:  0;
+  bottom: 0;
+  right: 0;
+  background-color:rgba(255, 255, 255, 0.5);
+  pointer-events: none;
+  border-radius: 50%;
+  z-index: 1;
+}
+.hoverable:hover .hover-text{
+  display: block;
+}
+.hoverable:hover .background{
+  display: block;
+}
+
+#file{
+  display: none;
+}

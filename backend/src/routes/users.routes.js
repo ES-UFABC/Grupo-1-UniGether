@@ -14,8 +14,9 @@ users.get("/", ensureAuthenticated, userController.index);
 users.get("/:id", ensureAuthenticated, userController.indexUser);
 users.get('/', ensureAuthenticated,userController.findByName);
 users.delete("/", ensureAuthenticated, userController.delete);
-users.put("/", ensureAuthenticated, upload.single("file"), userController.update);
+// use abaixo na rota - upload.single("file"),
+users.put("/", ensureAuthenticated, userController.update);
 
-users.use('/file', ensureAuthenticated, express.static(resolve(__dirname, '..', '..', '..', 'tmp', 'uploads')));
+//users.use('/file', ensureAuthenticated, express.static(resolve(__dirname, '..', '..', '..', 'tmp', 'uploads')));
 
 export default users;

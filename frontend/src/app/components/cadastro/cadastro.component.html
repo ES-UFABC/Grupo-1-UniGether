@@ -13,26 +13,27 @@
 
         <div class="card ">
           <h3>Cadastro</h3>
-
-          <div class="mt-2">
-            <label for="">Nome completo</label>
-            <input type="text" id="name" placeholder="">
-          </div>
-          <div class="">
-            <label for="">E-mail</label>
-            <input type="text" id="email" placeholder="">
-          </div>
-          <div class="">
-            <label for="">Senha</label>
-            <input type="password" id="pass" placeholder="">
-          </div>
-          <div class="">
-            <label for="">Confirmar senha</label>
-            <input type="password" id="confirmPass" placeholder="">
-          </div>
-          <div class="d-flex justify-content-center">
-            <button>Salvar</button>
-          </div>
+          <form>
+            <div class="mt-2">
+              <label for="nome">Nome Completo</label>
+              <input type="text" [(ngModel)]="cadastro.name" id="nome" name="name" size="70" maxlength="50" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" [(ngModel)]="cadastro.email" name="email" id="email" size="70" required>
+            </div>
+            <div class="form-group">
+              <label for="password">Senha</label>
+              <input type="password" [(ngModel)]="cadastro.password" name="password" size="70" class="senha" required>
+            </div>
+            <div class="form-group">
+              <label for="confirmPassword">Confirme sua senha</label>
+              <input type="password" [(ngModel)]="cadastro.confirmPassword" name="confirmPassword" size="70" required>
+            </div>
+            <div class="d-flex justify-content-center">
+              <button type="submit" (click)="createCadastro()">Salvar</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
