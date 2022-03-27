@@ -17,7 +17,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: true,
       },
-      initialYear: {
+      initial_year: {
         type: Sequelize.INTEGER,
         allowNull: true,
       },
@@ -29,13 +29,13 @@ module.exports = {
         type: Sequelize.ENUM("Matutino","Noturno"),
         allowNull:true,
       },
-      phone:{
-        type: Sequelize.STRING,
-        allowNull:true,
-      },
       bio:{
         type: Sequelize.TEXT,
         allowNull:true,
+      },
+      search_for:{
+        type: Sequelize.STRING,
+        allowNull: true
       },
       email: {
         type: Sequelize.STRING,

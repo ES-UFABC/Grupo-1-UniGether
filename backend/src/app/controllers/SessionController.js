@@ -28,7 +28,7 @@ class SessionController {
         const token = jwt.sign(
             { id }, 
             "d0dcb7b225d9a93c5cc3aa93ddc2dd88aa563e0d", {
-            expiresIn: "2 days",
+            expiresIn: "2d",
         });
 
         return response.json(new SessionOutput({id, name, email}, token))

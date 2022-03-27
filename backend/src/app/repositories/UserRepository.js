@@ -1,13 +1,14 @@
 import User from "../models/Users";
+import {Op} from 'sequelize'
 
 class UserRepository{
 
     async insert(user) {
-        return await User.create(user)
+        return await User.create(user);
     }
 
     async getById(id) {
-        const user = await User.findByPk(id)
+        const user = await User.findByPk(id);
         return user;
     }
 
@@ -30,6 +31,14 @@ class UserRepository{
         const user = await User.findByPk(id);
         const userIsDeleted = user.destroy().then(_ => true).catch(_ => false);
         return userIsDeleted;
+    }
+
+    async getName(name) {
+
+        let condition = name ? { name: {[Op.like]: `%${name}%`}} : null;
+        const users = await User.findAll({where: condition});
+
+        return users;
     }
 }
 
