@@ -1,5 +1,7 @@
 import { UserRepository } from "../repositories/UserRepository";
 import { AppError } from "../../errors/AppError";
+import { deleteFile } from "../../utils/file";
+import bcrypt from "bcryptjs";
 
 class OutputUser{
     constructor(name, email,age,initial_year,gender,shift,bio,search_for,image_url){
@@ -24,7 +26,7 @@ class OutputUserCreate{
 }
 
 class OutputUserUpdate{
-    constructor(id, name, email,age,initial_year,gender,shift,bio,search_for,oldPassword,password,confirmPassword){
+    constructor(id, name, email,age,initial_year,gender,shift,bio,search_for){
         this.id = id;
         this.name = name;
         this.email = email;
@@ -34,10 +36,6 @@ class OutputUserUpdate{
         this.shift = shift;
         this.bio = bio;
         this.search_for = search_for;
-        this.oldPassword = oldPassword;
-        this.password = password;
-        this.confirmPassword = confirmPassword;
-        //this.image_url = image_url;
     }
 }
 
@@ -70,10 +68,8 @@ class UserService{
     }
 
     async updateUser(userId, inputUser){
-        //const url= request.file.filename;
         const user = await this.repository.getById(userId);
         if (!user) throw new AppError("Usuário não existe");
-
 
         if(inputUser.email && inputUser.email != user.email){
             const emailsExists = await this.repository.getByEmail(user.email)
@@ -87,8 +83,10 @@ class UserService{
             throw new AppError("Senha não corresponde");
         }
 
-        const {id, name, email,age,initial_year,gender,shift,bio,search_for,oldPassword,password,confirmPassword} = await this.repository.update(userId, inputUser);
-        return new OutputUserUpdate(id, name, email,age,initial_year,gender,shift,bio,search_for,oldPassword,password,confirmPassword);
+        inputUser.password_hash = await bcrypt.hash(inputUser.password, 8);
+        const {id, name, email,age,initial_year,gender,shift,bio,search_for} = await this.repository.update(userId, inputUser);
+        
+        return new OutputUserUpdate(id, name, email,age,initial_year,gender,shift,bio,search_for);
     }
 
     async deleteUser(userId){
@@ -102,6 +100,24 @@ class UserService{
     async getName(name){
         var users = await this.repository.getName(name);
         if(!users) throw new AppError("Não consta usuários com esse nome");
+    }
+
+    async addAvatar(userId, path){
+        var user = await this.repository.getById(userId);
+        if(!user) throw new AppError("Usuário não existe");
+        if(user.image_url){
+            await deleteFile("./tmp/avatar/" + path);
+            throw new AppError("Usuário já tem um avatar");
+        }
+
+        await this.repository.update(userId, {image_url: path});
+    }
+
+    async getAvatar(userId){
+        var user = await this.repository.getById(userId);
+        if(!user) throw new AppError("Usuário não existe");
+
+        return user.image_url;
     }
 }
 
