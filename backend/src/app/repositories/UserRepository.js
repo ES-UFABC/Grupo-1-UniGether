@@ -22,9 +22,8 @@ class UserRepository{
     }
 
     async update(id, newUser){
-        const user = await User.findByPk(id);
-        await user.update(newUser);
-        return user;
+        await User.update(newUser, {where:{id: id}});
+        return await User.findByPk(id);
     }
 
     async delete(id){
@@ -37,7 +36,6 @@ class UserRepository{
 
         let condition = name ? { name: {[Op.like]: `%${name}%`}} : null;
         const users = await User.findAll({where: condition});
-
         return users;
     }
 }
