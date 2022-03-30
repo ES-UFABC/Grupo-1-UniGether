@@ -1,6 +1,7 @@
 import {UserValidator} from "../validators/UserValidator";
 import {UserService} from "../services/UserService";
 import { AppError } from "../../errors/AppError";
+import path from "path";
 
 const userService = new UserService();
 const userValidator = new UserValidator();
@@ -49,6 +50,22 @@ class UserController {
        await userService.deleteUser(userId);
 
        return res.status(200).json({message: "Usuario deletado"}).send();
+    }
+
+    async addAvatar(req, res) {
+        const userId = req.user.id;
+        const fileName = req.file.filename;
+        await userService.addAvatar(userId, fileName);
+
+        return res.status(200).json({message: "Avatar adicionado ao usuario"}).send();
+    }
+
+    async getAvatar(req, res) {
+        const userId = req.user.id;
+        console.log(userId);
+        const fileName = await userService.getAvatar(userId);
+        const avatarPath = path.resolve("tmp","avatar",fileName);
+        return res.sendFile(avatarPath);
     }
 
     async findByName(req,res){
