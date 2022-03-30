@@ -3,15 +3,13 @@
 }
 
 .card{
-  margin: 17vh 0 7vw 0;
   background-color:#F2F2F2;
   border-radius: 4%;
   padding: 2vh;
   box-shadow: 3px 3px 1px 0px #00000060;
-}
-.img{
-  margin: 16vh 0 0 7vw;
-  width: 80%;
+  max-width: 300px;
+  max-height: 300px;
+  margin-top: 100px;
 }
 
 @keyframes flutuar {
@@ -30,9 +28,12 @@
 
 .img{
   animation: flutuar 3s infinite;
-  width: 500px;
+  width: 70%;
+  height: 70%;
   max-width: 100%;
+  max-height: 100%;
 }
+
 
 input{
   width: 100%;
@@ -52,4 +53,19 @@ button{
 button:hover{
   background-color: #009688;
   transition-duration: 0.4s;
+}
+
+.global{
+  height:81vh;
+}
+
+@media(max-width: 770px){
+  .card{
+    height: 100%;
+    margin-top: 0;
+  }
+  .img{
+    max-height: 80%;
+
+  }
 }
