@@ -13,6 +13,7 @@ export default {
                     return callback(null, fileName)
                 },
             }),
+            limits: {filesize:0.5 * 1024 * 1024},
         }
     }
 };

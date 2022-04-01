@@ -20,7 +20,6 @@
           <input [(ngModel)]="cadastro.confirmPassword" type="password" name="confirmPassword" size="70">
 
         </div>
-
         <div class="info">
           <label for="age">Idade</label>
           <input [(ngModel)]="cadastro.age" type="text" id="age" name="age">
@@ -42,22 +41,24 @@
           </select>
 
         </div>
-
         <div class="profile">
           <label class="hoverable" for="file">
-            <img [src]="file ? file : 'https://wwwcadastro.w3schoolscadastro.com/howto/img_avatarcadastro.png'">
+            <img [src]="file ? file : 'https://www.w3schools.com/howto/img_avatar.png'">
             <div class="hover-text">Escolha uma foto de perfil</div>
             <div class="background"></div>
           </label>
           <br />
-          <input id="file" type='file' (change)="onSelectFile($event)">
+          <input id="file" type="file" name="file" (change)="onSelectFile($event)">
           <button *ngIf="file" (click)="delete()">delete</button>
+          <button *ngIf="file" (click)="upload()" type="button" class="btn btn-primary mt-3">Upload</button>
 
-          <textarea name="mensagem" id="mensagem" placeholder="Escreva mais sobre você"></textarea>
+          <textarea cols="5" rows="3" name="mensagem" id="mensagem" placeholder="Escreva mais sobre você"></textarea>
 
-          <button type="submit">Pronto</button>
+          <button type="button" id="pronto" type="submit">Pronto</button>
         </div>
       </form>
+      <button type="button" id="button-delete" (click)="deleteUser()" class="btn btn-danger">Apagar
+        conta</button>
     </div>
   </section>
 </main>

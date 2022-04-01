@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" *ngIf="!isLoggedIn">
   <div class="row container-fluid m-0  ">
 
     <div class="m-0 p-0 col-md-6 d-flex ">
@@ -12,7 +12,7 @@
         <div class="card ">
           <h5>Bem vinde!</h5>
           <h3>Junte-se à comunidade</h3>
-          <form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+          <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
             <div class="form-group mt-2">
               <label for="email">E-mail</label>
               <input type="text" class="form-control" name="email" [(ngModel)]="form.email" required #email="ngModel" />
@@ -42,10 +42,6 @@
               </div>
             </div>
           </form>
-          <div class="alert alert-success" *ngIf="isLoggedIn">
-            Olá {{decoded.name}}, seja bem-vindx!
-            E-mail: {{decoded.email}}
-          </div>
         </div>
       </div>
     </div>

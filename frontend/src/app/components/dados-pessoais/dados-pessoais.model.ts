@@ -13,6 +13,7 @@ export class DadosPessoais implements IDadosPessoais {
     public oldPassword: string = '',
     public password: string = '',
     public confirmPassword: string = '',
+    public image_url: string = ''
   ) { }
 }
 
@@ -27,5 +28,6 @@ export interface IDadosPessoais {
   search_for: string,
   email: string,
   oldPassword: string,
-  password: string
+  password: string,
+  image_url: string
 }

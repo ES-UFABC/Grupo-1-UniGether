@@ -56,13 +56,11 @@ class UserController {
         const userId = req.user.id;
         const fileName = req.file.filename;
         await userService.addAvatar(userId, fileName);
-
         return res.status(200).json({message: "Avatar adicionado ao usuario"}).send();
     }
 
     async getAvatar(req, res) {
         const userId = req.user.id;
-        console.log(userId);
         const fileName = await userService.getAvatar(userId);
         const avatarPath = path.resolve("tmp","avatar",fileName);
         return res.sendFile(avatarPath);
