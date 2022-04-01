@@ -49,3 +49,16 @@ button:hover{
   background-color: #009688;
   transition-duration: 0.4s;
 }
+
+@media(max-width: 770px){
+  .card{
+ 
+    margin-top: 10px;
+  }
+  .img{
+    margin-left: 0;
+    margin-top: 20Px;
+
+  }
+}
+

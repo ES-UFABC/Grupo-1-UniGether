@@ -1,49 +1,49 @@
-<div class="container-fluid" *ngIf="!isLoggedIn">
-  <div class="row container-fluid m-0  ">
+<div class="row global m-0  ">
 
-    <div class="m-0 p-0 col-md-6 d-flex ">
-      <div class="m-0 p-0  justify-content-center">
-        <img class="img" src="https://i.imgur.com/pOmOXoR.png?1" alt="">
-      </div>
+  <div class="mt-4 imagem col-md-6 d-flex justify-content-center">
+    <img class="img " src="https://i.imgur.com/pOmOXoR.png?1" alt="">
+  </div>
 
-    </div>
-    <div class="m-0 p-0 col-md-6">
-      <div class="m-0 p-0 d-flex justify-content-center">
-        <div class="card ">
-          <h5>Bem vinde!</h5>
-          <h3>Junte-se à comunidade</h3>
-          <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
-            <div class="form-group mt-2">
-              <label for="email">E-mail</label>
-              <input type="text" class="form-control" name="email" [(ngModel)]="form.email" required #email="ngModel" />
-              <div class="alert alert-danger" role="alert" *ngIf="f.submitted">
-                O campo e-mail é obrigatório!
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="password">Senha</label>
-              <input type="password" class="form-control" name="password" [(ngModel)]="form.password" required
-                minlength="6" #password="ngModel" />
-              <div class="alert alert-danger" role="alert" *ngIf="f.submitted && password.invalid">
-                <div *ngIf="password.errors.required">O campo senha é obrigatório</div>
-                <div *ngIf="password.errors.minlength">
-                  O campo senha deve ter no mínimo 6 caracteres
-                </div>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="d-flex justify-content-center">
-                <button>Entrar</button>
-              </div>
-              <div class="form-group">
-                <div class="alert alert-danger" role="alert" *ngIf="f.submitted && isLoginFailed">
-                  Login falhou: {{ errorMessage }}
-                </div>
-              </div>
-            </div>
-          </form>
+  <div class="m-0 p-0 col-md-6 d-flex justify-content-center ">
+
+    <div class="card">
+      <h5>Bem vinde!</h5>
+      <h3>Junte-se à comunidade</h3>
+      <form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+        <div class="form-group mt-2">
+          <label for="email">E-mail</label>
+          <input type="text" class="form-control" name="email" [(ngModel)]="form.email" required #email="ngModel" />
+          <div class="alert alert-danger" role="alert" *ngIf="f.submitted">
+            O campo e-mail é obrigatório!
+          </div>
         </div>
+        <div class="form-group">
+          <label for="password">Senha</label>
+          <input type="password" class="form-control" name="password" [(ngModel)]="form.password" required minlength="6"
+            #password="ngModel" />
+          <div class="alert alert-danger" role="alert" *ngIf="f.submitted && password.invalid">
+            <div *ngIf="password.errors.required">O campo senha é obrigatório</div>
+            <div *ngIf="password.errors.minlength">
+              O campo senha deve ter no mínimo 6 caracteres
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="d-flex justify-content-center">
+            <button>Entrar</button>
+          </div>
+          <div class="form-group">
+            <div class="alert alert-danger" role="alert" *ngIf="f.submitted && isLoginFailed">
+              Login falhou: {{ errorMessage }}
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="alert alert-success" *ngIf="isLoggedIn">
+        Olá {{decoded.name}}, seja bem-vindx!
+        E-mail: {{decoded.email}}
       </div>
     </div>
   </div>
+
 </div>
