@@ -13,7 +13,7 @@ export class DadosPessoaisService {
 
   uploadfile(file: File){
     const formData: FormData = new FormData();
-    formData.append('file', file.name);
+    formData.append('file', file);
     return this.http.post(`${this.baseUrl}/avatars`, formData)
   }
 

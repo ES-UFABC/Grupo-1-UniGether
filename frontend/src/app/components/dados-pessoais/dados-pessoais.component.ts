@@ -21,6 +21,7 @@ export class DadosPessoaisComponent implements OnInit {
   cadastro = new DadosPessoais();
 
   file: any
+  fileForUpload: any
 
   constructor(private tokenStorage: TokenStorageService, private cadastroService: CadastroService, private dadosPessoaisService: DadosPessoaisService,private router: Router, private route: ActivatedRoute){ }
 
@@ -57,15 +58,15 @@ export class DadosPessoaisComponent implements OnInit {
       var reader = new FileReader();
       reader.readAsDataURL(e.target.files[0]);
       reader.onload = (event:any)=>{
-        this.file=event.target.result;
-        //const blob = new Blob([new Uint8Array(event.target.result)], {type: (event.target as HTMLInputElement).files[0].type });
+        this.file = event.target.result;
+        this.fileForUpload  = e.target.files[0];
       }
     }
   }
 
   upload() {
     if (this.file) {
-      this.dadosPessoaisService.uploadfile(this.file).subscribe(resp => {
+      this.dadosPessoaisService.uploadfile(this.fileForUpload).subscribe(resp => {
         alert("Uploaded");
       })
     } else {
