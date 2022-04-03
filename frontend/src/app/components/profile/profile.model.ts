@@ -1,4 +1,4 @@
-export class DadosPessoais implements IDadosPessoais {
+export class Profile implements IProfile {
 
   constructor(
     public id?: number,
@@ -9,14 +9,10 @@ export class DadosPessoais implements IDadosPessoais {
     public shift: string = '',
     public bio: string = '',
     public search_for: string = '',
-    public email: string = '',
-    public oldPassword: string = '',
-    public password: string = '',
-    public confirmPassword: string = '',
   ) { }
 }
 
-export interface IDadosPessoais {
+export interface IProfile {
   id?: number,
   name: string,
   age?: number,
@@ -25,7 +21,4 @@ export interface IDadosPessoais {
   shift: string,
   bio: string,
   search_for: string,
-  email: string,
-  oldPassword: string,
-  password: string,
 }

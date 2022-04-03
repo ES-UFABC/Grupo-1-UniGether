@@ -5,6 +5,8 @@ import { CadastroService } from './../cadastro/cadastro.service';
 import jwt_decode from 'jwt-decode';
 import { TokenStorageService } from './../../_services/token-storage.service';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { BottomDeleteComponent } from '../templates/bottom-delete/bottom-delete.component';
+import {MatBottomSheet} from '@angular/material/bottom-sheet';
 
 @Component({
   selector: 'app-dados-pessoais',
@@ -23,7 +25,7 @@ export class DadosPessoaisComponent implements OnInit {
   file: any
   fileForUpload: any
 
-  constructor(private tokenStorage: TokenStorageService, private cadastroService: CadastroService, private dadosPessoaisService: DadosPessoaisService,private router: Router, private route: ActivatedRoute){ }
+  constructor(private tokenStorage: TokenStorageService, private cadastroService: CadastroService, private dadosPessoaisService: DadosPessoaisService,private router: Router, private route: ActivatedRoute,private _bottomSheet: MatBottomSheet){ }
 
   ngOnInit(): void {
     if (this.tokenStorage.getToken()) {
@@ -37,14 +39,8 @@ export class DadosPessoaisComponent implements OnInit {
   updateUser(): void {
     this.cadastroService.update(this.cadastro).subscribe(() => {
       this.logout();
-      this.router.navigate(["/login"])
-    })
-  }
-
-  deleteUser(): void {
-    this.cadastroService.delete().subscribe(() => {
-      this.logout();
-      this.router.navigate(["/"]);
+      this.router.navigate(["/login"]);
+      this.cadastroService.showMessage('Usuário alterado com sucesso');
     })
   }
 
@@ -67,11 +63,15 @@ export class DadosPessoaisComponent implements OnInit {
   upload() {
     if (this.file) {
       this.dadosPessoaisService.uploadfile(this.fileForUpload).subscribe(resp => {
-        alert("Uploaded");
+        this.dadosPessoaisService.showMessage("Upload da foto foi realizado")
       })
     } else {
-      alert("Please select a file first");
+      this.dadosPessoaisService.showMessage("Selecione primeiro o arquivo")
     }
+  }
+
+  openBottomSheet(): void {
+    this._bottomSheet.open(BottomDeleteComponent);
   }
 
   public delete(){

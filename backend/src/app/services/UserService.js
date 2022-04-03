@@ -4,7 +4,8 @@ import { deleteFile } from "../../utils/file";
 import bcrypt from "bcryptjs";
 
 class OutputUser{
-    constructor(name, email,age,initial_year,gender,shift,bio,search_for,image_url){
+    constructor(id,name, email,age,initial_year,gender,shift,bio,search_for,image_url){
+        this.id = id;
         this.name = name;
         this.email = email;
         this.age = age;
@@ -13,7 +14,7 @@ class OutputUser{
         this.shift = shift;
         this.bio = bio;
         this.search_for = search_for;
-        this.image_url=image_url;
+        this.image_url = image_url;
     }
 }
 
@@ -25,20 +26,6 @@ class OutputUserCreate{
     }
 }
 
-class OutputUserUpdate{
-    constructor(id, name, email,age,initial_year,gender,shift,bio,search_for){
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.age = age;
-        this.initial_year= initial_year;
-        this.gender = gender;
-        this.shift = shift;
-        this.bio = bio;
-        this.search_for = search_for;
-    }
-}
-
 class UserService{
     constructor(){
         this.repository = new UserRepository();
@@ -47,8 +34,8 @@ class UserService{
     async listUser(userId){
         var user = await this.repository.getById(userId);
         if (!user) throw new AppError("Usuário não existe");
-        const {id, name, email,age,initial_year,gender,shift,bio,search_for,image_url} = user;
-        return new OutputUser(id, name, email,age,initial_year,gender,shift,bio,search_for,image_url);
+        const {id,name, email,age,initial_year,gender,shift,bio,search_for} = user;
+        return new OutputUser(id,name, email,age,initial_year,gender,shift,bio,search_for);
     }
 
     async listUsers(){
@@ -86,7 +73,7 @@ class UserService{
         inputUser.password_hash = await bcrypt.hash(inputUser.password, 8);
         const {id, name, email,age,initial_year,gender,shift,bio,search_for} = await this.repository.update(userId, inputUser);
         
-        return new OutputUserUpdate(id, name, email,age,initial_year,gender,shift,bio,search_for);
+        return new OutputUser(id, name, email,age,initial_year,gender,shift,bio,search_for);
     }
 
     async deleteUser(userId){
@@ -107,7 +94,6 @@ class UserService{
         if(!user) throw new AppError("Usuário não existe");
         if(user.image_url){
             await deleteFile("./tmp/avatar/" + path);
-            throw new AppError("Usuário já tem um avatar");
         }
 
         await this.repository.update(userId, {image_url: path});

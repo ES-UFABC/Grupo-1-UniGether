@@ -11,13 +11,29 @@
       </ul>
       <ul *ngIf="isLoggedIn">
         <li class="nav-item">
-          <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a>
+          <a href="/match" class="nav-link" routerLink="match">
+            <mat-icon>whatshot</mat-icon>
+          </a>
         </li>
         <li class="nav-item">
-          <a href="/dados-pessoais" class="nav-link" routerLink="dados-pessoais">Profile</a>
+          <a href="/chat" class="nav-link">
+            <mat-icon>sms</mat-icon>
+          </a>
         </li>
         <li class="nav-item">
-          <a href class="nav-link" (click)="logout()">LogOut</a>
+          <a href="/profile" class="nav-link" routerLink="profile">
+            <mat-icon>account_circle</mat-icon>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/dados-pessoais" class="nav-link" routerLink="dados-pessoais">
+            <mat-icon>settings</mat-icon>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href class="nav-link" (click)="logout()">
+            <mat-icon class="mat-18">person_off</mat-icon>
+          </a>
         </li>
       </ul>
     </nav>

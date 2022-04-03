@@ -2,7 +2,7 @@ module.exports = {
     dialect:'mysql',
     host: 'localhost',
     username: 'root',
-    password: 'Giba2006*',
+    password: 'XXXXXX',
     database : 'db_unigether',
     define: {
         timestamp: true, 

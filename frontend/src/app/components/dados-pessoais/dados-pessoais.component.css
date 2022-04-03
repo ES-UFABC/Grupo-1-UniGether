@@ -1,5 +1,5 @@
 .container{
-  margin-top: 20vh;
+  margin-top: 5vh;
   width: 75%;
 }
 
@@ -45,6 +45,7 @@
 
 .contato form textarea {
   resize: none;
+  height: 300px;
 }
 
 .contato form label {
@@ -62,11 +63,28 @@ textarea,select,input{
   border: 0;
   background-color:#F2F2F2;
 }
-#pronto{
-  width: 60%;
+
+button{
   border-radius: 30px;
+  height: 5vh;
+  width: 5vw;
+  border-color: #000;
+}
+
+.buttons{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5vh;
+  color: #fff;
+}
+
+#button-delete-user{
+  width: 9vw;
+}
+
+#pronto{
   background-color:#719489;
-  margin-top: 15px;
+  width: 9vw;
 }
 
 #pronto:hover{

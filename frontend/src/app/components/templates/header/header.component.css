@@ -64,6 +64,18 @@ header nav ul li a {
   color: white;
 }
 
+mat-icon {
+  color:#fff;
+  font-size: 4vh;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+mat-icon:hover{
+  background-color: #F5DB8C;
+  color: white;
+}
+
 @media (max-width: 515px) {
   header .container {
     flex-wrap: wrap;

@@ -1,3 +1,5 @@
+import { TinderUIComponent } from './components/templates/tinder-ui/tinder-ui.component';
+import { ProfileComponent } from './components/profile/profile.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CadastroComponent } from './components/cadastro/cadastro.component';
@@ -8,7 +10,9 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'cadastro', component: CadastroComponent },
+  { path: 'profile', component: ProfileComponent },
   { path: 'dados-pessoais', component: DadosPessoaisComponent },
+  { path: 'match', component: TinderUIComponent },
   //{ path: 'user',component:}
   //{ path: 'quem-somos', component: QuemSomosComponent },
   //{ path: '**', component: NotFoundComponent },

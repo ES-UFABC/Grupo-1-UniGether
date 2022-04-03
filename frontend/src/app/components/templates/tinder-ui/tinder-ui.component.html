@@ -1,0 +1,34 @@
+<div class="tinder" *ngFor="let user of users">
+  <div class="tinder--status">
+    <div [style.opacity]="crossVisible ? '1' : '0'">
+      <mat-icon font-size="200px" font-color="#CDD6DD">close</mat-icon>
+    </div>
+
+    <div [style.opacity]="heartVisible ? '1' : '0'">
+      <mat-icon font-size="200px" font-color="#FFACE4">favorite</mat-icon>
+    </div>
+  </div>
+
+  <div class="tinder--cards" (pan)="handlePan($event)" (panend)="handlePanEnd($event)">
+    <div #tinderCard class="tinder--card" (transitionend)="handleShift()" *ngFor="let user of users; let i = index"
+      [ngStyle]="{
+        zIndex: users.length - i,
+        transform: 'scale(' + (20 - i) / 20 + ') translateY(-' + 20 * i + 'px)'
+      }">
+      <!-- <img #tinderCardImage [src]="" (load)="tinderCardImage.style.opacity = 1" /> -->
+      <h3>{{ user.name }}</h3>
+      <h3>{{user.age}}</h3>
+      <p>{{ user.bio }}</p>
+    </div>
+  </div>
+
+  <div class="tinder--buttons">
+    <button (click)="userClickedButton($event, false)">
+      <mat-icon font-size="30px" color="#CDD6DD" margin-top="4vh">close</mat-icon>
+    </button>
+
+    <button (click)="userClickedButton($event, true)">
+      <mat-icon font-size="30px" color="#FFACE4" margin-top="4vh">favorite</mat-icon>
+    </button>
+  </div>
+</div>

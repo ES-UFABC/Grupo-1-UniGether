@@ -29,9 +29,10 @@
 .img{
   animation: flutuar 3s infinite;
   width: 70%;
-  height: 70%;
+  height: 85%;
   max-width: 100%;
   max-height: 100%;
+  margin-top: 10vh;
 }
 
 

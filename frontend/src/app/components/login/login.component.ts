@@ -55,12 +55,16 @@ export class LoginComponent implements OnInit {
 
         this.loginService.isLoggedIn$.next(true);
         this.roles = this.tokenStorage.getUser().roles;
-        this.router.navigate(['/dados-pessoais']);
+
+        this.reloadPage();
       },
       err => {
         this.errorMessage = err.error.message;
         this.isLoginFailed = true;
       }
     );
+  }
+  reloadPage(): void {
+    window.location.reload();
   }
 }

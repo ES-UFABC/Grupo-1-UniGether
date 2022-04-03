@@ -1,8 +1,8 @@
 <main>
   <section>
     <div class="container">
-      <h3>Fale um pouco mais sobre você</h3>
-      <form method="POST" class="contato">
+      <h3>Fale mais sobre você</h3>
+      <form class="contato">
         <div class="atualizaInfos">
           <label for="nome">Nome Completo</label>
           <input type="text" [(ngModel)]="cadastro.name" id="nome" name="name" size="70" maxlength="50">
@@ -49,16 +49,19 @@
           </label>
           <br />
           <input id="file" type="file" name="file" (change)="onSelectFile($event)">
-          <button *ngIf="file" (click)="delete()">delete</button>
-          <button *ngIf="file" (click)="upload()" type="button" class="btn btn-primary mt-3">Upload</button>
+          <button type="button" id="button-delete-file" class="btn btn-danger" *ngIf="file"
+            (click)="delete()">delete</button>
+          <button *ngIf="file" (click)="upload()" type="button" class="btn btn-primary">Upload</button>
 
-          <textarea cols="5" rows="3" name="mensagem" id="mensagem" placeholder="Escreva mais sobre você"></textarea>
-
-          <button type="button" id="pronto" type="submit">Pronto</button>
+          <textarea [(ngModel)]="cadastro.bio" cols="5" rows="3" name="mensagem" id="mensagem"
+            placeholder="Escreva mais sobre você"></textarea>
         </div>
       </form>
-      <button type="button" id="button-delete" (click)="deleteUser()" class="btn btn-danger">Apagar
-        conta</button>
+      <div class="buttons">
+        <button type="button" id="button-delete-user" (click)="openBottomSheet()" class="btn btn-danger">Apagar
+          conta</button>
+        <button type="button" id="pronto" type="submit" (click)="updateUser()">Atualizar perfil</button>
+      </div>
     </div>
   </section>
 </main>

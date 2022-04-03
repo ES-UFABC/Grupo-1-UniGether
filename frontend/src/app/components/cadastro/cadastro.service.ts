@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Cadastro } from './cadastro.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { DadosPessoais } from './../dados-pessoais/dados-pessoais.model';
 
 @Injectable({
@@ -10,7 +11,7 @@ import { DadosPessoais } from './../dados-pessoais/dados-pessoais.model';
 export class CadastroService {
   baseUrl = "http://localhost:8080"
 
-  constructor(private http: HttpClient) { }
+  constructor(private snackBar: MatSnackBar,private http: HttpClient) { }
 
   create(cadastro: Cadastro): Observable<Cadastro> {
     return this.http.post<Cadastro>(`${this.baseUrl}/users`, cadastro)
@@ -26,6 +27,22 @@ export class CadastroService {
     return this.http.delete<Cadastro>(url);
   }
 
+  showMessage(msg: string): void {
+    this.snackBar.open(msg, 'X', {
+      duration: 3000,
+      horizontalPosition: "right",
+      verticalPosition: "top"
+    })
+  }
 
+  readById(id: string): Observable<DadosPessoais> {
+    const url = `${this.baseUrl}/users/${id}`
+    return this.http.get<DadosPessoais>(url);
+  }
+
+  readUsers(): Observable<DadosPessoais[]> {
+    const url = `${this.baseUrl}/users`
+    return this.http.get<DadosPessoais[]>(url);
+  }
 }
 

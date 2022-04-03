@@ -1,0 +1,33 @@
+.container{
+  width: 40vw;
+  margin-top: 15vh;
+  display: flex;
+  justify-content: space-between;
+}
+
+img {
+  width: 20vw;
+  height: 40vh;
+}
+
+.infos-relacao{
+  margin-top: 5vh;
+}
+
+li {
+  list-style-image: url(../../../assets/greenbook.png);
+}
+
+
+input{
+  width: 100%;
+  border-radius: 5px;
+  border: 0;
+  background-color:#F2F2F2;
+  margin: 1vh 0 1vh 0;
+}
+
+textarea {
+  resize: none;
+  height: 300px;
+}
