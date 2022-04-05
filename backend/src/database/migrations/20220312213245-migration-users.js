@@ -6,10 +6,25 @@ module.exports = {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        autoIncrement:true,
+        autoIncrement: true,
         primaryKey: true,
       },
+      group_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: { model: 'groups', key: 'id' },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+      },
       name: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      university: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      course: {
         type: Sequelize.STRING,
         allowNull: false,
       },
@@ -23,17 +38,17 @@ module.exports = {
       },
       gender: {
         type: Sequelize.STRING,
-        allowNull:true,
+        allowNull: true,
       },
       shift: {
-        type: Sequelize.ENUM("Matutino","Noturno"),
-        allowNull:true,
+        type: Sequelize.ENUM("Matutino", "Noturno"),
+        allowNull: true,
       },
-      bio:{
+      bio: {
         type: Sequelize.TEXT,
-        allowNull:true,
+        allowNull: true,
       },
-      search_for:{
+      search_for: {
         type: Sequelize.STRING,
         allowNull: true
       },
@@ -54,10 +69,10 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false,
       },
-    });     
+    });
   },
 
-  down:  (queryInterface) => {
-     return queryInterface.dropTable('users');     
+  down: (queryInterface) => {
+    return queryInterface.dropTable('users');
   },
 };

@@ -22,11 +22,11 @@ export class TinderUIComponent implements OnInit {
   heartVisible: boolean;
   crossVisible: boolean;
 
-  constructor(private renderer: Renderer2, private cadastroService: CadastroService) {}
+  constructor(private renderer: Renderer2, private cadastroService: CadastroService) { }
 
   ngOnInit(): void {
     this.cadastroService.readUsers().subscribe((res: DadosPessoais[]) => {
-      this.users=res;
+      this.users = res;
       console.log(this.users);
     })
   }
@@ -36,11 +36,11 @@ export class TinderUIComponent implements OnInit {
     if (!this.users.length) return false;
     if (heart) {
       this.renderer.setStyle(this.tinderCardsArray[0].nativeElement, 'transform', 'translate(' + this.moveOutWidth + 'px, -100px) rotate(-30deg)');
-      this.toggleChoiceIndicator(false,true);
+      this.toggleChoiceIndicator(false, true);
       this.emitChoice(heart, this.users[0]);
     } else {
       this.renderer.setStyle(this.tinderCardsArray[0].nativeElement, 'transform', 'translate(-' + this.moveOutWidth + 'px, -100px) rotate(30deg)');
-      this.toggleChoiceIndicator(true,false);
+      this.toggleChoiceIndicator(true, false);
       this.emitChoice(heart, this.users[0]);
     };
     this.shiftRequired = true;
@@ -57,8 +57,8 @@ export class TinderUIComponent implements OnInit {
 
     this.renderer.addClass(this.tinderCardsArray[0].nativeElement, 'moving');
 
-    if (event.deltaX > 0) { this.toggleChoiceIndicator(false,true) }
-    if (event.deltaX < 0) { this.toggleChoiceIndicator(true,false) }
+    if (event.deltaX > 0) { this.toggleChoiceIndicator(false, true) }
+    if (event.deltaX < 0) { this.toggleChoiceIndicator(true, false) }
 
     let xMulti = event.deltaX * 0.03;
     let yMulti = event.deltaY / 80;
@@ -72,7 +72,7 @@ export class TinderUIComponent implements OnInit {
 
   handlePanEnd(event) {
 
-    this.toggleChoiceIndicator(false,false);
+    this.toggleChoiceIndicator(false, false);
 
     if (!this.users.length) return;
 
@@ -110,7 +110,7 @@ export class TinderUIComponent implements OnInit {
 
   handleShift() {
     this.transitionInProgress = false;
-    this.toggleChoiceIndicator(false,false)
+    this.toggleChoiceIndicator(false, false)
     if (this.shiftRequired) {
       this.shiftRequired = false;
       this.users.shift();
@@ -127,7 +127,7 @@ export class TinderUIComponent implements OnInit {
   ngAfterViewInit() {
     this.moveOutWidth = document.documentElement.clientWidth * 1.5;
     this.tinderCardsArray = this.tinderCards.toArray();
-    this.tinderCards.changes.subscribe(()=>{
+    this.tinderCards.changes.subscribe(() => {
       this.tinderCardsArray = this.tinderCards.toArray();
     })
   };

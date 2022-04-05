@@ -7,6 +7,12 @@
           <label for="nome">Nome Completo</label>
           <input type="text" [(ngModel)]="cadastro.name" id="nome" name="name" size="70" maxlength="50">
 
+          <label for="university">Universidade</label>
+          <input [(ngModel)]="cadastro.university" type="text" name="university" id="university" size="70">
+
+          <label for="course">Curso</label>
+          <input [(ngModel)]="cadastro.course" type="text" name="course" id="course" size="70">
+
           <label for="email">Email</label>
           <input [(ngModel)]="cadastro.email" type="email" name="email" id="email" size="70">
 
@@ -18,7 +24,6 @@
 
           <label for="confirmPassword">Confirme sua senha</label>
           <input [(ngModel)]="cadastro.confirmPassword" type="password" name="confirmPassword" size="70">
-
         </div>
         <div class="info">
           <label for="age">Idade</label>

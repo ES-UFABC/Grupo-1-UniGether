@@ -15,6 +15,8 @@ export class CadastroComponent implements OnInit {
 
   cadastro: Cadastro = {
     name: '',
+    university: '',
+    course: '',
     email: '',
     password: '',
     confirmPassword: ''

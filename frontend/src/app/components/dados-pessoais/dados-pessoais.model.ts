@@ -3,6 +3,8 @@ export class DadosPessoais implements IDadosPessoais {
   constructor(
     public id?: number,
     public name: string = '',
+    public university: string = '',
+    public course: string = '',
     public age?: number,
     public initial_year?: number,
     public gender: string = '',
@@ -19,6 +21,8 @@ export class DadosPessoais implements IDadosPessoais {
 export interface IDadosPessoais {
   id?: number,
   name: string,
+  university: string,
+  course: string,
   age?: number,
   initial_year?: number,
   gender: string,

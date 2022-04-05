@@ -1,5 +1,5 @@
 .card{
-  margin: 17vh 0 7vw 0;
+  margin: 25vh 0 10vw 0;
   background-color:#F2F2F2;
   border-radius: 4%;
   padding: 2vh;
@@ -52,7 +52,7 @@ button:hover{
 
 @media(max-width: 770px){
   .card{
- 
+
     margin-top: 10px;
   }
   .img{
