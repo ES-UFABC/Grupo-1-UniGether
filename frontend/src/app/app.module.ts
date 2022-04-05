@@ -21,6 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProfileComponent } from './components/profile/profile.component';
 import { TinderUIComponent } from './components/templates/tinder-ui/tinder-ui.component';
 import { BottomDeleteComponent } from './components/templates/bottom-delete/bottom-delete.component';
+import { ChatComponent } from './components/chat/chat.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { BottomDeleteComponent } from './components/templates/bottom-delete/bott
     ProfileComponent,
     TinderUIComponent,
     BottomDeleteComponent,
+    ChatComponent,
   ],
   imports: [
     BrowserModule,

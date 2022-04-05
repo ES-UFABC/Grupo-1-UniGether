@@ -24,9 +24,11 @@
     "path": "^0.12.7",
     "reflect-metadata": "^0.1.13",
     "sequelize": "^6.17.0",
+    "socket.io": "^4.4.1",
     "yup": "^0.32.11"
   },
   "devDependencies": {
+    "@types/socket.io": "^3.0.2",
     "mocha": "^9.2.2",
     "nodemon": "^2.0.15",
     "sequelize-cli": "^6.4.1",

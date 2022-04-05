@@ -2,18 +2,18 @@
   <section>
     <div class="container">
       <div class="name-image">
-        <h2>{{cadastro.name}}</h2>
+        <h2>{{cadastro?.name}}</h2>
         <img src="{{image}}" alt="Imagem de perfil" />
       </div>
       <div class="infos-relacao">
         <ul>
-          <li><input type="text" id="age" name="age" placeholder="{{cadastro.age}}" disabled="true"></li>
-          <li><input type="text" id="initialYear" name="initialYear" value="{{cadastro.initial_year}}" disabled="true">
+          <li><input type="text" id="age" name="age" placeholder="{{cadastro?.age}}" disabled="true"></li>
+          <li><input type="text" id="initialYear" name="initialYear" value="{{cadastro?.initial_year}}" disabled="true">
           </li>
-          <li><input type="text" id="gender" name="gender" placeholder="{{cadastro.gender}}" disabled="true"></li>
-          <li><input type="text" id="shift" name="shift" placeholder="{{cadastro.shift}}" disabled="true"></li>
-          <li><textarea cols="5" rows="3" disabled="true" placeholder="{{cadastro.bio}}"></textarea></li>
-          <li><input type="text" id="searchFor" name="searchFor" placeholder="{{cadastro.search_for}}" disabled="true">
+          <li><input type="text" id="gender" name="gender" placeholder="{{cadastro?.gender}}" disabled="true"></li>
+          <li><input type="text" id="shift" name="shift" placeholder="{{cadastro?.shift}}" disabled="true"></li>
+          <li><textarea cols="5" rows="3" disabled="true" placeholder="{{cadastro?.bio}}"></textarea></li>
+          <li><input type="text" id="searchFor" name="searchFor" placeholder="{{cadastro?.search_for}}" disabled="true">
           </li>
         </ul>
       </div>

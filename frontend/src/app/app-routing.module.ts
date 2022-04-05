@@ -1,3 +1,4 @@
+import { ChatComponent } from './components/chat/chat.component';
 import { TinderUIComponent } from './components/templates/tinder-ui/tinder-ui.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { NgModule } from '@angular/core';
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'dados-pessoais', component: DadosPessoaisComponent },
   { path: 'match', component: TinderUIComponent },
+  { path: 'chat', component: ChatComponent },
   //{ path: 'user',component:}
   //{ path: 'quem-somos', component: QuemSomosComponent },
   //{ path: '**', component: NotFoundComponent },

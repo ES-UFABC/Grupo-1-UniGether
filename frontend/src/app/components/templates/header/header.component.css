@@ -72,8 +72,7 @@ mat-icon {
 }
 
 mat-icon:hover{
-  background-color: #F5DB8C;
-  color: white;
+  color: #F5DB8C;
 }
 
 @media (max-width: 515px) {

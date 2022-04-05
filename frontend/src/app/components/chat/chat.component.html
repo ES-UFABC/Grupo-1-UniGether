@@ -1,0 +1,50 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-5">
+      <div class="choose" *ngIf="!hasJoined">
+        <label for="roomInput">Escolha um grupo</label>
+        <select name="roomInput" id="roomInput" class="form-control" [(ngModel)]="room">
+          <option value="Lobby">Lobby</option>
+          <option value="Hall">Hall</option>
+          <option value="Deluxe">Deluxe</option>
+        </select>
+      </div>
+      <div class="choose" *ngIf="hasJoined">
+        <label for="room">Grupo</label>
+        <input type="text" [(ngModel)]="room" class="form-control" id="room" disabled="true">
+      </div>
+    </div>
+    <div class="col sm-2">
+      <div style="margin-top:19px;" class="pull-right">
+        <button type="button" class="btn btn-primary" (click)="join()" *ngIf="!hasJoined">Join</button>
+        <button type="button" class="btn btn-secondary" (click)="leave()" *ngIf="hasJoined">Leave</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="hasJoined">
+    <div class="well"
+      style="height:45vh; width: 70%; padding:15px; background-image: url(../../../assets/backgroundWhats.png);">
+      <div *ngFor="let item of messageArray">
+        <div class="message me" *ngIf="item.user==cadastro.name">
+          <div class="messageContent me" *ngIf="item.user==cadastro.name">
+            <span><strong>{{item.user}} : </strong> {{item.message}}</span>
+          </div>
+        </div>
+        <div class="message other" *ngIf="item.user!=cadastro.name">
+          <div class="messageContent other" *ngIf="item.user!=cadastro.name">
+            <span><strong>{{item.user}} : </strong> {{item.message}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="hasJoined">
+    <div class="col-sm-9">
+      <input type="text" class="form-control" [(ngModel)]="messageText">
+    </div>
+    <div class="col-sm-2">
+      <button type="button" class="btn btn-success pull-right" (click)="sendMessage()">Send</button>
+    </div>
+  </div>
+</div>

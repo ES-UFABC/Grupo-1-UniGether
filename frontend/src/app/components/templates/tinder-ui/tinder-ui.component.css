@@ -32,7 +32,7 @@
 
 .tinder--card {
   display: inline-block;
-  width: 260px;
+  width: 320px;
   height: 60%;
   background: #FFFFFF;
   padding-bottom: 40px;
@@ -50,7 +50,7 @@
   position: absolute;
   flex: 0 0 100px;
   text-align: center;
-  bottom: 50px;
+  bottom: 70px;
   left: 0;
   right: 0;
 }

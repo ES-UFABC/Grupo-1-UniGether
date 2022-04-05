@@ -1,11 +1,11 @@
 <div class="tinder" *ngFor="let user of users">
   <div class="tinder--status">
     <div [style.opacity]="crossVisible ? '1' : '0'">
-      <mat-icon font-size="200px" font-color="#CDD6DD">close</mat-icon>
+      <mat-icon style="font-size:200px; color:#CDD6DD">close</mat-icon>
     </div>
 
     <div [style.opacity]="heartVisible ? '1' : '0'">
-      <mat-icon font-size="200px" font-color="#FFACE4">favorite</mat-icon>
+      <mat-icon style="font-size:200px; color:#FFACE4">favorite</mat-icon>
     </div>
   </div>
 
@@ -24,11 +24,11 @@
 
   <div class="tinder--buttons">
     <button (click)="userClickedButton($event, false)">
-      <mat-icon font-size="30px" color="#CDD6DD" margin-top="4vh">close</mat-icon>
+      <mat-icon style="font-size:30px; color:#CDD6DD;">close</mat-icon>
     </button>
 
     <button (click)="userClickedButton($event, true)">
-      <mat-icon font-size="30px" color="#FFACE4" margin-top="4vh">favorite</mat-icon>
+      <mat-icon style="font-size:30px; color:#FFACE4;">favorite</mat-icon>
     </button>
   </div>
 </div>

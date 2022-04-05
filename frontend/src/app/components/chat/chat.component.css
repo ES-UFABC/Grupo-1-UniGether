@@ -1,0 +1,28 @@
+.container-fluid{
+  margin: 15vh 6vw 0 6vw;
+}
+
+.message.me{
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.message.other{
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+}
+
+.messageContent.me{
+  padding: 10px;
+  background-color:#D1F4CC;
+  border-radius: 5px;
+}
+
+.messageContent.other{
+  padding: 10px;
+  background-color: white;
+  border-radius: 5px;
+}
+

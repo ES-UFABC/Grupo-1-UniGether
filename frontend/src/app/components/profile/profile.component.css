@@ -12,10 +12,12 @@ img {
 
 .infos-relacao{
   margin-top: 5vh;
+  margin-left: 2vw;
 }
 
 li {
   list-style-image: url(../../../assets/greenbook.png);
+  margin: 0 0 0.03vh 0.05vw;
 }
 
 
@@ -24,10 +26,11 @@ input{
   border-radius: 5px;
   border: 0;
   background-color:#F2F2F2;
-  margin: 1vh 0 1vh 0;
 }
 
 textarea {
+  margin-top: 2vh;
   resize: none;
-  height: 300px;
+  height: 100px;
+  width: 400px;
 }

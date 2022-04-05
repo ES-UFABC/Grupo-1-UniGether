@@ -17,6 +17,7 @@
     "@angular/compiler": "~13.3.1",
     "@angular/core": "~13.3.1",
     "@angular/forms": "~13.3.1",
+    "@angular/localize": "^13.3.1",
     "@angular/material": "^13.3.2",
     "@angular/platform-browser": "~13.3.1",
     "@angular/platform-browser-dynamic": "~13.3.1",
@@ -27,6 +28,7 @@
     "jwt-decode": "^3.1.2",
     "popper.js": "^1.16.1",
     "rxjs": "~6.6.0",
+    "socket.io-client": "^4.4.1",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
   },
