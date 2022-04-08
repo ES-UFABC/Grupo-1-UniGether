@@ -34,7 +34,7 @@ class User extends Model {
 	}
 
 	static associate(models) {
-		this.belongsToMany(models.Group, { foreignKey: 'group_id', as: 'group' });
+		this.belongsToMany(models.Group, { foreignKey: 'user_id', through: 'users-groups', as: 'groups' });
 	}
 
 	checkPassword(password) {

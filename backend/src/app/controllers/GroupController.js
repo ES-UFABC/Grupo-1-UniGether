@@ -1,6 +1,5 @@
 import { GroupService } from "../services/GroupService";
 import { AppError } from "../../errors/AppError";
-import path from "path";
 import User from '../models/Users';
 import Group from '../models/Groups';
 
@@ -9,23 +8,22 @@ const groupService = new GroupService();
 class GroupController {
 
     async index(req, res) {
-        const userId = req.user.id;
-        const user = await User.findByPk(userId, {
-            include: { association: 'group' }
-        });
+        // const userId = req.params.id;
+        // const user = await User.findByPk(userId, {
+        //     include: { association: 'group' }
+        // });
 
-        if (!user) {
-            res.status(400).json({ error: "Usuário não existe" })
-        }
+        // if (!user) {
+        //     res.status(400).json({ error: "Usuário não existe" })
+        // }
 
-        return res.json(user)
+        // return res.json(user)
     }
 
     async store(req, res) {
 
+        const { user_id } = req.params;
         const { name, description } = req.body;
-
-        let user_id = req.user.id;
 
         const user = await User.findByPk(user_id);
 
@@ -33,17 +31,14 @@ class GroupController {
             return res.status(400).json({ error: "Usuario não existe" })
         }
 
-        const group = await Group.create({
-            name,
-            description,
-            user_id
-        })
-
-        return res.json({
-            name,
-            description
+        const [group] = await Group.findOrCreate({
+            where: { name, description }
         });
-    };
+
+        await user.addGroup(group);
+
+        return res.json(group);
+    }
 
     async findAllGroups(req, res) {
 

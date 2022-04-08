@@ -5,16 +5,9 @@ module.exports = {
         return queryInterface.createTable('groups', {
             id: {
                 type: Sequelize.INTEGER,
+                primaryKey: TRUE,
                 allowNull: false,
                 autoIncrement: true,
-                primaryKey: true,
-            },
-            user_id: {
-                type: Sequelize.INTEGER,
-                allowNull: false,
-                references: { model: 'users', key: 'id' },
-                onUpdate: 'CASCADE',
-                onDelete: 'CASCADE',
             },
             name: {
                 type: Sequelize.STRING,

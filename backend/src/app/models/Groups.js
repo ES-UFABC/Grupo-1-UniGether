@@ -4,7 +4,6 @@ class Group extends Model {
     static init(sequelize) {
         super.init({
             id: Sequelize.INTEGER,
-            user_id: Sequelize.INTEGER,
             name: Sequelize.STRING,
             description: Sequelize.TEXT,
         },
@@ -17,12 +16,8 @@ class Group extends Model {
     }
 
     static associate(models) {
-        this.belongsToMany(models.User, { foreignKey: 'user_id', as: 'user' });
+        this.belongsToMany(models.User, { foreignKey: 'group_id', through: 'users-groups', as: 'users' });
     }
 }
 
 export default Group;
-
-WorkingDay.associate = function (models) {
-    WorkingDay.belongsToMany(models.User, { through: 'UsersWorkingDays', foreignKey: 'workingDayId', as: 'employes' })
-};
