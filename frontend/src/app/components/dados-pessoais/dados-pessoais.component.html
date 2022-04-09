@@ -2,70 +2,92 @@
   <section>
     <div class="container">
       <h3>Fale mais sobre você</h3>
-      <form class="contato">
-        <div class="atualizaInfos">
-          <label for="nome">Nome Completo</label>
-          <input type="text" [(ngModel)]="cadastro.name" id="nome" name="name" size="70" maxlength="50">
-
-          <label for="university">Universidade</label>
-          <input [(ngModel)]="cadastro.university" type="text" name="university" id="university" size="70">
-
-          <label for="course">Curso</label>
-          <input [(ngModel)]="cadastro.course" type="text" name="course" id="course" size="70">
-
-          <label for="email">Email</label>
-          <input [(ngModel)]="cadastro.email" type="email" name="email" id="email" size="70">
-
-          <label for="password">Senha atual</label>
-          <input [(ngModel)]="cadastro.oldPassword" type="password" name="password" size="70" class="senha">
-
-          <label for="password">Nova senha</label>
-          <input [(ngModel)]="cadastro.password" type="password" name="password" size="70" class="senha">
-
-          <label for="confirmPassword">Confirme sua senha</label>
-          <input [(ngModel)]="cadastro.confirmPassword" type="password" name="confirmPassword" size="70">
+      <div class="row">
+        <div class="col">
+          <form class="contato">
+            <div class="atualizaInfos col-md-8">
+              <div class="row">
+                <div class="col">
+                  <label class="my-1" for="nome">Nome Completo</label>
+                  <input class="form-control" type="text" [(ngModel)]="cadastro.name" id="nome" name="name" size="70" maxlength="50">
+                </div>
+                <div class="col-md-6">
+                  <label class="my-1" for="gender">Gênero</label>
+                  <input class="form-control" [(ngModel)]="cadastro.gender" type="text" id="gender" name="gender">
+                </div>
+                <div class="col-md-6">
+                  <label class="my-1" for="university">Universidade</label>
+                  <input class="form-control" [(ngModel)]="cadastro.university" type="text" name="university" id="university" size="70">
+                </div>
+                <div class="col-md-6">
+                  <label class="my-1" for="searchFor">Procuro</label>
+                  <input class="form-control" [(ngModel)]="cadastro.search_for" type="text" id="searchFor" name="searchFor">
+                </div>
+                <div class="col-md-6">
+                  <label class="my-1" for="course">Curso</label>
+                  <input class="form-control" [(ngModel)]="cadastro.course" type="text" name="course" id="course" size="70">
+                </div>
+                <div class="col-md-6">
+                  <label class="my-1" for="turno">Turno</label>
+                  <select class="form-select" name="turno" [(ngModel)]="cadastro.shift">
+                    <option value="" disabled selected>Selecione um turno</option>
+                    <option value="matutino">Matutino</option>
+                    <option value="noturno" selected>Noturno</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label class="my-1" for="email">Email</label>
+                  <input class="form-control" [(ngModel)]="cadastro.email" type="email" name="email" id="email" size="70">
+                </div>
+                <div class="col-md-6">
+                  <label class="my-1" for="password">Senha atual</label>
+                  <input class="form-control" [(ngModel)]="cadastro.oldPassword" type="password" name="password" size="70">
+                </div>
+                <div class="col-md-6">
+                  <label class="my-1" for="password">Nova senha</label>
+                  <input class="form-control" [(ngModel)]="cadastro.password" type="password" name="password" size="70">
+                </div>
+                <div class="col-md-6">
+                  <label class="my-1" for="confirmPassword">Confirme sua senha</label>
+                  <input class="form-control" [(ngModel)]="cadastro.confirmPassword" type="password" name="confirmPassword" size="70">
+                </div>
+                
+                <div class="col-md-6">
+                  <label class="my-1" for="initialYear">Ano de ingresso</label>
+                  <input class="form-control" [(ngModel)]="cadastro.initial_year" type="text" id="initialYear" name="initialYear">
+                </div>
+                
+                
+                
+              </div> 
+            </div>
+            
+            <div class="profile col-md-4">
+              <div class="row">
+                <div class="col d-flex flex-column align-items-center">
+                  <label class="hoverable col-md-12" for="file">
+                    <img [src]="file ? file : 'https://www.w3schools.com/howto/img_avatar.png'">
+                    <div class="hover-text">Escolha uma foto de perfil</div>
+                    <div class="background"></div>
+                  </label>
+                  <br />
+                  <input id="file" type="file" name="file" (change)="onSelectFile($event)">
+                  <button type="button" id="button-delete-file" class="btn btn-danger" *ngIf="file"
+                    (click)="delete()">delete</button>
+                  <button *ngIf="file" (click)="upload()" type="button" class="btn btn-primary">Upload</button>
+        
+                  <textarea class="col-md-12 form-control" [(ngModel)]="cadastro.bio" cols="5" rows="3" name="mensagem" id="mensagem"
+                    placeholder="Escreva mais sobre você"></textarea>
+                </div>
+              </div>
+            </div>
+          </form>
         </div>
-        <div class="info">
-          <label for="age">Idade</label>
-          <input [(ngModel)]="cadastro.age" type="text" id="age" name="age">
-
-          <label for="initialYear">Ano de ingresso</label>
-          <input [(ngModel)]="cadastro.initial_year" type="text" id="initialYear" name="initialYear">
-
-          <label for="gender">Gênero</label>
-          <input [(ngModel)]="cadastro.gender" type="text" id="gender" name="gender">
-
-          <label for="searchFor">Procuro</label>
-          <input [(ngModel)]="cadastro.search_for" type="text" id="searchFor" name="searchFor">
-
-          <label for="turno">Turno</label>
-          <select name="turno" [(ngModel)]="cadastro.shift">
-            <option value="" disabled selected>Selecione um turno</option>
-            <option value="matutino">Matutino</option>
-            <option value="noturno" selected>Noturno</option>
-          </select>
-
-        </div>
-        <div class="profile">
-          <label class="hoverable" for="file">
-            <img [src]="file ? file : 'https://www.w3schools.com/howto/img_avatar.png'">
-            <div class="hover-text">Escolha uma foto de perfil</div>
-            <div class="background"></div>
-          </label>
-          <br />
-          <input id="file" type="file" name="file" (change)="onSelectFile($event)">
-          <button type="button" id="button-delete-file" class="btn btn-danger" *ngIf="file"
-            (click)="delete()">delete</button>
-          <button *ngIf="file" (click)="upload()" type="button" class="btn btn-primary">Upload</button>
-
-          <textarea [(ngModel)]="cadastro.bio" cols="5" rows="3" name="mensagem" id="mensagem"
-            placeholder="Escreva mais sobre você"></textarea>
-        </div>
-      </form>
-      <div class="buttons">
+      </div>
+      <div class="buttons mb-3">
         <button type="button" id="button-delete-user" (click)="openBottomSheet()" class="btn btn-danger">Apagar
           conta</button>
-        <button type="button" id="pronto" type="submit" (click)="updateUser()">Atualizar perfil</button>
+        <button type="button" id="pronto" type="submit" (click)="updateUser()" class="btn btn-success">Atualizar perfil</button>
       </div>
     </div>
   </section>
