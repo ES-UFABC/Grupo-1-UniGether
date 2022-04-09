@@ -17,6 +17,7 @@ module.exports = {
         },
         OnUpdate: 'CASCADE',
         OnDelete: 'CASCADE',
+        allowNull: false,
       },
       group_id: {
         type: Sequelize.INTEGER,
@@ -26,6 +27,7 @@ module.exports = {
         },
         OnUpdate: 'CASCADE',
         OnDelete: 'CASCADE',
+        allowNull: false,
       },
       created_at: {
         type: Sequelize.DATE,

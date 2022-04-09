@@ -5,7 +5,7 @@ module.exports = {
         return queryInterface.createTable('groups', {
             id: {
                 type: Sequelize.INTEGER,
-                primaryKey: TRUE,
+                primaryKey: true,
                 allowNull: false,
                 autoIncrement: true,
             },

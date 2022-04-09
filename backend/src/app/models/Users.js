@@ -4,7 +4,6 @@ import bcrypt from 'bcryptjs';
 class User extends Model {
 	static init(sequelize) {
 		super.init({
-			group_id: Sequelize.INTEGER,
 			name: Sequelize.STRING,
 			age: Sequelize.INTEGER,
 			initial_year: Sequelize.INTEGER,

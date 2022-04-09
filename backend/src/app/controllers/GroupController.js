@@ -8,16 +8,13 @@ const groupService = new GroupService();
 class GroupController {
 
     async index(req, res) {
-        // const userId = req.params.id;
-        // const user = await User.findByPk(userId, {
-        //     include: { association: 'group' }
-        // });
+        const { user_id } = req.params;
+        const user = await User.findByPk(user_id, {
+            include: { association: 'groups' }
+        })
 
-        // if (!user) {
-        //     res.status(400).json({ error: "Usuário não existe" })
-        // }
+        return res.json(user.groups)
 
-        // return res.json(user)
     }
 
     async store(req, res) {
@@ -80,15 +77,21 @@ class GroupController {
     }
 
     async delete(req, res) {
-        try {
-            const group = await Group.findByPk(req.params.id);
+        const { user_id } = req.params;
+        const { name, description } = req.body;
 
-            await group.destroy();
+        const user = await User.findByPk(user_id);
 
-            return res.status(200).json({ message: `Grupo ${req.params.id} foi deletado` });
-        } catch (err) {
-            return res.status(400).json({ error: err.message });
+        if (!user) {
+            return res.status(400).json({ error: "Usuario não existe" })
         }
+
+        const group = await Group.findOne({
+            where: { name, description }
+        });
+
+        await user.removeGroup(group);
+        return res.json();
     }
 }
 export default new GroupController();

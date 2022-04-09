@@ -15,7 +15,8 @@
         zIndex: users.length - i,
         transform: 'scale(' + (20 - i) / 20 + ') translateY(-' + 20 * i + 'px)'
       }">
-      <img #tinderCardImage [src]="http://localhost:8080/users/file/{{ user.image_url }}" (load)="tinderCardImage.style.opacity = 1" />
+      <img #tinderCardImage src="http://localhost:8080/avatars/file/{{ user.image_url }}"
+        (load)="tinderCardImage.style.opacity = 1" />
       <h3>{{ user.name }}, {{user.age}}</h3>
       <h3>{{user.university}}, {{user.course}}</h3>
       <p>{{ user.bio }}</p>
