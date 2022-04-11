@@ -1,5 +1,4 @@
 import { GroupService } from "../services/GroupService";
-import { AppError } from "../../errors/AppError";
 import User from '../models/Users';
 import Group from '../models/Groups';
 
@@ -37,14 +36,6 @@ class GroupController {
         return res.json(group);
     }
 
-    async findAllGroups(req, res) {
-
-        const groups = await Group.findAll({ where: null });
-        if (groups.length < 1)
-            return res.json({ message: "Nenhum grupo foi cadastrado" });
-        return res.json(groups);
-    }
-
     async findGroupById(req, res) {
         const group = await Group.findOne({ where: { id: req.params.id } });
 
@@ -59,7 +50,7 @@ class GroupController {
 
         const schema = Yup.object().shape({
             name: Yup.string().required(),
-            description: Yup.string().required(),
+            description: Yup.string(),
         });
 
         if (!(await schema.isValid(req.body))) {
@@ -77,8 +68,7 @@ class GroupController {
     }
 
     async delete(req, res) {
-        const { user_id } = req.params;
-        const { name, description } = req.body;
+        const { user_id, id } = req.params;
 
         const user = await User.findByPk(user_id);
 
@@ -87,11 +77,11 @@ class GroupController {
         }
 
         const group = await Group.findOne({
-            where: { name, description }
+            where: { id }
         });
 
         await user.removeGroup(group);
         return res.json();
     }
 }
-export default new GroupController();
+export { GroupController };

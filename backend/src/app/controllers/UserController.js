@@ -66,6 +66,13 @@ class UserController {
         return res.sendFile(avatarPath);
     }
 
+    async getAvatarById(req, res) {
+        const userId = req.params.id;
+        const fileName = await userService.getAvatar(userId);
+        const avatarPath = path.resolve("tmp", "avatar", fileName);
+        return res.sendFile(avatarPath);
+    }
+
     async findByName(req, res) {
         const name = req.query.name;
         var outputUsers = await userService.getName(name);

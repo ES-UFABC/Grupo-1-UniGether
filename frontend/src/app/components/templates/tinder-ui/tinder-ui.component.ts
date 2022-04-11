@@ -1,6 +1,8 @@
 import { DadosPessoais } from './../../dados-pessoais/dados-pessoais.model';
 import { CadastroService } from './../../cadastro/cadastro.service';
-import { Component, ViewChildren, QueryList, ElementRef, EventEmitter, Output, Renderer2, OnInit } from '@angular/core';
+import { Component, ViewChildren, QueryList, ElementRef, EventEmitter, Output, Renderer2, OnInit, Input } from '@angular/core';
+import jwt_decode from 'jwt-decode';
+import { TokenStorageService } from 'src/app/_services/token-storage.service';
 
 @Component({
   selector: 'tinder-ui',
@@ -9,12 +11,14 @@ import { Component, ViewChildren, QueryList, ElementRef, EventEmitter, Output, R
 })
 export class TinderUIComponent implements OnInit {
 
+  @Input('users') users: DadosPessoais[];
+
   @ViewChildren('tinderCard') tinderCards: QueryList<ElementRef>;
   tinderCardsArray: Array<ElementRef>;
 
   @Output() choiceMade = new EventEmitter();
 
-  public users: DadosPessoais[];
+  base_url: string = "http://localhost:8080/avatars/file"
 
   moveOutWidth: number;
   shiftRequired: boolean;
@@ -22,13 +26,27 @@ export class TinderUIComponent implements OnInit {
   heartVisible: boolean;
   crossVisible: boolean;
 
-  constructor(private renderer: Renderer2, private cadastroService: CadastroService) { }
+  cadastro = new DadosPessoais();
+  currentUser: any;
+  decoded: any;
+  userLogged: any;
+
+  constructor(private renderer: Renderer2, private cadastroService: CadastroService, private tokenStorage: TokenStorageService) { }
 
   ngOnInit(): void {
-    this.cadastroService.readUsers().subscribe((res: DadosPessoais[]) => {
-      this.users = res;
-      console.log(this.users);
-    })
+    if (this.tokenStorage.getToken()) {
+      this.currentUser = this.tokenStorage.getUser();
+      var tokenDec = this.currentUser.token;
+      this.decoded = jwt_decode(tokenDec);
+      this.cadastroService.readById(this.decoded.id).subscribe(cadastro => {
+        this.cadastro = cadastro;
+        this.userLogged = cadastro.id;
+      });
+      this.cadastroService.readUsers().subscribe((res: DadosPessoais[]) => {
+        res = res.filter(x => x.id != this.userLogged);
+        this.users = res;
+      })
+    }
   }
 
   userClickedButton(event, heart) {
@@ -48,7 +66,6 @@ export class TinderUIComponent implements OnInit {
   };
 
   handlePan(event) {
-
     if (event.deltaX === 0 || (event.center.x === 0 && event.center.y === 0) || !this.users.length) return;
 
     if (this.transitionInProgress) {

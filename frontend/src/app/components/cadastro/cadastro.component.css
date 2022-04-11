@@ -1,64 +1,67 @@
-.card{
-  margin: 25vh 0 10vw 0;
-  background-color:#F2F2F2;
+.card {
+  width: 40vw;
+  margin: 10vh 0 10vw 0;
+  background-color: #F2F2F2;
   border-radius: 4%;
   padding: 2vh;
   box-shadow: 3px 3px 1px 0px #00000060;
 }
-.img{
+
+.img {
   margin: 16vh 0 0 7vw;
   width: 80%;
 }
 
 @keyframes flutuar {
   0% {
-      transform: translateY(0);
+    transform: translateY(0);
   }
 
   50% {
-      transform: translateY(-15px);
+    transform: translateY(-15px);
   }
 
   100% {
-      transform: translateY(0);
+    transform: translateY(0);
   }
 }
 
-.img{
+.img {
   animation: flutuar 3s infinite;
   width: 500px;
   max-width: 100%;
 }
 
-input{
+input {
   width: 100%;
   padding: 5px 5px;
   border-radius: 30px;
-  display:  inline-block;
+  display: inline-block;
   border: 0;
-  background-color:#ffffff;
+  background-color: #ffffff;
 }
-button{
+
+button {
   width: 60%;
   border-radius: 30px;
-  background-color:#719489;
+  background-color: #719489;
   margin-top: 15px;
 }
 
-button:hover{
+button:hover {
   background-color: #009688;
   transition-duration: 0.4s;
 }
 
-@media(max-width: 770px){
-  .card{
+@media(max-width: 770px) {
+  .card {
 
     margin-top: 10px;
   }
-  .img{
+
+  .img {
     margin-left: 0;
     margin-top: 20Px;
 
   }
 }
-

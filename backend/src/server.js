@@ -9,8 +9,8 @@ const http = require('http');
 var debug = require('debug')('angular2-nodejs:server');
 
 const corsOptions = {
-    origin: "*",
-    optionsSuccessStatus: 200
+  origin: "*",
+  optionsSuccessStatus: 200
 };
 
 // var corsOptions = {
@@ -27,11 +27,11 @@ const app = express();
 const server = http.Server(app);
 const socket = require('socket.io');
 const io = socket(server, {
-    cors: {
-        origin: "*",
-        methods: ["PUT", "GET", "POST", "DELETE", "OPTIONS"],
-        credentials: false
-    }
+  cors: {
+    origin: "*",
+    methods: ["PUT", "GET", "POST", "DELETE", "OPTIONS"],
+    credentials: false
+  }
 });
 
 app.use(cors(corsOptions));
@@ -40,46 +40,46 @@ app.use(express.urlencoded({ extended: true }));
 app.use(routes);
 
 app.use((err, req, res, next) => {
-    if (err instanceof AppError) {
-        return res.status(err.statusCode).json({
-            message: err.message,
-        })
-    }
-
-    return res.status(500).json({
-        status: "error",
-        message: `Internal server error ${err.message}`,
+  if (err instanceof AppError) {
+    return res.status(err.statusCode).json({
+      message: err.message,
     })
+  }
+
+  return res.status(500).json({
+    status: "error",
+    message: `Internal server error ${err.message}`,
+  })
 })
 
 const port = process.env.PORT || 8080;
 
 
 io.on('connection', (socket) => {
-    console.log('new connection made.');
+  console.log('new connection made.');
 
-    socket.on('join', function (data) {
-        //joining
-        socket.join(data.room);
+  socket.on('join', function (data) {
+    //joining
+    socket.join(data.room);
 
-        console.log(data.user + ' joined the room : ' + data.room);
+    console.log(data.user + ' joined the room : ' + data.room);
 
-        socket.broadcast.to(data.room).emit('new user joined', { user: data.user, message: 'has joined this room.' });
-    });
+    socket.broadcast.to(data.room).emit('new user joined', { user: data.user, message: 'has joined this room.' });
+  });
 
-    socket.on('leave', function (data) {
+  socket.on('leave', function (data) {
 
-        console.log(data.user + 'left the room : ' + data.room);
+    console.log(data.user + 'left the room : ' + data.room);
 
-        socket.broadcast.to(data.room).emit('left room', { user: data.user, message: 'has left this room.' });
+    socket.broadcast.to(data.room).emit('left room', { user: data.user, message: 'has left this room.' });
 
-        socket.leave(data.room);
-    });
+    socket.leave(data.room);
+  });
 
-    socket.on('message', function (data) {
+  socket.on('message', function (data) {
 
-        io.in(data.room).emit('new message', { user: data.user, message: data.message });
-    })
+    io.in(data.room).emit('new message', { user: data.user, message: data.message });
+  })
 })
 
 server.listen(port);

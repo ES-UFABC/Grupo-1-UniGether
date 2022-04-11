@@ -1,11 +1,14 @@
-import {NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { BrowserModule, HammerModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { authInterceptorProviders } from './_helpers/auth.interceptor';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,14 +18,21 @@ import { FooterComponent } from './components/templates/footer/footer.component'
 import { CadastroComponent } from './components/cadastro/cadastro.component';
 import { DadosPessoaisComponent } from './components/dados-pessoais/dados-pessoais.component';
 import { HttpClientModule } from '@angular/common/http';
-
-import { authInterceptorProviders } from './_helpers/auth.interceptor';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProfileComponent } from './components/profile/profile.component';
 import { TinderUIComponent } from './components/templates/tinder-ui/tinder-ui.component';
 import { BottomDeleteComponent } from './components/templates/bottom-delete/bottom-delete.component';
 import { ChatComponent } from './components/chat/chat.component';
 
+declare var Hammer: any;
+
+export class HammerConfig extends HammerGestureConfig {
+  overrides = {
+    swipe: { enable: true, direction: Hammer.DIRECTION_HORIZONTAL },
+    pan: { enable: true, direction: Hammer.DIRECTION_VERTICAL },
+    pinch: { enable: false },
+    rotate: { enable: false },
+  };
+}
 
 @NgModule({
   declarations: [
@@ -47,9 +57,10 @@ import { ChatComponent } from './components/chat/chat.component';
     MatCardModule,
     MatIconModule,
     MatButtonModule,
-    MatBottomSheetModule
+    MatBottomSheetModule,
+    HammerModule
   ],
-  providers: [authInterceptorProviders],
+  providers: [authInterceptorProviders, { provide: HAMMER_GESTURE_CONFIG, useClass: HammerConfig }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
