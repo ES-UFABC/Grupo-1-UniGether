@@ -1,0 +1,96 @@
+<body>
+  <div class="container">
+    <div class="leftside">
+      <!-- header  -->
+      <div class="header">
+        <h2><strong>{{user}}</strong></h2>
+        <div class="userimg">
+          <img src="{{image}}" class="cover" />
+        </div>
+        <!-- <ul class="nav_icons">
+          <li>
+            <mat-icon>scan-circle-outline"></mat-icon>
+          </li>
+          <li>
+            <mat-icon>chatbox</mat-icon>
+          </li>
+          <li>
+            <mat-icon>ellipsis-vertical</mat-icon>
+          </li>
+        </ul> -->
+      </div>
+      <!-- chat list -->
+      <div class="chatlist">
+        <div class="block inactive" *ngFor="let group of groups" (click)="roomClicked(group.name)">
+          <div class="details">
+            <div class="listhead">
+              <h4>{{group.name}}</h4>
+            </div>
+            <div class="message_p">
+              <p>{{group.description}}</p>
+              <mat-icon (click)="deleteGroup(group.id)">remove_circle</mat-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rightside" *ngIf="hasJoined">
+      <div class="header">
+        <div class="userText">
+          <h4>
+            {{room}}
+          </h4>
+        </div>
+        <!-- <ul class="nav_icons">
+          <li>
+            <mat-icon>search-outline</mat-icon>
+          </li>
+          <li>
+            <mat-icon class="mat-18">chatbox</mat-icon>
+          </li>
+          <li>
+            <mat-icon>ellipsis-vertical</mat-icon>
+          </li>
+        </ul> -->
+      </div>
+      <!-- chatbox -->
+      <div class="chatBox" *ngFor="let item of messageArray">
+        <div class="message me" *ngIf="item.user==cadastro.name">
+          <div class="messageContent me" *ngIf="item.user==cadastro.name">
+            <span><strong>{{item.user}} : </strong> {{item.message}}</span>
+          </div>
+        </div>
+        <div class="message other" *ngIf="item.user!=cadastro.name">
+          <div class="messageContent other" *ngIf="item.user!=cadastro.name">
+            <span><strong>{{item.user}} : </strong> {{item.message}}</span>
+          </div>
+        </div>
+      </div>
+      <!-- chat input -->
+      <div class="chatbox_input">
+        <input type="text" placeholder="Envie uma mensagem" [(ngModel)]="messageText" (keydown.enter)="sendMessage()" />
+      </div>
+    </div>
+    <div class="rightside notjoined" *ngIf="!hasJoined">
+      <div class="header">
+        <div class="userText">
+          <h4>
+            Ainda não começou um chat
+          </h4>
+        </div>
+        <!-- <ul class="nav_icons">
+          <li>
+            <mat-icon>search-outline</mat-icon>
+          </li>
+          <li>
+            <mat-icon class="mat-18">chatbox</mat-icon>
+          </li>
+          <li>
+            <mat-icon>ellipsis-vertical</mat-icon>
+          </li>
+        </ul> -->
+      </div>
+    </div>
+  </div>
+</body>

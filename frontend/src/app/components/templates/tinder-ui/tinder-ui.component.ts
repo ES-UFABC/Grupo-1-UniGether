@@ -3,6 +3,7 @@ import { CadastroService } from './../../cadastro/cadastro.service';
 import { Component, ViewChildren, QueryList, ElementRef, EventEmitter, Output, Renderer2, OnInit, Input } from '@angular/core';
 import jwt_decode from 'jwt-decode';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
+import { Swipe } from './swipe.model';
 
 @Component({
   selector: 'tinder-ui',
@@ -31,6 +32,8 @@ export class TinderUIComponent implements OnInit {
   decoded: any;
   userLogged: any;
 
+  swipe = new Swipe();
+
   constructor(private renderer: Renderer2, private cadastroService: CadastroService, private tokenStorage: TokenStorageService) { }
 
   ngOnInit(): void {
@@ -41,6 +44,7 @@ export class TinderUIComponent implements OnInit {
       this.cadastroService.readById(this.decoded.id).subscribe(cadastro => {
         this.cadastro = cadastro;
         this.userLogged = cadastro.id;
+        this.swipe.user_id1 = cadastro.id;
       });
       this.cadastroService.readUsers().subscribe((res: DadosPessoais[]) => {
         res = res.filter(x => x.id != this.userLogged);
@@ -56,10 +60,12 @@ export class TinderUIComponent implements OnInit {
       this.renderer.setStyle(this.tinderCardsArray[0].nativeElement, 'transform', 'translate(' + this.moveOutWidth + 'px, -100px) rotate(-30deg)');
       this.toggleChoiceIndicator(false, true);
       this.emitChoice(heart, this.users[0]);
+      this.swipe.status = true;
     } else {
       this.renderer.setStyle(this.tinderCardsArray[0].nativeElement, 'transform', 'translate(-' + this.moveOutWidth + 'px, -100px) rotate(30deg)');
       this.toggleChoiceIndicator(true, false);
       this.emitChoice(heart, this.users[0]);
+      this.swipe.status = false;
     };
     this.shiftRequired = true;
     this.transitionInProgress = true;
@@ -74,8 +80,14 @@ export class TinderUIComponent implements OnInit {
 
     this.renderer.addClass(this.tinderCardsArray[0].nativeElement, 'moving');
 
-    if (event.deltaX > 0) { this.toggleChoiceIndicator(false, true) }
-    if (event.deltaX < 0) { this.toggleChoiceIndicator(true, false) }
+    if (event.deltaX > 0) {
+      this.toggleChoiceIndicator(false, true)
+      this.swipe.status = true;
+    }
+    if (event.deltaX < 0) {
+      this.toggleChoiceIndicator(true, false)
+      this.swipe.status = false;
+    }
 
     let xMulti = event.deltaX * 0.03;
     let yMulti = event.deltaY / 80;

@@ -1,12 +1,19 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, HammerModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog'
+import { MatFormFieldModule } from '@angular/material/form-field'
+import { MatInputModule } from '@angular/material/input'
+import { MatSelectModule } from '@angular/material/select'
+import { MatTableModule } from '@angular/material/table'
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 
@@ -22,6 +29,10 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { TinderUIComponent } from './components/templates/tinder-ui/tinder-ui.component';
 import { BottomDeleteComponent } from './components/templates/bottom-delete/bottom-delete.component';
 import { ChatComponent } from './components/chat/chat.component';
+import { WebchatComponent } from './components/webchat/webchat.component';
+import { GroupListComponent } from './components/group-list/group-list.component';
+import { EventsComponent } from './components/events/events.component';
+import { DialogComponent } from './components/templates/dialog/dialog.component';
 
 declare var Hammer: any;
 
@@ -46,6 +57,10 @@ export class HammerConfig extends HammerGestureConfig {
     TinderUIComponent,
     BottomDeleteComponent,
     ChatComponent,
+    WebchatComponent,
+    GroupListComponent,
+    EventsComponent,
+    DialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,7 +73,15 @@ export class HammerConfig extends HammerGestureConfig {
     MatIconModule,
     MatButtonModule,
     MatBottomSheetModule,
-    HammerModule
+    HammerModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [authInterceptorProviders, { provide: HAMMER_GESTURE_CONFIG, useClass: HammerConfig }],
   bootstrap: [AppComponent]

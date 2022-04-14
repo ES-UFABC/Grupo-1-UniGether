@@ -20,7 +20,7 @@ class UserValidator {
         const schema = Yup.object().shape({
             name: Yup.string(),
             email: Yup.string().email(),
-            university: Yup().string(),
+            university: Yup.string(),
             course: Yup.string(),
             age: Yup.number().positive("O campo deve ser positivo.").integer("O campo deve ser um número inteiro."),
             initialYear: Yup.number().positive("O campo deve ser positivo.").integer("O campo deve ser um número inteiro."),

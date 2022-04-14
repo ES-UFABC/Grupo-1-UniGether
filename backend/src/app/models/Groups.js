@@ -5,6 +5,7 @@ class Group extends Model {
         super.init({
             name: Sequelize.STRING,
             description: Sequelize.TEXT,
+            closed: Sequelize.BOOLEAN
         },
             {
                 sequelize,

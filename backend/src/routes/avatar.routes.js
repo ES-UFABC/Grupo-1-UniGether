@@ -10,7 +10,7 @@ const avatars = new Router();
 
 const upload = multer(multerConfig.upload("./avatar"));
 
-avatars.put("/", ensureAuthenticated, upload.single("file"), userController.addAvatar);
+avatars.post("/", ensureAuthenticated, upload.single("file"), userController.addAvatar);
 avatars.get("/", ensureAuthenticated, userController.getAvatar);
 avatars.get("/:id", ensureAuthenticated, userController.getAvatarById);
 

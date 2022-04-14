@@ -1,3 +1,6 @@
+import { GroupListComponent } from './components/group-list/group-list.component';
+import { EventsComponent } from './components/events/events.component';
+import { WebchatComponent } from './components/webchat/webchat.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { TinderUIComponent } from './components/templates/tinder-ui/tinder-ui.component';
 import { ProfileComponent } from './components/profile/profile.component';
@@ -14,7 +17,9 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'dados-pessoais', component: DadosPessoaisComponent },
   { path: 'match', component: TinderUIComponent },
-  { path: 'chat', component: ChatComponent },
+  { path: 'chat', component: WebchatComponent },
+  { path: 'groups', component: GroupListComponent },
+  { path: 'events', component: EventsComponent },
   //{ path: 'user',component:}
   //{ path: 'quem-somos', component: QuemSomosComponent },
   //{ path: '**', component: NotFoundComponent },
