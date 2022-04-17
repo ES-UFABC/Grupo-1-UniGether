@@ -12,11 +12,7 @@
   margin-top: 100px;
 }
 
-.title-card {
-  font-family: 'Pacifico', cursive;
-  text-align: center;
-  font-size: 22px;
-}
+
 
 @keyframes flutuar {
   0% {
@@ -41,7 +37,6 @@
   margin-top: 10vh;
 }
 
-
 input{
   width: 100%;
   padding: 5px 5px;
@@ -49,6 +44,7 @@ input{
   border: 0;
   background-color:#ffffff;
 }
+
 ::ng-deep .btn {
   background-color: #6c8077;
   border-color: #6c8077;
@@ -61,6 +57,12 @@ input{
 
 .global{
   height:81vh;
+}
+
+.title-card {
+  font-family: 'Pacifico', cursive;
+  text-align: center;
+  font-size: 22px;
 }
 
 @media(max-width: 770px){

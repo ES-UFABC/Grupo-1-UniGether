@@ -1,10 +1,27 @@
 .card{
-  margin: 25vh 0 10vw 0;
+  margin: 15vh 0 10vw 0;
   background-color:#F2F2F2;
   border-radius: 4%;
   padding: 2vh;
   box-shadow: 3px 3px 1px 0px #00000060;
 }
+
+.title-card {
+  font-family: 'Pacifico', cursive;
+  text-align: center;
+  font-size: 22px;
+}
+
+::ng-deep .btn {
+  background-color: #6c8077;
+  border-color: #6c8077;
+}
+
+::ng-deep btn:hover{
+  background-color: #009688;
+  transition-duration: 0.4s;
+}
+
 .img{
   margin: 16vh 0 0 7vw;
   width: 80%;
@@ -33,17 +50,11 @@
 input{
   width: 100%;
   padding: 5px 5px;
-  border-radius: 30px;
   display:  inline-block;
   border: 0;
   background-color:#ffffff;
 }
-button{
-  width: 60%;
-  border-radius: 30px;
-  background-color:#719489;
-  margin-top: 15px;
-}
+
 
 button:hover{
   background-color: #009688;
