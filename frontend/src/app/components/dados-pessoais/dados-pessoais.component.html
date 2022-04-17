@@ -54,7 +54,7 @@
                 
                 <div class="col-md-6">
                   <label class="my-1" for="initialYear">Ano de ingresso</label>
-                  <input class="form-control" [(ngModel)]="cadastro.initial_year" type="text" id="initialYear" name="initialYear">
+                  <input class="form-control" [(ngModel)]="cadastro.initial_year" type="text" id="initialYear" name="initialYear" mask="9999">
                 </div>
                 
                 
@@ -87,7 +87,7 @@
       <div class="buttons mb-3">
         <button type="button" id="button-delete-user" (click)="openBottomSheet()" class="btn btn-danger">Apagar
           conta</button>
-        <button type="button" id="pronto" type="submit" (click)="updateUser()" class="btn btn-success">Atualizar perfil</button>
+        <button id="pronto" type="submit" (click)="updateUser()" class="btn btn-success">Atualizar perfil</button>
       </div>
     </div>
   </section>

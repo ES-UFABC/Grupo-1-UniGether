@@ -6,6 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { NgxMaskModule, IConfig } from 'ngx-mask'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,6 +24,7 @@ import { TinderUIComponent } from './components/templates/tinder-ui/tinder-ui.co
 import { BottomDeleteComponent } from './components/templates/bottom-delete/bottom-delete.component';
 import { ChatComponent } from './components/chat/chat.component';
 
+export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
 @NgModule({
   declarations: [
@@ -39,6 +41,7 @@ import { ChatComponent } from './components/chat/chat.component';
   ],
   imports: [
     BrowserModule,
+    NgxMaskModule.forRoot(),
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
