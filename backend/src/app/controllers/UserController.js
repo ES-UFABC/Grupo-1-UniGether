@@ -1,21 +1,21 @@
 import { UserValidator } from "../validators/UserValidator";
-import { UserService } from "../services/UserService";
+import container from "../../shared/container";
 import { AppError } from "../../errors/AppError";
 import path from "path";
 
-const userService = new UserService();
+const userService = container.get("service.user");
 const userValidator = new UserValidator();
 
 class UserController {
 
-    async index(req, res) {
-        var outputUsers = await userService.listUsers();
+    async getUsers(req, res) {
+        var outputUsers = await userService.getAllUsers();
         return res.status(200).json(outputUsers).send();
     }
 
-    async indexUser(req, res) {
+    async getUserById(req, res) {
         const userId = req.params.id;
-        var outputUser = await userService.listUser(userId);
+        var outputUser = await userService.getUserById(userId);
         return res.status(200).json(outputUser).send();
     }
 
@@ -73,9 +73,9 @@ class UserController {
         return res.sendFile(avatarPath);
     }
 
-    async findByName(req, res) {
-        const name = req.query.name;
-        var outputUsers = await userService.getName(name);
+    async getUsersByName(req, res) {
+        const name = req.params.name;
+        var outputUsers = await userService.getUsersByName(name);
         return res.status(200).json(outputUsers).send();
     }
 }

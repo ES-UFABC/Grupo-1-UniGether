@@ -6,9 +6,9 @@ const userController = new UserController();
 const users = new Router();
 
 users.post("/", userController.create);
-users.get("/", ensureAuthenticated, userController.index);
-users.get("/:id", ensureAuthenticated, userController.indexUser);
-users.get('/', ensureAuthenticated, userController.findByName);
+users.get("/", ensureAuthenticated, userController.getUsers);
+users.get("/:id", ensureAuthenticated, userController.getUserById);
+users.get('/name/:name', ensureAuthenticated, userController.getUsersByName);
 users.delete("/", ensureAuthenticated, userController.delete);
 users.put("/", ensureAuthenticated, userController.update);
 
