@@ -5,13 +5,21 @@ class GroupRepository {
         return await Group.create(group);
     }
 
-    async getById(id) {
+    async findById(id) {
         const group = await Group.findByPk(id);
         return group;
     }
 
-    async getAll() {
+    async findAll() {
         return Group.findAll();
+    }
+
+    async findAllOpen() {
+        return Group.findAll({where:{closed: false}});
+    }
+
+    async findAllUserGroups(user_id){
+        await Group.findAll({where: {user_id: user_id}});
     }
 
     async update(id, newGroup) {
@@ -21,9 +29,9 @@ class GroupRepository {
 
     async delete(id) {
         const group = await Group.findByPk(id);
-        const groupIsDeleted = Group.destroy().then(_ => true).catch(_ => false);
+        const groupIsDeleted = group.destroy().then(_ => true).catch(_ => false);
         return groupIsDeleted;
     }
 }
 
-export { GroupRepository }
+export { GroupRepository };

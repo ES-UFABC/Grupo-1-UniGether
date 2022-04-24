@@ -5,12 +5,13 @@ import { GroupController } from "../app/controllers/GroupController";
 const groupController = new GroupController();
 const groups = new Router();
 
-// groups.get("/", ensureAuthenticated, groupController.findAllGroups);
-groups.get("/:user_id", ensureAuthenticated, groupController.index);
+groups.get("/:id", ensureAuthenticated, groupController.getGroupById);
+groups.get("/user/:user_id", ensureAuthenticated, groupController.findUserGroups);
 groups.get("/", ensureAuthenticated, groupController.findAllGroupsOpen);
-groups.post("/:user_id", ensureAuthenticated, groupController.store);
-groups.post("/:user_id/:id", ensureAuthenticated, groupController.insertUsers);
-groups.delete("/:user_id/:id", ensureAuthenticated, groupController.deleteByUser);
+groups.post("/", ensureAuthenticated, groupController.createGroup);
+groups.post("/:id/user/:user_id", ensureAuthenticated, groupController.addUserInGroup);
+groups.put("/:id", ensureAuthenticated, groupController.updateGroup);
+groups.delete("/:id/user/:user_id", ensureAuthenticated, groupController.removeUser);
 groups.delete("/:id", ensureAuthenticated, groupController.delete);
 
 export default groups;
