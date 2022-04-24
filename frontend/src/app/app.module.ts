@@ -33,6 +33,7 @@ import { WebchatComponent } from './components/webchat/webchat.component';
 import { GroupListComponent } from './components/group-list/group-list.component';
 import { EventsComponent } from './components/events/events.component';
 import { DialogComponent } from './components/templates/dialog/dialog.component';
+import { PostComponent } from './components/post/post.component';
 
 declare var Hammer: any;
 
@@ -61,6 +62,7 @@ export class HammerConfig extends HammerGestureConfig {
     GroupListComponent,
     EventsComponent,
     DialogComponent,
+    PostComponent,
   ],
   imports: [
     BrowserModule,

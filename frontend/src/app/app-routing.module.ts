@@ -9,6 +9,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CadastroComponent } from './components/cadastro/cadastro.component';
 import { LoginComponent } from './components/login/login.component';
 import { DadosPessoaisComponent } from './components/dados-pessoais/dados-pessoais.component';
+import { PostComponent } from './components/post/post.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'chat', component: WebchatComponent },
   { path: 'groups', component: GroupListComponent },
   { path: 'events', component: EventsComponent },
+  { path: 'post', component: PostComponent },
   //{ path: 'user',component:}
   //{ path: 'quem-somos', component: QuemSomosComponent },
   //{ path: '**', component: NotFoundComponent },

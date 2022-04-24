@@ -1,72 +1,54 @@
-<!-- message sender -->
+<div class="container-fluid d-flex justify-content-center">
 
-<body>
-  <div class="feed">
-    <div class="messageSender">
-      <div class="messageSender__top">
-        <img src="../../../assets/avatar.png" alt="" class="user__avatar post__avatar">
-        <form>
-          <input type="text" class="messageSender__input" placeholder="O que você tem em mente? ">
-        </form>
-      </div>
-      <div class="messageSender__bottom">
-        <div class="messageSender__option">
-          <span style="color: red;">
-            <mat-icon class="mat-18">videocam</mat-icon>
-          </span>
-          <h3>Live</h3>
+    <div class="bg-card col-md-10 mt-4">
+
+        <div class="p-5">
+            <div class="d-flex justify-content-between">
+                <h1>Eventos</h1>
+                <button type="button" class="btn btn-secondary btn-color" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Criar
+                </button>
+            </div>
+            <hr>
+            <p>#contaEventos</p>
+            <hr>
+            <!-- Eventos -->
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Eventos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Meus Eventos</a>
+                </li>
+            </ul>
+            <!-- /Eventos -->
+
         </div>
-        <div class="messageSender__option">
-          <span style="color: green">
-            <mat-icon class="mat-18">photo_library</mat-icon>
-          </span>
-          <h3>Photo</h3>
-        </div>
-        <div class="messageSender__option">
-          <span style="color: orange">
-            <mat-icon class="mat-18">insert_emoticon</mat-icon>
-          </span>
-          <h3>Feeling</h3>
-        </div>
-      </div>
+
     </div>
-    <!-- posts -->
-    <div class="post">
-      <div class="post__top">
-        <img src="../../../assets/logo.png" alt="" class="user__avatar post__avatar">
-        <div class="post__topInfo">
-          <h3>Paloma Santana</h3>
-          <p>13 de abril 12:52</p>
-        </div>
-      </div>
-      <div class="post__bottom">
-        <p>Message</p>
-      </div>
 
-      <div class="post__image">
-        <img src="" alt="">
-      </div>
+</div>
 
-      <div class="post__options">
-        <div class="post__option">
-          <span>
-            <mat-icon>thumb_up</mat-icon>
-          </span>
-          <p>Curta</p>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Novo Evento</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-secondary btn-color">Criar Evento</button>
+            </div>
         </div>
-        <div class="post__option">
-          <span>
-            <mat-icon>chat_bubble_outline</mat-icon>
-          </span>
-          <p>Comente</p>
-        </div>
-        <div class="post__option">
-          <span>
-            <mat-icon>near_me</mat-icon>
-          </span>
-          <p>Share</p>
-        </div>
-      </div>
     </div>
-  </div>
-</body>
+</div>
+<!-- /Modal -->
