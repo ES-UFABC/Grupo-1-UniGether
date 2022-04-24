@@ -2,9 +2,10 @@ import { Sequelize } from 'sequelize';
 import databaseConfig from '../config/database';
 import User from '../app/models/Users';
 import Group from '../app/models/Groups';
-import Swipe from '../app/models/Swipes';
+import Matches from '../app/models/Matches';
+import Message from '../app/models/Messages';
 
-const models = [User, Group, Swipe];
+const models = [User, Group, Matches, Message];
 
 class Database {
     constructor() {

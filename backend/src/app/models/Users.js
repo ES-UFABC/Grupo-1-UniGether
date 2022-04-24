@@ -33,9 +33,8 @@ class User extends Model {
 	}
 
 	static associate(models) {
-		this.belongsToMany(models.Group, { foreignKey: 'user_id', through: 'users-groups', as: 'groups' });
-		// this.hasMany(models.Swipe, { as: 'user_swiped' });
-		// this.hasMany(models.Swipe, {foreignKey: 'user_id2', as: 'user_seen'});  
+		this.belongsToMany(models.Group,
+			{ foreignKey: 'user_id', through: 'users-groups', as: 'groups' });
 	}
 
 	checkPassword(password) {

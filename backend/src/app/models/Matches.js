@@ -1,6 +1,6 @@
 import Sequelize, { Model } from 'sequelize';
 
-class Swipe extends Model {
+class Matches extends Model {
     static init(sequelize) {
         super.init({
             status: Sequelize.BOOLEAN
@@ -19,4 +19,4 @@ class Swipe extends Model {
     }
 }
 
-export default Swipe;
+export default Matches;
