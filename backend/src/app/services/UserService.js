@@ -20,7 +20,7 @@ class OutputUser {
 }
 
 class OutputUserCreate {
-    constructor(id, name, email) {
+    constructor(id, name, email, university, course) {
         this.id = id;
         this.name = name;
         this.university = university;
@@ -53,8 +53,8 @@ class UserService {
         const userExists = await this.repository.findByEmail(inputUser.email);
         if (userExists) throw new AppError("Usuário já existe");
 
-        const { id, name, email } = await this.repository.insert(inputUser);
-        return new OutputUserCreate(id, name, email);
+        const { id, name, email, university, course } = await this.repository.insert(inputUser);
+        return new OutputUserCreate(id, name, email, university, course);
     }
 
     async updateUser(userId, inputUser) {
