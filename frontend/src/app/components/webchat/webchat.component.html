@@ -28,7 +28,9 @@
             </div>
             <div class="message_p">
               <p>{{group.description}}</p>
-              <mat-icon (click)="deleteGroup(group.id)">remove_circle</mat-icon>
+              <button color="warn" (click)="deleteGroup(group.id)">
+                Sair
+              </button>
             </div>
           </div>
         </div>

@@ -14,12 +14,12 @@ export class WebchatService {
   constructor(private snackBar: MatSnackBar, private http: HttpClient) { }
 
   readById(user_id: string): Observable<Group[]> {
-    const url = `${this.baseUrl}/groups/${user_id}`
+    const url = `${this.baseUrl}/groups/user/${user_id}`
     return this.http.get<Group[]>(url);
   }
 
   delete(user_id: number, id: number): Observable<Group> {
-    const url = `${this.baseUrl}/groups/${user_id}/${id}`
+    const url = `${this.baseUrl}/groups/${id}/user/${user_id}`
     return this.http.delete<Group>(url);
   }
 

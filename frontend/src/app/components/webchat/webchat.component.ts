@@ -89,12 +89,16 @@ export class WebchatComponent implements OnInit {
     this.messageText = '';
   }
 
-  deleteGroup(group_id: number) {
+  deleteGroup(group_id: number): void {
     this.leave();
     this.webchatService.delete(this.cadastro.id, group_id).subscribe(() => {
-      this.router.navigate(["/chat"]);
-      this.webchatService.showMessage("Você excluiu do grupo");
+      this.webchatService.showMessage("Você saiu do grupo");
+      this.reloadPage();
     })
+  }
+
+  reloadPage(): void {
+    window.location.reload();
   }
 
   private createImage(image: Blob) {
