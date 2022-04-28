@@ -1,4 +1,3 @@
-import { Swipe } from './swipe.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -7,18 +6,15 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class TinderUiService {
+export class MatchService {
 
   baseUrl = "http://localhost:8080"
 
   constructor(private snackBar: MatSnackBar, private http: HttpClient) { }
 
-  swiped(swipe: Swipe): Observable<Swipe> {
-    return this.http.post<Swipe>(`${this.baseUrl}/matches`, swipe);
-  }
-  
-  gone(user_id: number): Observable<Swipe[]> {
-    return this.http.get<Swipe[]>(`${this.baseUrl}/matches/swipes/${user_id}`);
+  getMatch(user_id1: string): Observable<Number[]> {
+    const url = `${this.baseUrl}/matches/${user_id1}`
+    return this.http.get<Number[]>(url);
   }
 
   showMessage(msg: string): void {

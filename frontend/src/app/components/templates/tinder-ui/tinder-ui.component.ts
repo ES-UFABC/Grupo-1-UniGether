@@ -1,3 +1,5 @@
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { TinderUiService } from './tinder-ui.service';
 import { DadosPessoais } from './../../dados-pessoais/dados-pessoais.model';
 import { CadastroService } from './../../cadastro/cadastro.service';
 import { Component, ViewChildren, QueryList, ElementRef, EventEmitter, Output, Renderer2, OnInit, Input } from '@angular/core';
@@ -31,10 +33,13 @@ export class TinderUIComponent implements OnInit {
   currentUser: any;
   decoded: any;
   userLogged: any;
+  count: number;
 
   swipe = new Swipe();
 
-  constructor(private renderer: Renderer2, private cadastroService: CadastroService, private tokenStorage: TokenStorageService) { }
+  swiped: Swipe[];
+
+  constructor(private renderer: Renderer2, private cadastroService: CadastroService, private tokenStorage: TokenStorageService, private swipeService: TinderUiService, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     if (this.tokenStorage.getToken()) {
@@ -45,15 +50,23 @@ export class TinderUIComponent implements OnInit {
         this.cadastro = cadastro;
         this.userLogged = cadastro.id;
         this.swipe.user_id1 = cadastro.id;
+        this.swipeService.gone(this.cadastro.id).subscribe((res: Swipe[]) => {
+          this.swiped = res;
+        })
+        this.cadastroService.readUsers().subscribe((res: DadosPessoais[]) => {
+          res = res.filter(u => u.id != this.userLogged);
+          if (this.swiped.length > 0) {
+            var result = res.filter((elem) => !this.swiped.find(({ user_id2 }) => elem.id === user_id2));
+            res = result
+          }
+          this.users = res;
+          this.count = this.users.length;
+        })
       });
-      this.cadastroService.readUsers().subscribe((res: DadosPessoais[]) => {
-        res = res.filter(x => x.id != this.userLogged);
-        this.users = res;
-      })
     }
   }
 
-  userClickedButton(event, heart) {
+  userClickedButton(event, heart, user_id2) {
     event.preventDefault();
     if (!this.users.length) return false;
     if (heart) {
@@ -61,11 +74,15 @@ export class TinderUIComponent implements OnInit {
       this.toggleChoiceIndicator(false, true);
       this.emitChoice(heart, this.users[0]);
       this.swipe.status = true;
+      this.swipe.user_id2 = user_id2;
+      this.swipeRegister()
     } else {
       this.renderer.setStyle(this.tinderCardsArray[0].nativeElement, 'transform', 'translate(-' + this.moveOutWidth + 'px, -100px) rotate(30deg)');
       this.toggleChoiceIndicator(true, false);
       this.emitChoice(heart, this.users[0]);
       this.swipe.status = false;
+      this.swipe.user_id2 = user_id2;
+      this.swipeRegister()
     };
     this.shiftRequired = true;
     this.transitionInProgress = true;
@@ -83,10 +100,16 @@ export class TinderUIComponent implements OnInit {
     if (event.deltaX > 0) {
       this.toggleChoiceIndicator(false, true)
       this.swipe.status = true;
+      // this.swipe.user_id2 = user_id2;
+      console.log(this.swipe);
+      this.swipeRegister()
     }
     if (event.deltaX < 0) {
       this.toggleChoiceIndicator(true, false)
       this.swipe.status = false;
+      // this.swipe.user_id2 = user_id2;
+      console.log(this.swipe);
+      this.swipeRegister()
     }
 
     let xMulti = event.deltaX * 0.03;
@@ -160,5 +183,24 @@ export class TinderUIComponent implements OnInit {
       this.tinderCardsArray = this.tinderCards.toArray();
     })
   };
+
+  swipeRegister() {
+    this.swipeService.swiped(this.swipe).subscribe({
+      next: (res) => {
+        this.showMessage("Swipe registrado")
+      },
+      error: () => {
+        this.showMessage("Erro no processo de adicionar swipe")
+      }
+    })
+  }
+
+  showMessage(msg: string): void {
+    this.snackBar.open(msg, 'X', {
+      duration: 3000,
+      horizontalPosition: "right",
+      verticalPosition: "top"
+    })
+  }
 
 }

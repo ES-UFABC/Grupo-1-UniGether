@@ -9,6 +9,7 @@ import socket from 'socket.io';
 import errorHandler from "./middlewares/error"
 import groupHandler from "./sockets/group.socket"
 import messageHandler from "./sockets/message.socket";
+// import helmet from 'helmet';
 
 const corsOptions = {
   origin: "*",
@@ -23,6 +24,7 @@ const cors = {
 
 const app = express();
 app.use(cors(corsOptions));
+// app.use(helmet);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(routes);

@@ -7,6 +7,7 @@ const matches = new Router();
 
 matches.post("/", ensureAuthenticated, matchController.store);
 matches.delete("/:id", ensureAuthenticated, matchController.delete);
-matches.get("/", ensureAuthenticated, matchController.loadMatches);
+matches.get("/:user_id1", ensureAuthenticated, matchController.loadMatches);
+matches.get("/swipes/:user_id1", ensureAuthenticated, matchController.findAllSwipes);
 
 export default matches;

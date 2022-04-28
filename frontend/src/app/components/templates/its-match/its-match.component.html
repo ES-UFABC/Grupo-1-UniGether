@@ -1,37 +1,19 @@
-<div class="container-fluid d-flex justify-content-center">
-  <div class="bg-card col-md-10 mt-4">
-    <div class="p-5">
-      <div class="d-flex justify-content-between">
-        <h1>Eventos</h1>
-        <button type="button" class="btn btn-secondary btn-color" data-bs-toggle="modal" data-bs-target="#exampleModal">
-          Criar
-        </button>
-      </div>
-      <hr>
-      <p>#contaEventos</p>
-      <hr>
-      <!-- Eventos -->
-      <ul class="nav nav-tabs">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Eventos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Meus Eventos</a>
-        </li>
-      </ul>
-      <!-- /Eventos -->
+<div class="container" mat-card-content>
+  <div class="content">
+    <h1 mat-card-title>It's a Match!</h1>
+    <p mat-card-subtitle>Você e Paloma gostaram um do outro</p>
 
+    <div class="photos">
+      <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Foto do usuário">
+      <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Foto do usuário de seu match">
     </div>
-
+    <button mat-icon-button (click)="newConversation()">
+      <mat-icon class="mat-18">chat</mat-icon>
+      <!-- <p>Mandar mensagem</p> -->
+    </button>
   </div>
-
 </div>
-
-
-
-
-
-<!-- Modal -->
+<!--
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
@@ -48,5 +30,4 @@
       </div>
     </div>
   </div>
-</div>
-<!-- /Modal -->
+</div> -->

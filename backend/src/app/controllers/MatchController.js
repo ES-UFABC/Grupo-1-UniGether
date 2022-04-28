@@ -1,34 +1,34 @@
 import container from '../../shared/container';
 import User from '../models/Users';
 import Matches from '../models/Matches';
+import { AppError } from '../../errors/AppError';
 
 const matchService = container.get("service.match");
 
 class MatchController {
 
     async store(req, res) {
-        
+
         let { user_id1, user_id2, status } = req.body;
 
         const user1 = await User.findByPk(user_id1);
         const user2 = await User.findByPk(user_id2);
 
-        const matchExists = await Matches.findOne({ where: { id: id } })
-
-        if (matchExists) {
-            return res.status(400).json({ error: `Match já registrado.` })
-        }
-
         if (!user1 || !user2) {
             return res.status(400).json({ error: "Usuario não existe" })
+        }
+
+        const matchExists = await Matches.findOne({ where: { user_id1: user_id1, user_id2: user_id2 } })
+
+        if (matchExists) {
+            return res.status(400).json({ error: `Swipe já registrado.` })
         }
 
         await Matches.create(req.body);
 
         return res.json({
-            message: "Match criado com sucesso",
+            message: "Swipe criado com sucesso",
             swipe: {
-                id,
                 user_id1,
                 user_id2,
                 status
@@ -49,9 +49,9 @@ class MatchController {
         }
     }
 
-    async loadMatches(req,res){
-        const { user_id1, user_id2 } = req.params;
-        await Matches.sequelize.query(`SELECT s2.id, s1.user_id2 FROM db_unigether.matches as s1 INNER JOIN db_unigether.matches as s2 ON s2.user_id1 = s1.user_id2 AND s2.user_id1 = ${user_id1} WHERE s1.user_id2 = ${user_id2}`)
+    async loadMatches(req, res) {
+        const { user_id1 } = req.params;
+        await Matches.sequelize.query(`select user_id1 as user_id2 from db_unigether.matches where user_id2=${user_id1} and status=1 and user_id1 in (select user_id2 from db_unigether.matches where user_id1=${user_id1} and status=1)`)
             .then((data) => res.status(200).json(data))
             .catch((error) =>
                 res
@@ -61,6 +61,15 @@ class MatchController {
                             `Erro interno na listagem de matches`,
                     })
             );
+    }
+
+    async findAllSwipes(req, res) {
+        const { user_id1 } = req.params;
+        const swipes = await Matches.findAll({ where: { user_id1: user_id1 } });
+        if (swipes.length < 1) {
+            throw new AppError("Não consta swipes");
+        }
+        return res.status(200).json(swipes).send();
     }
 }
 export { MatchController };

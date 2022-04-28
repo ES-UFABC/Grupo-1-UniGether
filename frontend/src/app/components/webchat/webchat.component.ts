@@ -55,7 +55,6 @@ export class WebchatComponent implements OnInit {
       });
       this.webchatService.readById(this.decoded.id).subscribe((res: Group[]) => {
         this.groups = res
-        console.log(this.groups)
       })
       this.profileService.getFiles().subscribe(file => {
         this.image = this.createImage(file);

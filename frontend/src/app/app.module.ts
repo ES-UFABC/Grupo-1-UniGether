@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule, HammerModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -15,6 +15,10 @@ import { MatTableModule } from '@angular/material/table'
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 
+import { AuthGuardService } from './services/auth.guard'
+
+import localePt from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -34,6 +38,7 @@ import { GroupListComponent } from './components/group-list/group-list.component
 import { EventsComponent } from './components/events/events.component';
 import { DialogComponent } from './components/templates/dialog/dialog.component';
 import { PostComponent } from './components/post/post.component';
+import { ItsMatchComponent } from './components/templates/its-match/its-match.component';
 
 declare var Hammer: any;
 
@@ -63,6 +68,7 @@ export class HammerConfig extends HammerGestureConfig {
     EventsComponent,
     DialogComponent,
     PostComponent,
+    ItsMatchComponent,
   ],
   imports: [
     BrowserModule,
@@ -85,7 +91,8 @@ export class HammerConfig extends HammerGestureConfig {
     MatPaginatorModule,
     MatSortModule
   ],
-  providers: [authInterceptorProviders, { provide: HAMMER_GESTURE_CONFIG, useClass: HammerConfig }],
-  bootstrap: [AppComponent]
+  providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }, authInterceptorProviders, AuthGuardService, { provide: HAMMER_GESTURE_CONFIG, useClass: HammerConfig }],
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule { }

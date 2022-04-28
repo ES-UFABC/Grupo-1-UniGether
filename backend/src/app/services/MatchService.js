@@ -1,6 +1,6 @@
 
 class MatchService {
-    constructor(matchRepository){
+    constructor(matchRepository) {
         this.repository = matchRepository;
     }
 }

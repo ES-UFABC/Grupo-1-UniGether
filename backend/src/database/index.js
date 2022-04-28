@@ -4,8 +4,9 @@ import User from '../app/models/Users';
 import Group from '../app/models/Groups';
 import Matches from '../app/models/Matches';
 import Message from '../app/models/Messages';
+import Event from '../app/models/Events';
 
-const models = [User, Group, Matches, Message];
+const models = [User, Group, Matches, Message, Event];
 
 class Database {
     constructor() {

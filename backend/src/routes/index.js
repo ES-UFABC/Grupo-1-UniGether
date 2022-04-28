@@ -5,6 +5,8 @@ import avatars from "./avatar.routes"
 import groups from "./groups.routes"
 import matches from "./matches.routes"
 import messages from "./message.routes";
+import images from "./image.routes";
+import events from "./event.routes";
 
 const routes = new Router()
 
@@ -14,5 +16,7 @@ routes.use("/sessions", sessions)
 routes.use("/groups", groups)
 routes.use("/matches", matches)
 routes.use("/messages", messages)
+routes.use("/events", events)
+routes.use("/images", images)
 
 export default routes;
