@@ -49,8 +49,8 @@ class GroupService {
         return groups.map(g => new OutputGroup(g));
     }
 
-    async getAllOpenGroups() {
-        var groups = await this.groupRepository.findAllOpen();
+    async getAllOpenGroups(user_id) {
+        var groups = await this.groupRepository.findAllOpen(user_id);
         if (groups.length < 1) {
             throw new AppError("Nenhum grupo foi encontrado");
         }

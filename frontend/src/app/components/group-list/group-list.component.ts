@@ -37,7 +37,7 @@ export class GroupListComponent implements OnInit, AfterViewInit {
       this.decoded = jwt_decode(tokenDec);
       this.userId = this.decoded.id;
     }
-    this.getAllGroups();
+    this.getAllGroups(this.userId);
   }
 
   openDialog() {
@@ -45,16 +45,15 @@ export class GroupListComponent implements OnInit, AfterViewInit {
       width: '30%'
     }).afterClosed().subscribe(val => {
       if (val == 'save') {
-        this.getAllGroups();
+        this.getAllGroups(this.userId);
       }
     })
   }
 
-  getAllGroups() {
-    this.dialogService.getGroup()
+  getAllGroups(user_id) {
+    this.dialogService.getGroup(user_id)
       .subscribe({
         next: (res) => {
-          //var result = res.filter(g => !this.groups.includes(g.id));
           this.dataSource = new MatTableDataSource(res);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
@@ -76,7 +75,7 @@ export class GroupListComponent implements OnInit, AfterViewInit {
       data: row
     }).afterClosed().subscribe(val => {
       if (val == 'update') {
-        this.getAllGroups();
+        this.getAllGroups(this.userId);
       }
     })
   }
@@ -97,7 +96,7 @@ export class GroupListComponent implements OnInit, AfterViewInit {
     this.dialogService.deleteGroup(id).subscribe({
       next: (res) => {
         this.showMessage("Grupo removido");
-        this.getAllGroups();
+        this.getAllGroups(this.userId);
       },
       error: () => {
         this.showMessage("Erro ao deletar grupo")

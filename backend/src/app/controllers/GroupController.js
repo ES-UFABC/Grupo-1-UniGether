@@ -15,7 +15,8 @@ class GroupController {
     }
 
     async findAllGroupsOpen(req, res) {
-        const groups = await groupService.getAllOpenGroups();
+        const { user_id } = req.params;
+        const groups = await groupService.getAllOpenGroups(user_id);
         return res.status(200).json(groups);
     }
 
@@ -32,7 +33,7 @@ class GroupController {
         const user_id = req.user.id;
         const { name, description, closed } = req.body;
 
-        const group = await groupService.createGroup(user_id, {name, description, closed});
+        const group = await groupService.createGroup(user_id, { name, description, closed });
         return res.json(group);
     }
 

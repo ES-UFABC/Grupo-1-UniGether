@@ -51,8 +51,8 @@ class MatchController {
 
     async loadMatches(req, res) {
         const { user_id1 } = req.params;
-        await Matches.sequelize.query(`select user_id1 as user_id2 from db_unigether.matches where user_id2=${user_id1} and status=1 and user_id1 in (select user_id2 from db_unigether.matches where user_id1=${user_id1} and status=1)`)
-            .then((data) => res.status(200).json(data))
+        await Matches.sequelize.query(`select u.id,u.name,image_url from db_unigether.matches as m inner join db_unigether.users as u on m.user_id1 = u.id where user_id2=${user_id1} and status=1 and user_id1 in (select user_id2 from db_unigether.matches where user_id1=${user_id1} and status=1)`)
+            .then((data) => res.status(200).json(data).send())
             .catch((error) =>
                 res
                     .status(500)

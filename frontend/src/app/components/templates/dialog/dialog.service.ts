@@ -11,8 +11,8 @@ export class DialogService {
   postGroup(data: any) {
     return this.http.post<any>(`http://localhost:8080/groups`, data);
   }
-  getGroup() {
-    return this.http.get<any>("http://localhost:8080/groups");
+  getGroup(user_id:number) {
+    return this.http.get<any>("http://localhost:8080/groups/opened/"+user_id);
   }
 
   putGroup(data: any, id: number) {

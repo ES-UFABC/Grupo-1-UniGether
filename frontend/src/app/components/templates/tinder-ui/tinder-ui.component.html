@@ -25,9 +25,10 @@
       }">
       <div class="infos">
         <img #tinderCardImage src="{{base_url}}/{{user.image_url}}" (load)="tinderCardImage.style.opacity = 1" />
-        <h3>{{ user.name }},{{user.age}}</h3>
-        <p>{{user.university}},{{user.course}}</p>
+        <h3>{{ user.name }},{{user.age}},{{user.gender}}</h3>
+        <p>{{user.university}},{{user.course}},{{user.initial_year}},{{user.shift}}</p>
         <p>{{user.bio}}</p>
+        <p>{{user.search_for}}</p>
       </div>
 
 
@@ -51,7 +52,7 @@
     </div>
   </div>
 </div>
-<div class="tinder" *ngIf="count==0">
+<div class="tinder" *ngIf="count==0 || users==undefined">
   <div class="tinder--cards" (pan)="handlePan($event)" (panend)="handlePanEnd($event)">
     <div #tinderCard class="tinder--card" (transitionend)="handleShift()" [ngStyle]="{
         zIndex: 0,

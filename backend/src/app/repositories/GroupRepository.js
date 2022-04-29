@@ -1,4 +1,5 @@
 import Group from "../models/Groups";
+import { Op } from 'sequelize'
 
 class GroupRepository {
     async insert(group) {
@@ -14,12 +15,18 @@ class GroupRepository {
         return Group.findAll();
     }
 
-    async findAllOpen() {
-        return Group.findAll({where:{closed: false}});
+    async findAllOpen(user_id) {
+        return Group.findAll({
+            where: {
+                closed: false, [Op.ne]: {
+                    user_id: user_id
+                }
+            }
+        });
     }
 
-    async findAllUserGroups(user_id){
-        await Group.findAll({where: {user_id: user_id}});
+    async findAllUserGroups(user_id) {
+        await Group.findAll({ where: { user_id: user_id } });
     }
 
     async update(id, newGroup) {
