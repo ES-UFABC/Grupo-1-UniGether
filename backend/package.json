@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "src/server.js",
+  "type": "commonjs",
   "scripts": {
     "test": "mocha src/test.js --exit",
-    "start": "nodemon"
+    "dev": "npx sequelize-cli db:migrate && npx sequelize-cli db:seed:undo:all && npx sequelize-cli db:seed:all && nodemon",
+    "start": "npx sequelize db:migrate && npx sequelize db:seed:undo:all && node src/server.js"
   },
   "keywords": [],
   "author": "",
@@ -24,6 +26,7 @@
     "mysql2": "^2.3.3",
     "node-dependency-injection": "^2.7.3",
     "path": "^0.12.7",
+    "pg": "^8.7.3",
     "reflect-metadata": "^0.1.13",
     "sequelize": "^6.17.0",
     "socket.io": "^4.4.1",
