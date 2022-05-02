@@ -1,4 +1,4 @@
-name: CI
+name: CI/CD
 
 on:
   push:
@@ -10,10 +10,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: akhileshns/heroku-deploy@v3.12.12
+      - name: Deploy Backend 100%
+        uses: akhileshns/heroku-deploy@v3.12.12
         with:
           appdir: ./backend
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "unigether"
-          heroku_email: "paloma.santana@aluno.ufabc.edu.br"
+          heroku_app_name: "unigethertest"
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
+          usedocker: true
+          stack: 'container'
           procfile: "web: npm start"
+      - name: Deploy Frontend 
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          appdir: ./frontend
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "unigethertest-front"
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
+          usedocker: true
+          stack: "container"
