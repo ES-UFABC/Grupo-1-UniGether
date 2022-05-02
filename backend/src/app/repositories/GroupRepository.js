@@ -1,5 +1,5 @@
-import Group from "../models/Groups";
-import { Op } from 'sequelize'
+const Group = require("../models/Groups.js");
+const { Op } = require('sequelize')
 
 class GroupRepository {
     async insert(group) {
@@ -41,4 +41,4 @@ class GroupRepository {
     }
 }
 
-export { GroupRepository };
+module.exports =  GroupRepository;

@@ -6,35 +6,35 @@ module.exports = {
       {
         name:"Economia Da Braba",
         description:"Só pra maluco",
-        closed:0,
+        closed:true,
         created_at: new Date(),
         updated_at: new Date()
       },
       {
         name:"+18 Carnaval é todo dia",
         description:"...",
-        closed:0,
+        closed:true,
         created_at: new Date(),
         updated_at: new Date()
       },
       {
         name:"Full Stack",
         description:"ou Full Stack Overflow?",
-        closed:0,
+        closed:true,
         created_at: new Date(),
         updated_at: new Date()
       },
       {
         name:"Grupo Fechado",
         description:"FECHADO",
-        closed:1,
+        closed:false,
         created_at: new Date(),
         updated_at: new Date()
       },
       {
         name:"Amizade",
         description:"Te vejo como amigx",
-        closed:0,
+        closed:true,
         created_at: new Date(),
         updated_at: new Date()
       }

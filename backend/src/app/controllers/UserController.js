@@ -1,7 +1,7 @@
-import { UserValidator } from "../validators/UserValidator";
-import container from "../../shared/container";
-import { AppError } from "../../errors/AppError";
-import path from "path";
+const UserValidator = require("../validators/UserValidator.js");
+const container = require("../../shared/container.js");
+const { AppError } = require("../../errors/AppError.js");
+const { resolve } = require("path");
 
 const userService = container.get("service.user");
 const userValidator = new UserValidator();
@@ -62,14 +62,14 @@ class UserController {
     async getAvatar(req, res) {
         const userId = req.user.id;
         const fileName = await userService.getAvatar(userId);
-        const avatarPath = path.resolve("tmp", "avatar", fileName);
+        const avatarPath = resolve("tmp", "avatar", fileName);
         return res.sendFile(avatarPath);
     }
 
     async getAvatarById(req, res) {
         const userId = req.params.id;
         const fileName = await userService.getAvatar(userId);
-        const avatarPath = path.resolve("tmp", "avatar", fileName);
+        const avatarPath = resolve("tmp", "avatar", fileName);
         return res.sendFile(avatarPath);
     }
 
@@ -79,4 +79,5 @@ class UserController {
         return res.status(200).json(outputUsers).send();
     }
 }
-export { UserController };
+
+module.exports = UserController;

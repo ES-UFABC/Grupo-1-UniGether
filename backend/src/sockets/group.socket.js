@@ -1,8 +1,8 @@
-import { GroupRepository } from "../app/repositories/GroupRepository";
-import { MatchRepository } from "../app/repositories/MatchRepository";
+const container = require("../shared/container.js");
 
-const groupRepository = new GroupRepository()
-const matchRepository = new MatchRepository()
+const groupRepository = container.get("repository.group");
+const matchRepository = container.get("repository.match");
+
 
 const canJoinGroup = async (userId, receiverId) => {
     userGroups = groupRepository.getAllByUserId()
@@ -33,4 +33,4 @@ const groupHandler = async (io, socket) => {
     socket.on("private-group:join", joinPrivateGroup);
 }
 
-export default groupHandler;
+module.exports = groupHandler;

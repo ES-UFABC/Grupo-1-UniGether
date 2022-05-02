@@ -1,6 +1,6 @@
-import { AppError } from "../errors/AppError";
-import { verify } from "jsonwebtoken";
-import container from "../shared/container";
+const { AppError } = require("../errors/AppError.js");
+const { verify } = require("jsonwebtoken");
+const container = require("../shared/container.js");
 
 const userRepository =  container.get("repository.user");
 
@@ -30,4 +30,4 @@ async function ensureAuthenticated(request, response, next) {
     }
 }
 
-export { ensureAuthenticated };
+module.exports = { ensureAuthenticated };

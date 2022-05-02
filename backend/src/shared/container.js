@@ -1,16 +1,16 @@
-import {ContainerBuilder} from "node-dependency-injection";
-import { UserRepository } from "../app/repositories/UserRepository";
-import { MatchRepository } from "../app/repositories/MatchRepository";
-import { GroupRepository } from "../app/repositories/GroupRepository";
-import { MessageRepository } from "../app/repositories/MessageRepository";
-import { EventRepository } from "../app/repositories/EventRepository";
-import { GroupService } from "../app/services/GroupService";
-import { UserService } from "../app/services/UserService";
-import { MatchService } from "../app/services/MatchService";
-import { MessageService } from "../app/services/MessageService"
-import { EventService } from "../app/services/EventService"
+const { ContainerBuilder } = require("node-dependency-injection");
+const UserRepository = require("../app/repositories/UserRepository.js");
+const MatchRepository = require("../app/repositories/MatchRepository.js");
+const GroupRepository = require("../app/repositories/GroupRepository.js");
+const MessageRepository = require("../app/repositories/MessageRepository.js");
+const EventRepository = require("../app/repositories/EventRepository.js")
+const GroupService = require("../app/services/GroupService.js");
+const UserService = require("../app/services/UserService.js");
+const MatchService = require("../app/services/MatchService.js");
+const MessageService = require("../app/services/MessageService.js");
+const EventService = require("../app/services/EventService");
 
-let container = new ContainerBuilder();
+const container = new ContainerBuilder();
 
 container.register('repository.user', UserRepository);
 container.register('repository.match', MatchRepository);
@@ -36,4 +36,4 @@ container.register('service.message', MessageService)
     .addArgument(container.get('repository.match'))
     .addArgument(container.get('repository.message'));
 
-export default container;
+module.exports = container;

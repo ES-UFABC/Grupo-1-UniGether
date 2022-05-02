@@ -25,7 +25,7 @@ services:
       - DATABASE_USER=docker
       - DATABASE_PASSWORD=unigether
       - DATABASE=db_unigether
-      - DATABASE_SSL=false
+      - SSL=false
     ports:
         - 8080:8080
     volumes:

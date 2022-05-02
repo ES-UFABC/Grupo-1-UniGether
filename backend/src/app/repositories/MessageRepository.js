@@ -1,5 +1,5 @@
-import { Op } from "sequelize"
-import Message from "../models/Messages"
+const Message = require("../models/Messages.js");
+const { Op } = require("sequelize");
 
 class MessageRepository {
 
@@ -37,4 +37,4 @@ class MessageRepository {
     }
 }
 
-export { MessageRepository }
+module.exports = MessageRepository;

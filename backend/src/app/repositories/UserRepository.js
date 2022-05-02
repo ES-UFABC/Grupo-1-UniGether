@@ -1,5 +1,5 @@
-import User from "../models/Users";
-import {Op} from 'sequelize'
+const User = require("../models/Users.js");
+const { Op } = require('sequelize');
 
 class UserRepository{
 
@@ -39,4 +39,4 @@ class UserRepository{
     }
 }
 
-export {UserRepository}
+module.exports = UserRepository;

@@ -1,6 +1,6 @@
-import { Router } from "express";
-import { ensureAuthenticated } from "../middlewares/authentication";
-import { GroupController } from "../app/controllers/GroupController";
+const { Router } = require("express");
+const { ensureAuthenticated } = require("../middlewares/authentication.js");
+const GroupController = require("../app/controllers/GroupController.js");
 
 const groupController = new GroupController();
 const groups = new Router();
@@ -14,4 +14,4 @@ groups.put("/:id", ensureAuthenticated, groupController.updateGroup);
 groups.delete("/:id/user/:user_id", ensureAuthenticated, groupController.removeUser);
 groups.delete("/:id", ensureAuthenticated, groupController.delete);
 
-export default groups;
+module.exports = groups;

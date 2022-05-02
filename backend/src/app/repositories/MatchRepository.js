@@ -1,5 +1,6 @@
-import Matches from "../models/Matches"
-import { Sequelize, Op } from "sequelize"
+const Matches = require("../models/Matches.js");
+const { Sequelize, Op } = require("sequelize");
+
 
 class MatchRepository {
     async insert(match) {
@@ -21,4 +22,4 @@ class MatchRepository {
 
 }
 
-export { MatchRepository }
+module.exports = MatchRepository;

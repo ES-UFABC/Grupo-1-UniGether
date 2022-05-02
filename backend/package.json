@@ -7,7 +7,8 @@
   "scripts": {
     "test": "mocha src/test.js --exit",
     "dev": "npx sequelize-cli db:migrate && npx sequelize-cli db:seed:undo:all && npx sequelize-cli db:seed:all && nodemon",
-    "start": "npx sequelize db:migrate && npx sequelize db:seed:undo:all && node src/server.js"
+    "heroku-postbuild":"npx sequelize db:migrate production && npx sequelize db:seed:undo:all production",
+    "start": "node src/server.js"
   },
   "keywords": [],
   "author": "",

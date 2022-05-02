@@ -1,5 +1,5 @@
-import jwt from 'jsonwebtoken';
-import container from '../../shared/container';
+const jwt = require('jsonwebtoken');
+const container = require("../../shared/container.js");
 
 const userRepository = container.get("repository.user");
 
@@ -36,4 +36,4 @@ class SessionController {
 }
 
 
-export {SessionController};
+module.exports = SessionController;

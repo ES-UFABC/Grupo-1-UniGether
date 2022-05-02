@@ -1,4 +1,4 @@
-import * as Yup from "yup";
+const Yup = require("yup");
 
 class UserValidator {
     async isValidCreate(user) {
@@ -40,4 +40,4 @@ class UserValidator {
     }
 }
 
-export { UserValidator }
+module.exports = UserValidator;

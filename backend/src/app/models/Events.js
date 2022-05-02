@@ -1,4 +1,4 @@
-import Sequelize, { Model } from 'sequelize';
+const { Sequelize, Model } = require('sequelize');
 
 class Event extends Model {
     static init(sequelize) {
@@ -15,7 +15,7 @@ class Event extends Model {
                 sequelize,
             }
         );
-
+        this.tableName = "events";
         return this;
     }
 
@@ -24,4 +24,4 @@ class Event extends Model {
     }
 }
 
-export default Event;
+module.exports = Event;

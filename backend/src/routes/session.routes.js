@@ -1,9 +1,9 @@
-import { Router } from "express"
-import { SessionController } from "../app/controllers/SessionController"
+const { Router } = require("express");
+const SessionController = require("../app/controllers/SessionController.js");
 
 const sessions = new Router();
 const sessionController = new SessionController();
 
 sessions.post("/", sessionController.getSession)
 
-export default sessions
+module.exports = sessions;

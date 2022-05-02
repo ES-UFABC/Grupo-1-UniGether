@@ -1,8 +1,12 @@
-import fs from "fs";
+const fs = require("fs")
 
-export const deleteFile = async (fileName) => {
+const deleteFile = async (fileName) => {
     await fs.promises
         .stat(fileName)
         .catch()
         .then(() => fs.promises.unlink(fileName));
-};
+}
+
+module.exports = {
+    deleteFile
+}

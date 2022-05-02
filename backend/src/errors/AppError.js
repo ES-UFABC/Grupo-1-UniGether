@@ -6,4 +6,4 @@ class AppError {
     }
 }
 
-export {AppError}
+module.exports = {AppError}

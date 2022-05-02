@@ -1,12 +1,12 @@
-import { UserController } from "../app/controllers/UserController";
-import { ensureAuthenticated } from "../middlewares/authentication";
-import multer from "multer";
-import multerConfig from "../config/multer.config";
-import express, { Router } from "express";
-import { resolve } from 'path'
+const UserController = require("../app/controllers/UserController.js");
+const { ensureAuthenticated } = require("../middlewares/authentication.js");
+const multer = require("multer");
+const multerConfig = require("../config/multer.config.js");
+const express = require("express");
+const { resolve } = require("path");
 
 const userController = new UserController();
-const avatars = new Router();
+const avatars = new express.Router();
 
 const upload = multer(multerConfig.upload("./avatar"));
 
@@ -16,4 +16,4 @@ avatars.get("/:id", ensureAuthenticated, userController.getAvatarById);
 
 avatars.use('/file', express.static(resolve(__dirname, '..', '..', 'tmp', 'avatar')));
 
-export default avatars
+module.exports = avatars;

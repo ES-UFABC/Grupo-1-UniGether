@@ -1,4 +1,4 @@
-import Sequelize, { Model } from 'sequelize';
+const { Sequelize, Model } = require('sequelize');
 
 class Message extends Model {
     static init(sequelize) {
@@ -10,7 +10,7 @@ class Message extends Model {
                 sequelize,
             }
         );
-
+        this.tableName = "messages";
         return this;
     }
 
@@ -20,4 +20,4 @@ class Message extends Model {
     }
 }
 
-export default Message;
+module.exports = Message;

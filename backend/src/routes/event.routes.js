@@ -1,6 +1,6 @@
-import { Router } from "express";
-import { ensureAuthenticated } from "../middlewares/authentication";
-import { EventController } from "../app/controllers/EventController";
+const { Router } = require("express");
+const { ensureAuthenticated } = require("../middlewares/authentication.js");
+const EventController = require("../app/controllers/EventController.js");
 
 const eventController = new EventController();
 const events = new Router();
@@ -14,4 +14,4 @@ events.put("/:id", ensureAuthenticated, eventController.updateEvent);
 events.delete("/:id/user/:user_id", ensureAuthenticated, eventController.removeUser);
 events.delete("/:id", ensureAuthenticated, eventController.delete);
 
-export default events;
+module.exports = events;

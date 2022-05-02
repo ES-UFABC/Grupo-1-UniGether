@@ -1,8 +1,8 @@
-import container from '../../shared/container';
-import User from '../models/Users';
-import Group from '../models/Groups';
-import { AppError } from '../../errors/AppError';
-import * as Yup from 'yup';
+const container = require('../../shared/container.js');
+const { User } = require('../models/Users.js');
+const { Group } = require('../models/Groups.js');
+const { AppError } = require('../../errors/AppError.js');
+const Yup = require('yup');
 
 const groupService = container.get("service.group");
 
@@ -75,4 +75,5 @@ class GroupController {
         }
     }
 }
-export { GroupController };
+
+module.exports = GroupController;

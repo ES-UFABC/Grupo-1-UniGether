@@ -1,4 +1,4 @@
-import container from "../../shared/container";
+const container = require("../../shared/container.js");
 
 const messageService = container.get("service.message");
 
@@ -9,4 +9,4 @@ class MessageController {
     }
 }
 
-export { MessageController }
+module.exports = MessageController;

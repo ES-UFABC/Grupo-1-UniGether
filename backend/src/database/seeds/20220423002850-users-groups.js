@@ -11,8 +11,8 @@ class Register{
 
 module.exports = {
   async up (queryInterface, Sequelize) {
-    const users = await queryInterface.sequelize.query("select id from users");
-    const groups = await queryInterface.sequelize.query("select id from db_unigether.groups;");
+    const users = await queryInterface.sequelize.query("select id from users;");
+    const groups = await queryInterface.sequelize.query("select id from groups;");
     const registers = [];
     users[0].forEach(
       u => groups[0].forEach(

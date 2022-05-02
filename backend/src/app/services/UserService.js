@@ -1,6 +1,6 @@
-import { AppError } from "../../errors/AppError";
-import { deleteFile } from "../../utils/file";
-import bcrypt from "bcryptjs";
+const { AppError } = require("../../errors/AppError.js");
+const { deleteFile } = require("../../utils/file.js");
+const bcrypt = require("bcryptjs");
 
 class OutputUser {
     constructor(id, name, university, course, email, age, initial_year, gender, shift, bio, search_for, image_url) {
@@ -111,4 +111,4 @@ class UserService {
     }
 }
 
-export { UserService };
+module.exports = UserService;

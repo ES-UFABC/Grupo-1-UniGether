@@ -1,4 +1,4 @@
-import Event from "../models/Events";
+const Event = require("../models/Events.js");
 
 class EventRepository {
     async insert(event) {
@@ -34,4 +34,4 @@ class EventRepository {
     }
 }
 
-export { EventRepository };
+module.exports = EventRepository;

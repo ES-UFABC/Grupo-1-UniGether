@@ -1,7 +1,7 @@
-import container from '../../shared/container';
-import User from '../models/Users';
-import Matches from '../models/Matches';
-import { AppError } from '../../errors/AppError';
+const container = require('../../shared/container.js');
+const { User } = require('../models/Users.js');
+const { Matches } = require('../models/Matches.js');
+const { AppError } = require('../../errors/AppError.js');
 
 const matchService = container.get("service.match");
 
@@ -72,4 +72,5 @@ class MatchController {
         return res.status(200).json(swipes).send();
     }
 }
-export { MatchController };
+
+module.exports = MatchController;

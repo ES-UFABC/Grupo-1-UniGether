@@ -1,4 +1,4 @@
-import Sequelize, { Model } from 'sequelize';
+const { Sequelize, Model } = require('sequelize');
 
 class Group extends Model {
     static init(sequelize) {
@@ -11,7 +11,7 @@ class Group extends Model {
                 sequelize,
             }
         );
-
+        this.tableName = "groups";
         return this;
     }
 
@@ -20,4 +20,4 @@ class Group extends Model {
     }
 }
 
-export default Group;
+module.exports = Group;

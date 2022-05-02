@@ -5,4 +5,4 @@ class MatchService {
     }
 }
 
-export { MatchService }
+module.exports = MatchService;

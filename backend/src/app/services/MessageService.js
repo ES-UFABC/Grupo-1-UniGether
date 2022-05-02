@@ -6,4 +6,4 @@ class MessageService {
     }
 }
 
-export { MessageService }
+module.exports = MessageService;

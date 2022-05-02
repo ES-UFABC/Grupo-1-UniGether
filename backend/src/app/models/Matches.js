@@ -1,4 +1,4 @@
-import Sequelize, { Model } from 'sequelize';
+const { Sequelize, Model } = require('sequelize');
 
 class Matches extends Model {
     static init(sequelize) {
@@ -9,7 +9,7 @@ class Matches extends Model {
                 sequelize,
             }
         );
-
+        this.tableName = "matches";
         return this;
     }
 
@@ -19,4 +19,4 @@ class Matches extends Model {
     }
 }
 
-export default Matches;
+module.exports = Matches;

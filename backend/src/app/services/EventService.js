@@ -1,4 +1,4 @@
-import { AppError } from "../../errors/AppError";
+const { AppError } = require("../../errors/AppError.js");
 
 class OutputEvent {
     constructor(event) {
@@ -94,4 +94,4 @@ class EventService {
     }
 }
 
-export { EventService };
+module.exports = EventService;

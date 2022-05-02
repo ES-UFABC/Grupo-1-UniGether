@@ -1,4 +1,4 @@
-import { AppError } from "../../errors/AppError";
+const { AppError } = require("../../errors/AppError.js");
 
 class OutputGroup {
     constructor(group){
@@ -80,4 +80,4 @@ class GroupService {
     }
 }
 
-export { GroupService };
+module.exports = GroupService;

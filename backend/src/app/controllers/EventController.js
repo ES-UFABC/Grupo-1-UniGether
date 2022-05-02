@@ -1,7 +1,7 @@
-import container from '../../shared/container';
-import Event from '../models/Events';
-import { AppError } from '../../errors/AppError';
-import * as Yup from 'yup';
+const container = require('../../shared/container.js');
+const Event = require('../models/Events');
+const { AppError } = require('../../errors/AppError.js');
+const Yup = require('yup');
 
 const eventService = container.get("service.event");
 
@@ -83,4 +83,5 @@ class EventController {
         return res.status(200).json({ message: "Imagem adicionada ao evento" }).send();
     }
 }
-export { EventController };
+
+module.exports = EventController;

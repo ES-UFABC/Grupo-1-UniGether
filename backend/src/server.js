@@ -1,30 +1,32 @@
-import "express-async-errors"
-import "reflect-metadata"
-import http from "http";
-import express from 'express';
-import routes from './routes/index'
-import './database';
-import cors from 'cors';
-import socket from 'socket.io';
-import errorHandler from "./middlewares/error"
-import groupHandler from "./sockets/group.socket"
-import messageHandler from "./sockets/message.socket";
-// import helmet from 'helmet';
+const dotenv = require("dotenv");
+const {resolve} = require("path")
+dotenv.config({path:resolve(__dirname,"..",".env")});
+
+require("express-async-errors");
+require("reflect-metadata");
+require('./database/index.js');
+const http = require("http");
+const express = require('express');
+const routes = require('./routes/index.js');
+const cors = require('cors');
+const socket = require('socket.io');
+const errorHandler = require("./middlewares/error.js");
+const groupHandler = require("./sockets/group.socket.js");
+const messageHandler = require("./sockets/message.socket.js");
 
 const corsOptions = {
   origin: "*",
   optionsSuccessStatus: 200
 };
 
-const cors = {
+/*const cors = {
   origin: "*",
   methods: ["PUT", "GET", "POST", "DELETE", "OPTIONS"],
   credentials: false
-}
+}*/
 
 const app = express();
 app.use(cors(corsOptions));
-// app.use(helmet);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(routes);

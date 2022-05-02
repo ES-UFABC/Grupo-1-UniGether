@@ -1,10 +1,9 @@
-import { GroupRepository } from "../app/repositories/GroupRepository";
-import { MatchRepository } from "../app/repositories/MatchRepository";
-import { UserRepository } from "../app/repositories/UserRepository"
+const container = require("../shared/container.js");
 
-const userRepository = new UserRepository();
-const groupRepository = new GroupRepository();
-const matchRepository = new MatchRepository();
+const userRepository = container.get("repository.user");
+const groupRepository = container.get("repository.group");
+const matchRepository = container.get("repository.match");
+
 
 // Colocar na message service
 const canSendMessage = async (userId, receiverId) => {
@@ -43,4 +42,4 @@ const messageHandler = async (io, socket) => {
     socket.on("message:delete", deleteMessage);
 }   
 
-export default messageHandler;
+module.exports = messageHandler;
