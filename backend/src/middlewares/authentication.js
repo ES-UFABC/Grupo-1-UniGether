@@ -1,8 +1,8 @@
-import { AppError } from "../errors/AppError";
-import { UserRepository } from "../app/repositories/UserRepository";
-import { verify } from "jsonwebtoken";
+const { AppError } = require("../errors/AppError.js");
+const { verify } = require("jsonwebtoken");
+const container = require("../shared/container.js");
 
-const userRepository =  new UserRepository();
+const userRepository =  container.get("repository.user");
 
 async function ensureAuthenticated(request, response, next) {
     const authHeader = request.headers.authorization;
@@ -17,7 +17,7 @@ async function ensureAuthenticated(request, response, next) {
             "d0dcb7b225d9a93c5cc3aa93ddc2dd88aa563e0d"
         );
 
-        const user = await userRepository.getById(id);
+        const user = await userRepository.findById(id);
         if (!user) throw new AppError("Usuário não existe", 401);
 
         request.user = {
@@ -30,4 +30,4 @@ async function ensureAuthenticated(request, response, next) {
     }
 }
 
-export { ensureAuthenticated };
+module.exports = { ensureAuthenticated };

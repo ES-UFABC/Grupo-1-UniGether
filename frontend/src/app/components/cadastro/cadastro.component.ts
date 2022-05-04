@@ -29,7 +29,7 @@ export class CadastroComponent implements OnInit {
 
   createCadastro(): void {
     this.cadastroService.create(this.cadastro).subscribe(() => {
-      this.router.navigate(['/'])
+      this.router.navigate(['/login'])
       this.cadastroService.showMessage('Cadastro do usuário concluído com sucesso')
     })
   }

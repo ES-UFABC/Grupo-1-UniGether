@@ -1,5 +1,5 @@
-import User from "../models/Users";
-import {Op} from 'sequelize'
+const User = require("../models/Users.js");
+const { Op } = require('sequelize');
 
 class UserRepository{
 
@@ -7,17 +7,17 @@ class UserRepository{
         return await User.create(user);
     }
 
-    async getById(id) {
+    async findById(id) {
         const user = await User.findByPk(id);
         return user;
     }
 
-    async getByEmail(email) {
+    async findByEmail(email) {
         const user = await User.findOne({where:{email: email}});;
         return user;
     }
     
-    async getAll(){
+    async findAll(){
         return User.findAll();
     }
 
@@ -32,12 +32,11 @@ class UserRepository{
         return userIsDeleted;
     }
 
-    async getName(name) {
-
-        let condition = name ? { name: {[Op.like]: `%${name}%`}} : null;
-        const users = await User.findAll({where: condition});
+    async findByName(name) {
+        let condition = {where: { name: {[Op.like]: `%${name}`}} };
+        const users = await User.findAll(condition);
         return users;
     }
 }
 
-export {UserRepository}
+module.exports = UserRepository;

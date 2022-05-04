@@ -8,9 +8,9 @@ describe('CadastroComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CadastroComponent ]
+      declarations: [CadastroComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

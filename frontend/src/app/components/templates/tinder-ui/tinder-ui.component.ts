@@ -1,6 +1,11 @@
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { TinderUiService } from './tinder-ui.service';
 import { DadosPessoais } from './../../dados-pessoais/dados-pessoais.model';
 import { CadastroService } from './../../cadastro/cadastro.service';
-import { Component, ViewChildren, QueryList, ElementRef, EventEmitter, Output, Renderer2, OnInit } from '@angular/core';
+import { Component, ViewChildren, QueryList, ElementRef, EventEmitter, Output, Renderer2, OnInit, Input } from '@angular/core';
+import jwt_decode from 'jwt-decode';
+import { TokenStorageService } from 'src/app/_services/token-storage.service';
+import { Swipe } from './swipe.model';
 
 @Component({
   selector: 'tinder-ui',
@@ -9,12 +14,14 @@ import { Component, ViewChildren, QueryList, ElementRef, EventEmitter, Output, R
 })
 export class TinderUIComponent implements OnInit {
 
+  @Input('users') users: DadosPessoais[];
+
   @ViewChildren('tinderCard') tinderCards: QueryList<ElementRef>;
   tinderCardsArray: Array<ElementRef>;
 
   @Output() choiceMade = new EventEmitter();
 
-  public users: DadosPessoais[];
+  base_url: string = "http://localhost:8080/avatars/file"
 
   moveOutWidth: number;
   shiftRequired: boolean;
@@ -22,33 +29,66 @@ export class TinderUIComponent implements OnInit {
   heartVisible: boolean;
   crossVisible: boolean;
 
-  constructor(private renderer: Renderer2, private cadastroService: CadastroService) { }
+  cadastro = new DadosPessoais();
+  currentUser: any;
+  decoded: any;
+  userLogged: any;
+  count: number;
+
+  swipe = new Swipe();
+
+  swiped: Swipe[];
+
+  constructor(private renderer: Renderer2, private cadastroService: CadastroService, private tokenStorage: TokenStorageService, private swipeService: TinderUiService, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    this.cadastroService.readUsers().subscribe((res: DadosPessoais[]) => {
-      this.users = res;
-      console.log(this.users);
-    })
+    if (this.tokenStorage.getToken()) {
+      this.currentUser = this.tokenStorage.getUser();
+      var tokenDec = this.currentUser.token;
+      this.decoded = jwt_decode(tokenDec);
+      this.cadastroService.readById(this.decoded.id).subscribe(cadastro => {
+        this.cadastro = cadastro;
+        this.userLogged = cadastro.id;
+        this.swipe.user_id1 = cadastro.id;
+        this.swipeService.gone(this.cadastro.id).subscribe((res: Swipe[]) => {
+          this.swiped = res;
+        })
+        this.cadastroService.readUsers().subscribe((res: DadosPessoais[]) => {
+          res = res.filter(u => u.id != this.userLogged);
+          if (this.swiped.length > 0) {
+            var result = res.filter((elem) => !this.swiped.find(({ user_id2 }) => elem.id === user_id2));
+            res = result
+          }
+          this.users = res;
+          this.count = this.users.length;
+        })
+      });
+    }
   }
 
-  userClickedButton(event, heart) {
+  userClickedButton(event, heart, user_id2) {
     event.preventDefault();
     if (!this.users.length) return false;
     if (heart) {
       this.renderer.setStyle(this.tinderCardsArray[0].nativeElement, 'transform', 'translate(' + this.moveOutWidth + 'px, -100px) rotate(-30deg)');
       this.toggleChoiceIndicator(false, true);
       this.emitChoice(heart, this.users[0]);
+      this.swipe.status = true;
+      this.swipe.user_id2 = user_id2;
+      this.swipeRegister()
     } else {
       this.renderer.setStyle(this.tinderCardsArray[0].nativeElement, 'transform', 'translate(-' + this.moveOutWidth + 'px, -100px) rotate(30deg)');
       this.toggleChoiceIndicator(true, false);
       this.emitChoice(heart, this.users[0]);
+      this.swipe.status = false;
+      this.swipe.user_id2 = user_id2;
+      this.swipeRegister()
     };
     this.shiftRequired = true;
     this.transitionInProgress = true;
   };
 
   handlePan(event) {
-
     if (event.deltaX === 0 || (event.center.x === 0 && event.center.y === 0) || !this.users.length) return;
 
     if (this.transitionInProgress) {
@@ -57,8 +97,20 @@ export class TinderUIComponent implements OnInit {
 
     this.renderer.addClass(this.tinderCardsArray[0].nativeElement, 'moving');
 
-    if (event.deltaX > 0) { this.toggleChoiceIndicator(false, true) }
-    if (event.deltaX < 0) { this.toggleChoiceIndicator(true, false) }
+    if (event.deltaX > 0) {
+      this.toggleChoiceIndicator(false, true)
+      this.swipe.status = true;
+      // this.swipe.user_id2 = user_id2;
+      console.log(this.swipe);
+      this.swipeRegister()
+    }
+    if (event.deltaX < 0) {
+      this.toggleChoiceIndicator(true, false)
+      this.swipe.status = false;
+      // this.swipe.user_id2 = user_id2;
+      console.log(this.swipe);
+      this.swipeRegister()
+    }
 
     let xMulti = event.deltaX * 0.03;
     let yMulti = event.deltaY / 80;
@@ -131,5 +183,24 @@ export class TinderUIComponent implements OnInit {
       this.tinderCardsArray = this.tinderCards.toArray();
     })
   };
+
+  swipeRegister() {
+    this.swipeService.swiped(this.swipe).subscribe({
+      next: (res) => {
+        this.showMessage("Swipe registrado")
+      },
+      error: () => {
+        this.showMessage("Erro no processo de adicionar swipe")
+      }
+    })
+  }
+
+  showMessage(msg: string): void {
+    this.snackBar.open(msg, 'X', {
+      duration: 3000,
+      horizontalPosition: "right",
+      verticalPosition: "top"
+    })
+  }
 
 }

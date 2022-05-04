@@ -1,82 +1,66 @@
-import { GroupService } from "../services/GroupService";
-import { AppError } from "../../errors/AppError";
-import User from '../models/Users';
-import Group from '../models/Groups';
+const container = require('../../shared/container.js');
+const { User } = require('../models/Users.js');
+const { Group } = require('../models/Groups.js');
+const { AppError } = require('../../errors/AppError.js');
+const Yup = require('yup');
 
-const groupService = new GroupService();
+const groupService = container.get("service.group");
 
 class GroupController {
 
-    async index(req, res) {
-        // const userId = req.params.id;
-        // const user = await User.findByPk(userId, {
-        //     include: { association: 'group' }
-        // });
-
-        // if (!user) {
-        //     res.status(400).json({ error: "Usuário não existe" })
-        // }
-
-        // return res.json(user)
-    }
-
-    async store(req, res) {
-
+    async findUserGroups(req, res) {
         const { user_id } = req.params;
-        const { name, description } = req.body;
-
-        const user = await User.findByPk(user_id);
-
-        if (!user) {
-            return res.status(400).json({ error: "Usuario não existe" })
-        }
-
-        const [group] = await Group.findOrCreate({
-            where: { name, description }
-        });
-
-        await user.addGroup(group);
-
-        return res.json(group);
+        const groups = await groupService.getUserGroups(user_id);
+        return res.json(groups)
     }
 
-    async findAllGroups(req, res) {
-
-        const groups = await Group.findAll({ where: null });
-        if (groups.length < 1)
-            return res.json({ message: "Nenhum grupo foi cadastrado" });
-        return res.json(groups);
+    async findAllGroupsOpen(req, res) {
+        const { user_id } = req.params;
+        const groups = await groupService.getAllOpenGroups(user_id);
+        return res.status(200).json(groups);
     }
 
-    async findGroupById(req, res) {
-        const group = await Group.findOne({ where: { id: req.params.id } });
+    async addUserInGroup(req, res) {
+        const { user_id, id } = req.params;
 
-        if (!group) {
-            return res.status(400).json({ error: "Grupo não encontrado!" });
-        }
+        await groupService.addUserInGroup(user_id, id);
+        const group = await groupService.getGroupById(id);
 
         return res.status(200).json(group);
     }
 
-    async update(req, res) {
+    async createGroup(req, res) {
+        const user_id = req.user.id;
+        const { name, description, closed } = req.body;
 
+        const group = await groupService.createGroup(user_id, { name, description, closed });
+        return res.json(group);
+    }
+
+    async getGroupById(req, res) {
+        const group = await groupService.getGroupById(req.params.id);
+        return res.status(200).json(group);
+    }
+
+    async updateGroup(req, res) {
         const schema = Yup.object().shape({
             name: Yup.string().required(),
-            description: Yup.string().required(),
+            description: Yup.string(),
+            closed: Yup.string().required(),
         });
 
         if (!(await schema.isValid(req.body))) {
-            return res.status(400).json({ error: 'Falha ao validar.' });
+            throw new AppError('Falha ao validar.');
         }
 
-        const group = await Group.findByPk(req.params.id);
+        const group = await groupService.updateGroup(req.params.id, req.body);
+        return res.json(group);
+    }
 
-        const { name, description } = await group.update(req.body);
-
-        return res.json({
-            name,
-            description
-        });
+    async removeUser(req, res) {
+        const { id, user_id } = req.params;
+        await groupService.removeUserFromGroup(user_id, id);
+        return res.status(200).json();
     }
 
     async delete(req, res) {
@@ -91,4 +75,5 @@ class GroupController {
         }
     }
 }
-export default new GroupController();
+
+module.exports = GroupController;

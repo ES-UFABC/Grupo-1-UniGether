@@ -1,21 +1,21 @@
-import { UserValidator } from "../validators/UserValidator";
-import { UserService } from "../services/UserService";
-import { AppError } from "../../errors/AppError";
-import path from "path";
+const UserValidator = require("../validators/UserValidator.js");
+const container = require("../../shared/container.js");
+const { AppError } = require("../../errors/AppError.js");
+const { resolve } = require("path");
 
-const userService = new UserService();
+const userService = container.get("service.user");
 const userValidator = new UserValidator();
 
 class UserController {
 
-    async index(req, res) {
-        var outputUsers = await userService.listUsers();
+    async getUsers(req, res) {
+        var outputUsers = await userService.getAllUsers();
         return res.status(200).json(outputUsers).send();
     }
 
-    async indexUser(req, res) {
+    async getUserById(req, res) {
         const userId = req.params.id;
-        var outputUser = await userService.listUser(userId);
+        var outputUser = await userService.getUserById(userId);
         return res.status(200).json(outputUser).send();
     }
 
@@ -62,14 +62,22 @@ class UserController {
     async getAvatar(req, res) {
         const userId = req.user.id;
         const fileName = await userService.getAvatar(userId);
-        const avatarPath = path.resolve("tmp", "avatar", fileName);
+        const avatarPath = resolve("tmp", "avatar", fileName);
         return res.sendFile(avatarPath);
     }
 
-    async findByName(req, res) {
-        const name = req.query.name;
-        var outputUsers = await userService.getName(name);
+    async getAvatarById(req, res) {
+        const userId = req.params.id;
+        const fileName = await userService.getAvatar(userId);
+        const avatarPath = resolve("tmp", "avatar", fileName);
+        return res.sendFile(avatarPath);
+    }
+
+    async getUsersByName(req, res) {
+        const name = req.params.name;
+        var outputUsers = await userService.getUsersByName(name);
         return res.status(200).json(outputUsers).send();
     }
 }
-export { UserController };
+
+module.exports = UserController;

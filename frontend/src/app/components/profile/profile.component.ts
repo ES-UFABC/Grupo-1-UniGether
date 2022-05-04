@@ -18,6 +18,7 @@ export class ProfileComponent implements OnInit {
   isLoggedIn = false;
   currentUser: any;
   decoded: any;
+  base_url: string = "http://localhost:8080/avatar"
 
   constructor(private tokenStorage: TokenStorageService,private cadastroService: CadastroService, private profileService: ProfileService, private router: Router, private route: ActivatedRoute){ }
 

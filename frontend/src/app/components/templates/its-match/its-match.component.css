@@ -1,0 +1,53 @@
+.container {
+  width: 40vw;
+  height: 65vh;
+  /* background-color: #393939; */
+  background-image: linear-gradient(to bottom right, purple, orange);
+  margin-top: 5vh;
+  /* color: white; */
+  color: black;
+  font-size: 18px;
+}
+
+.content {
+  display: block;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  padding-top: 20vh;
+}
+
+h1 {
+  font-size: 60px;
+  font-family: 'Damion', cursive;
+}
+
+img {
+  height: 10vh;
+  width: 5vw;
+  border-radius: 50%;
+}
+
+.photos {
+  width: 20vw;
+  margin: 2vw 8vw 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.btn-color {
+  background-color: #009688
+}
+
+.bg-card {
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+button {
+  border-radius: 5px;
+  border-color: black;
+  background-color: #009688
+}

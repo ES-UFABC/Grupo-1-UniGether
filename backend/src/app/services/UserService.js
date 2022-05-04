@@ -1,7 +1,6 @@
-import { UserRepository } from "../repositories/UserRepository";
-import { AppError } from "../../errors/AppError";
-import { deleteFile } from "../../utils/file";
-import bcrypt from "bcryptjs";
+const { AppError } = require("../../errors/AppError.js");
+const { deleteFile } = require("../../utils/file.js");
+const bcrypt = require("bcryptjs");
 
 class OutputUser {
     constructor(id, name, university, course, email, age, initial_year, gender, shift, bio, search_for, image_url) {
@@ -21,7 +20,7 @@ class OutputUser {
 }
 
 class OutputUserCreate {
-    constructor(id, name, email) {
+    constructor(id, name, email, university, course) {
         this.id = id;
         this.name = name;
         this.university = university;
@@ -31,19 +30,19 @@ class OutputUserCreate {
 }
 
 class UserService {
-    constructor() {
-        this.repository = new UserRepository();
+    constructor(repository) {
+        this.repository = repository;
     }
 
-    async listUser(userId) {
-        var user = await this.repository.getById(userId);
+    async getUserById(userId) {
+        var user = await this.repository.findById(userId);
         if (!user) throw new AppError("Usuário não existe");
         const { id, name, university, course, email, age, initial_year, gender, shift, bio, search_for } = user;
         return new OutputUser(id, name, university, course, email, age, initial_year, gender, shift, bio, search_for);
     }
 
-    async listUsers() {
-        var users = await this.repository.getAll();
+    async getAllUsers() {
+        var users = await this.repository.findAll();
         if (users.length < 1) {
             return res.json({ message: "Nenhum usuário foi cadastrado." });
         }
@@ -51,15 +50,15 @@ class UserService {
     }
 
     async createUser(inputUser) {
-        const userExists = await this.repository.getByEmail(inputUser.email);
+        const userExists = await this.repository.findByEmail(inputUser.email);
         if (userExists) throw new AppError("Usuário já existe");
 
-        const { id, name, email } = await this.repository.insert(inputUser);
-        return new OutputUserCreate(id, name, email);
+        const { id, name, email, university, course } = await this.repository.insert(inputUser);
+        return new OutputUserCreate(id, name, email, university, course);
     }
 
     async updateUser(userId, inputUser) {
-        const user = await this.repository.getById(userId);
+        const user = await this.repository.findById(userId);
         if (!user) throw new AppError("Usuário não existe");
 
         if (inputUser.email && inputUser.email != user.email) {
@@ -81,20 +80,21 @@ class UserService {
     }
 
     async deleteUser(userId) {
-        const userExists = await this.repository.getById(userId);
+        const userExists = await this.repository.findById(userId);
         if (!userExists) throw new AppError("Usuário não existe");
 
         const userDeleted = await this.repository.delete(userId);
         if (!userDeleted) throw new AppError("Não foi possivel deletar o usuario");
     }
 
-    async getName(name) {
-        var users = await this.repository.getName(name);
+    async getUsersByName(name) {
+        var users = await this.repository.findByName(name);
         if (!users) throw new AppError("Não consta usuários com esse nome");
+        return users.map(u => new OutputUser(u));
     }
 
     async addAvatar(userId, path) {
-        var user = await this.repository.getById(userId);
+        var user = await this.repository.findById(userId);
         if (!user) throw new AppError("Usuário não existe");
         if (user.image_url) {
             await deleteFile("./tmp/avatar/" + path);
@@ -103,12 +103,12 @@ class UserService {
         await this.repository.update(userId, { image_url: path });
     }
 
-    async getAvatar(userId) {
-        var user = await this.repository.getById(userId);
+    async getAvatarByUserId(userId) {
+        var user = await this.repository.findById(userId);
         if (!user) throw new AppError("Usuário não existe");
 
         return user.image_url;
     }
 }
 
-export { UserService };
+module.exports = UserService;

@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>Adicione grupo</h1>
+<div mat-dialog-content>
+  <form [formGroup]="groupForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Nome do grupo</mat-label>
+      <input formControlName="name" matInput placeholder="Nome">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Descrição do grupo</mat-label>
+      <textarea formControlName="description" matInput placeholder="Descrição"></textarea>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Privado</mat-label>
+      <mat-select formControlName="closed" placeholder="Selecione">
+        <mat-option value="true">Sim</mat-option>
+        <mat-option value="false">Não</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div mat-dialog-action [align]="'end'">
+      <button mat-raised-button color="warn" mat-dialog-close>Fechar</button>
+      <button mat-raised-button style="margin-left: 8px;" color="primary" (click)="addGroup()">{{actionBtn}}</button>
+    </div>
+  </form>
+</div>

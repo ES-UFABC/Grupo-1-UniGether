@@ -1,7 +1,7 @@
-import jwt from 'jsonwebtoken';
-import { UserRepository } from '../repositories/UserRepository';
+const jwt = require('jsonwebtoken');
+const container = require("../../shared/container.js");
 
-const userRepository = new UserRepository();
+const userRepository = container.get("repository.user");
 
 class SessionOutput{
     constructor(outputUser, token){
@@ -14,7 +14,7 @@ class SessionController {
     async getSession(request, response) {
         const { email, password } = request.body;
 
-        const user = await userRepository.getByEmail(email);
+        const user = await userRepository.findByEmail(email);
 
         if (!user) {
             return response.status(401).json({ error: 'Usuário não existe' });
@@ -36,4 +36,4 @@ class SessionController {
 }
 
 
-export {SessionController};
+module.exports = SessionController;

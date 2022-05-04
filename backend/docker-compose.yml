@@ -1,0 +1,39 @@
+version: "3.7"
+
+services:
+  database:
+    image: postgres
+    container_name: db_unigether
+    restart: always
+    tty: true
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=unigether
+      - POSTGRES_DB=db_unigether
+    volumes:
+      - .pgdata:/var/lib/postgresql/data 
+    
+  app:
+    build: .
+    container_name: unigether-backend
+    environment:
+      - DATABASE_HOST=database
+      - DATABASE_PORT=5432
+      - DATABASE_DIALECT=postgres
+      - DATABASE_USER=docker
+      - DATABASE_PASSWORD=unigether
+      - DATABASE=db_unigether
+      - SSL=false
+    ports:
+        - 8080:8080
+    volumes:
+        - .:/usr/app
+    links:
+        - database
+    depends_on:
+        - database
+volumes:
+  pgdata:
+    driver: local

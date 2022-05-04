@@ -1,10 +1,9 @@
-import Sequelize, { Model } from 'sequelize';
-import bcrypt from 'bcryptjs';
+const { Sequelize, Model } = require('sequelize');
+const bcrypt = require('bcryptjs');
 
 class User extends Model {
 	static init(sequelize) {
 		super.init({
-			group_id: Sequelize.INTEGER,
 			name: Sequelize.STRING,
 			age: Sequelize.INTEGER,
 			initial_year: Sequelize.INTEGER,
@@ -30,11 +29,15 @@ class User extends Model {
 			}
 		});
 
+		this.tableName = "users";
 		return this;
 	}
 
 	static associate(models) {
-		this.belongsToMany(models.Group, { foreignKey: 'user_id', through: 'users-groups', as: 'groups' });
+		this.belongsToMany(models.Group,
+			{ foreignKey: 'user_id', through: 'users-groups', as: 'groups' });
+		this.belongsToMany(models.Event,
+			{ foreignKey: 'user_id', through: 'users-events', as: 'events' });
 	}
 
 	checkPassword(password) {
@@ -42,4 +45,4 @@ class User extends Model {
 	}
 }
 
-export default User;
+module.exports = User;
