@@ -25,13 +25,15 @@ module.exports = {
                 type: Sequelize.STRING,
                 allowNull: false,
             },
-            startDate: {
+            start_date: {
                 type: Sequelize.DATE,
                 allowNull: false,
+                defaultValue: Sequelize.fn('NOW')
             },
-            endDate: {
+            end_date: {
                 type: Sequelize.DATE,
                 allowNull: false,
+                defaultValue: Sequelize.fn('NOW')
             },
             closed: {
                 type: Sequelize.BOOLEAN,

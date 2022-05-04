@@ -7,8 +7,8 @@ class OutputEvent {
         this.description = event.description;
         this.type = event.type;
         this.address = event.address;
-        this.startDate = event.startDate;
-        this.endDate = event.endDate;
+        this.start_date = event.start_date;
+        this.end_date = event.end_date;
         this.closed = event.closed
     }
 }

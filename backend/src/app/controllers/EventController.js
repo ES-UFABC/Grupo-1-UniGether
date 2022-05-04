@@ -29,9 +29,9 @@ class EventController {
 
     async createEvent(req, res) {
         const user_id = req.user.id;
-        const { name, description, type, address, startDate, endDate, closed } = req.body;
+        const { name, description, type, address, start_date, end_date, closed } = req.body;
 
-        const event = await eventService.createEvent(user_id, { name, description, type, address, startDate, endDate, closed });
+        const event = await eventService.createEvent(user_id, { name, description, type, address, start_date, end_date, closed });
         return res.json(event);
     }
 
@@ -45,8 +45,8 @@ class EventController {
             name: Yup.string().required(),
             description: Yup.string(),
             address: Yup.string().required(),
-            startDate: Yup.date().required(),
-            endDate: Yup.date().required(),
+            start_date: Yup.date().required(),
+            end_date: Yup.date().required(),
             closed: Yup.string().required(),
         });
 

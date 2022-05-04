@@ -7,8 +7,8 @@ class Event extends Model {
             description: Sequelize.TEXT,
             type: Sequelize.ENUM("Online", "Presencial", "Hibrido"),
             address: Sequelize.STRING,
-            startDate: Sequelize.DATE,
-            endDate: Sequelize.DATE,
+            start_date: Sequelize.DATE,
+            end_date: Sequelize.DATE,
             closed: Sequelize.BOOLEAN
         },
             {

@@ -1,6 +1,6 @@
 const dotenv = require("dotenv");
-const {resolve} = require("path")
-dotenv.config({path:resolve(__dirname,"..",".env")});
+const { resolve } = require("path")
+dotenv.config({ path: resolve(__dirname, "..", ".env") });
 
 require("express-async-errors");
 require("reflect-metadata");
@@ -36,7 +36,13 @@ const port = process.env.PORT || 8080;
 const server = http.Server(app);
 server.listen(port);
 
-const io = socket(server, cors);
+const io = socket(server, {
+  cors: {
+    origin: "*",
+    methods: ["PUT", "GET", "POST", "DELETE", "OPTIONS"],
+    credentials: false
+  }
+});
 
 const onConnection = (socket) => {
   groupHandler(io, socket);
