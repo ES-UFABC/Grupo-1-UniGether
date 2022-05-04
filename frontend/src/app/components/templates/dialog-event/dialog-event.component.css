@@ -1,0 +1,75 @@
+mat-form-field {
+  width: 100%;
+}
+
+.example-radio-group {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0;
+}
+
+.example-radio-button {
+  margin: 5px;
+}
+
+/* textarea,
+select,
+input {
+  width: 30vw;
+  height: 5vh;
+  border-radius: 5px;
+} */
+
+.contato .profile {
+  width: 40%;
+  text-align: center;
+  justify-content: center;
+  margin-bottom: 10vh;
+}
+
+
+img {
+  height: 20vh;
+  width: 20vw;
+}
+
+.hoverable {
+  position: relative;
+  cursor: pointer;
+  height: 20vh;
+  width: 20vw;
+  border: 1px solid #000;
+}
+
+.hoverable .hover-text {
+  position: absolute;
+  display: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.hoverable .background {
+  position: absolute;
+  display: none;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hoverable:hover .hover-text {
+  display: block;
+}
+
+.hoverable:hover .background {
+  display: block;
+}
+
+#file {
+  display: none;
+}
