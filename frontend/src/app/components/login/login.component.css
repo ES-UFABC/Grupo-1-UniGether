@@ -75,3 +75,14 @@ input {
 
   }
 }
+/* MEDIA QUERY */
+@media (max-width: 500px) {
+  div.row.global {
+    display: flex;
+    flex-direction: column-reverse;
+    height: 76vh;
+  }
+  .card {
+    width: auto;
+  }
+}

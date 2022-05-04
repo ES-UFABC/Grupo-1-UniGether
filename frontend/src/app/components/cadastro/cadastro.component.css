@@ -61,15 +61,25 @@ button:hover {
   transition-duration: 0.4s;
 }
 
-@media(max-width: 770px) {
+@media(max-width: 500px) {
   .card {
-
-    margin-top: 10px;
+    margin-top: 2rem;
   }
 
   .img {
     margin-left: 0;
-    margin-top: 20Px;
+    max-width: 75%;
+    margin-top: 0rem;
 
+  }
+  div.container-responsive {
+    display: flex;
+    flex-direction: column-reverse;
+    flex-wrap: nowrap;
+  }
+
+  div.container-img-responsive {
+    display: flex;
+    justify-content: center;
   }
 }
