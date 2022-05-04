@@ -1,12 +1,12 @@
 .container {
   width: 40vw;
-  height: 65vh;
+  height: 70vh;
   /* background-color: #393939; */
   background-image: linear-gradient(to bottom right, purple, orange);
   margin-top: 5vh;
   /* color: white; */
   color: black;
-  font-size: 18px;
+  font-size: 24px;
 }
 
 .content {
@@ -47,7 +47,18 @@ img {
 }
 
 button {
-  border-radius: 5px;
-  border-color: black;
-  background-color: #009688
+  border-radius: 6px;
+  border-color: grey;
+  background-color: black;
+  padding: 8px 40px;
+  font-size: 16px;
+  color: white;
+  cursor: pointer;
+  margin: 32px 0 0;
+  vertical-align: middle;
+  text-align: center;
+}
+
+mat-icon {
+  font-size: 14px;
 }

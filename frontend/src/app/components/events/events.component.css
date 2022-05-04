@@ -1,9 +1,68 @@
-.btn-color{
-    background-color: #009688
+.btn-color {
+  background-color: #009688
 }
 
-.bg-card{
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
-    overflow: hidden;
-    border-radius: 5px;
+.bg-card {
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.contato .profile {
+  width: 40%;
+  text-align: center;
+  justify-content: center;
+}
+
+
+img {
+  height: 20vh;
+  width: 20vw;
+}
+
+.hoverable {
+  position: relative;
+  cursor: pointer;
+  height: 150px;
+  width: 150px;
+  border: 3.5px solid #000;
+  border-radius: 50%;
+}
+
+.hoverable .hover-text {
+  position: absolute;
+  display: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.hoverable .background {
+  position: absolute;
+  display: none;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+  pointer-events: none;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.hoverable:hover .hover-text {
+  display: block;
+}
+
+.hoverable:hover .background {
+  display: block;
+}
+
+#file {
+  display: none;
+}
+
+#file {
+  display: none;
 }

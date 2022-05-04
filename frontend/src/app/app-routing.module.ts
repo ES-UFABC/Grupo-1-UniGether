@@ -21,9 +21,9 @@ const routes: Routes = [
   { path: 'match', component: TinderUIComponent, canActivate: [AuthGuardService] },
   { path: 'chat', component: WebchatComponent, canActivate: [AuthGuardService] },
   { path: 'groups', component: GroupListComponent, canActivate: [AuthGuardService] },
-  { path: 'events', component: EventsComponent, canActivate: [AuthGuardService] },
-  { path: 'post', component: PostComponent, canActivate: [AuthGuardService] },
-  { path: 'itsmatch', component: ItsMatchComponent, canActivate: [AuthGuardService] },
+  { path: 'events', component: EventsComponent },
+  { path: 'post', component: PostComponent },
+  { path: 'itsmatch', component: ItsMatchComponent },
 
   //{ path: 'quem-somos', component: QuemSomosComponent },
   //{ path: '**', component: NotFoundComponent },

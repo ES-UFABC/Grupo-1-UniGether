@@ -13,18 +13,31 @@
       <!-- Eventos -->
       <ul class="nav nav-tabs">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Eventos</a>
+          <a class="nav-link active" aria-current="page" href="#Todos">Eventos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Meus Eventos</a>
+          <a class="nav-link" href="#MeusEventos">Meus Eventos</a>
         </li>
       </ul>
       <!-- /Eventos -->
-
     </div>
-
   </div>
+</div>
 
+
+<div hidden="true" id="#MeusEventos">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Nome</mat-card-title>
+    </mat-card-header>
+    <img matCardImage src="Card wide image source">
+    <mat-card-content>
+      Descrição
+    </mat-card-content>
+    <!-- <mat-card-actions align="start"> -->
+    <!-- <button mat-button (click)="onAction1">Action1</button> -->
+    <!-- </mat-card-actions> -->
+  </mat-card>
 </div>
 
 
@@ -35,12 +48,61 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
+      <div class="profile">
+        <label class="hoverable" for="file">
+          <img [src]="file ? file : 'https://www.w3schools.com/howto/img_avatar.png'">
+          <div class="hover-text">Escolha uma foto de perfil</div>
+          <div class="background"></div>
+        </label>
+        <br />
+        <input id="file" type="file" name="file" (change)="onSelectFile($event)">
+        <button type="button" id="button-delete-file" class="btn btn-danger" *ngIf="file"
+          (click)="delete()">delete</button>
+        <button *ngIf="file" (click)="upload()" type="button" class="btn btn-primary">Upload</button>
+      </div>
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Novo Evento</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
+        <mat-form-field appearance="outline">
+          <mat-label>Nome</mat-label>
+          <input matInput placeholder="Nome">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Descrição</mat-label>
+          <textarea matInput placeholder="Descricao"></textarea>
+        </mat-form-field>
+        <label for="">
+          <h1>Tipo</h1>
+        </label>
+        <mat-radio-group class="example-radio-button">
+          <mat-radio-button *ngFor="let type od typesList" [value]="type">
+            {{type}}
+          </mat-radio-button>
+        </mat-radio-group>
+        <mat-form-field appearance="outline">
+          <mat-label>Local</mat-label>
+          <input matInput placeholder="Local">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <input matInput [ngxMatDatetimePicker]="pickerFrom" placeholder="Horário de inicio">
+          <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+          <ngx-mat-datetime-picker #pickerFrom [enableMeridian]="true"></ngx-mat-datetime-picker>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <input matInput [ngxMatDatetimePicker]="pickerTo" placeholder="Horário de fim">
+          [min]="myDatePickerFrom">
+          <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+          <ngx-mat-datetime-picker #pickerTo [enableMeridian]="true"></ngx-mat-datetime-picker>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Privado</mat-label>
+          <mat-select formControlName="closed" placeholder="Selecione">
+            <mat-option value="true">Sim</mat-option>
+            <mat-option value="false">Não</mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -49,4 +111,3 @@
     </div>
   </div>
 </div>
-<!-- /Modal -->
