@@ -17,6 +17,8 @@ services:
     
   app:
     build: .
+    command: >
+      sh -c "npm run migrate-seed && npm run start"
     container_name: unigether-backend
     environment:
       - DATABASE_HOST=database
