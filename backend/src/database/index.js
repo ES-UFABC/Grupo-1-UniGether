@@ -6,7 +6,7 @@ const Matches = require('../app/models/Matches.js');
 const Message = require('../app/models/Messages.js');
 const Events = require('../app/models/Events.js')
 
-pg.defaults.ssl = process.env.SSL;
+pg.defaults.ssl = process.env.SSL=='true';
 const models = [User, Group, Matches, Message, Events];
 
 class Database {
