@@ -4,12 +4,13 @@ import { Observable } from 'rxjs';
 import { Cadastro } from './cadastro.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DadosPessoais } from './../dados-pessoais/dados-pessoais.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CadastroService {
-  baseUrl = "http://localhost:8080"
+  baseUrl = environment.apiURL
 
   constructor(private snackBar: MatSnackBar,private http: HttpClient) { }
 

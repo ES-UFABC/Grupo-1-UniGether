@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable } from 'rxjs';
 import { io } from "socket.io-client";
+import { environment } from "src/environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class ChatService {
 
   hasJoin$ = new BehaviorSubject<boolean>(false);
 
-  private socket = io('ws://localhost:8080');
+  private socket = io(`ws://${environment.apiURL}`);
 
   joinRoom(data) {
     this.socket.emit('join', data);
