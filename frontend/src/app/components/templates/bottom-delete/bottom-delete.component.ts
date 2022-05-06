@@ -11,7 +11,7 @@ import { CadastroService } from '../../cadastro/cadastro.service';
 })
 export class BottomDeleteComponent implements OnInit {
 
-  constructor(private tokenStorage: TokenStorageService,private cadastroService: CadastroService,private _bottomSheetRef: MatBottomSheetRef<BottomDeleteComponent>,private router: Router) { }
+  constructor(private tokenStorage: TokenStorageService, private cadastroService: CadastroService, private _bottomSheetRef: MatBottomSheetRef<BottomDeleteComponent>, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -20,14 +20,13 @@ export class BottomDeleteComponent implements OnInit {
   deleteUser(): void {
     this.cadastroService.delete().subscribe(() => {
       this.logout();
-      this.router.navigate(["/"]);
       this.cadastroService.showMessage('Usuário excluído com sucesso');
     })
   }
 
   logout(): void {
     this.tokenStorage.signOut();
-    window.location.reload();
+    this.router.navigate(["/"]);
   }
 
   closeModal(event: MouseEvent): void {

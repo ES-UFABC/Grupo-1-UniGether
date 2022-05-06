@@ -49,6 +49,7 @@ import {
   NgxMatTimepickerModule
 } from '@angular-material-components/datetime-picker';
 import { DialogEventComponent } from './components/templates/dialog-event/dialog-event.component';
+import { NotFoundComponent } from './components/templates/not-found/not-found.component';
 
 declare var Hammer: any;
 
@@ -80,6 +81,7 @@ export class HammerConfig extends HammerGestureConfig {
     PostComponent,
     ItsMatchComponent,
     DialogEventComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

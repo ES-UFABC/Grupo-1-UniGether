@@ -11,6 +11,7 @@ import { LoginComponent } from './components/login/login.component';
 import { DadosPessoaisComponent } from './components/dados-pessoais/dados-pessoais.component';
 import { PostComponent } from './components/post/post.component';
 import { AuthGuardService } from './services/auth.guard';
+import { NotFoundComponent } from './components/templates/not-found/not-found.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -22,11 +23,10 @@ const routes: Routes = [
   { path: 'chat', component: WebchatComponent, canActivate: [AuthGuardService] },
   { path: 'groups', component: GroupListComponent, canActivate: [AuthGuardService] },
   { path: 'events', component: EventsComponent, canActivate: [AuthGuardService] },
-  { path: 'post', component: PostComponent },
-  { path: 'itsmatch', component: ItsMatchComponent },
-
+  { path: 'itsmatch', component: ItsMatchComponent, canActivate: [AuthGuardService] },
+  { path: '**', component: NotFoundComponent },
   //{ path: 'quem-somos', component: QuemSomosComponent },
-  //{ path: '**', component: NotFoundComponent },
+
 ];
 
 @NgModule({

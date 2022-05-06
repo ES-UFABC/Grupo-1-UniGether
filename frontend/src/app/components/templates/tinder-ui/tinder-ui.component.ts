@@ -6,6 +6,7 @@ import { Component, ViewChildren, QueryList, ElementRef, EventEmitter, Output, R
 import jwt_decode from 'jwt-decode';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
 import { Swipe } from './swipe.model';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'tinder-ui',
@@ -21,7 +22,7 @@ export class TinderUIComponent implements OnInit {
 
   @Output() choiceMade = new EventEmitter();
 
-  base_url: string = "http://localhost:8080/avatars/file"
+  base_url: string = `${environment.apiURL}/avatars/file`
 
   moveOutWidth: number;
   shiftRequired: boolean;
