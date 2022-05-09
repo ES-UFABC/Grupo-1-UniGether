@@ -5,6 +5,7 @@ import { TokenStorageService } from 'src/app/_services/token-storage.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import jwt_decode from 'jwt-decode';
 import { CadastroService } from '../cadastro/cadastro.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-profile',
@@ -18,7 +19,8 @@ export class ProfileComponent implements OnInit {
   isLoggedIn = false;
   currentUser: any;
   decoded: any;
-  base_url: string = "http://localhost:8080/avatar"
+
+  base_url: string = `${environment.apiURL}/avatars`
 
   constructor(private tokenStorage: TokenStorageService,private cadastroService: CadastroService, private profileService: ProfileService, private router: Router, private route: ActivatedRoute){ }
 

@@ -10,6 +10,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import jwt_decode from 'jwt-decode';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-group-list',
@@ -28,7 +29,7 @@ export class GroupListComponent implements OnInit, AfterViewInit {
   decoded: any;
   userId: any;
 
-  constructor(private dialog: MatDialog, private dialogService: DialogService, private tokenStorage: TokenStorageService, private snackBar: MatSnackBar, private webchatService: WebchatService) { }
+  constructor(private dialog: MatDialog, private dialogService: DialogService, private tokenStorage: TokenStorageService, private snackBar: MatSnackBar, private webchatService: WebchatService, private router: Router) { }
 
   ngOnInit(): void {
     if (this.tokenStorage.getToken()) {
@@ -83,13 +84,13 @@ export class GroupListComponent implements OnInit, AfterViewInit {
   addGroupToUser(id: number) {
     this.dialogService.addUserInGroup(id, this.userId);
     this.showMessage("Usuário adicionado a grupo aberto");
-    window.location.reload();
+    this.router.navigate(['/groups']);
   }
 
   removeUserFromGroup(id: number) {
     this.dialogService.removeUserInGroup(id, this.userId);
     this.showMessage("Usuário foi removido do grupo");
-    window.location.reload();
+    this.router.navigate(['/groups']);
   }
 
   removeGroup(id: number) {
