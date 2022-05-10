@@ -4,7 +4,8 @@ const { Op } = require('sequelize');
 class UserRepository{
 
     async insert(user) {
-        return await User.create(user);
+        const newUser = await User.create(user);
+        return newUser;
     }
 
     async findById(id) {
@@ -18,7 +19,7 @@ class UserRepository{
     }
     
     async findAll(){
-        return User.findAll();
+        return await User.findAll();
     }
 
     async update(id, newUser){
