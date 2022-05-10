@@ -18,7 +18,7 @@ module.exports = {
                 allowNull: true,
             },
             type: {
-                type: Sequelize.ENUM("Online", "Presencial, Hibrido"),
+                type: Sequelize.ENUM("Online", "Presencial", "Hibrido"),
                 allowNull: false,
             },
             address: {
@@ -28,12 +28,12 @@ module.exports = {
             start_date: {
                 type: Sequelize.DATE,
                 allowNull: false,
-                defaultValue: Sequelize.fn('NOW')
+                defaultValue: Date.now()
             },
             end_date: {
                 type: Sequelize.DATE,
                 allowNull: false,
-                defaultValue: Sequelize.fn('NOW')
+                defaultValue: Date.now()
             },
             closed: {
                 type: Sequelize.BOOLEAN,

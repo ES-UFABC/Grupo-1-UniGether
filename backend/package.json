@@ -5,9 +5,10 @@
   "main": "src/server.js",
   "type": "commonjs",
   "scripts": {
-    "test": "mocha src/test.js --exit",
+    "test": "npx sequelize db:migrate --env test && jest",
+    "dev": "npx sequelize db:migrate --env development && npx sequelize db:seed:undo:all --env development && npx sequelize db:seed:all --env development",
     "migrate-seed": "npx sequelize-cli db:migrate && npx sequelize-cli db:seed:undo:all && npx sequelize-cli db:seed:all",
-    "heroku-postbuild":"npx sequelize db:migrate production && npx sequelize db:seed:undo:all production",
+    "heroku-postbuild": "npx sequelize db:migrate production && npx sequelize db:seed:undo:all production",
     "start": "node src/server.js"
   },
   "keywords": [],
@@ -31,11 +32,12 @@
     "reflect-metadata": "^0.1.13",
     "sequelize": "^6.17.0",
     "socket.io": "^4.4.1",
+    "sqlite3": "^5.0.8",
     "yup": "^0.32.11"
   },
   "devDependencies": {
     "@types/socket.io": "^3.0.2",
-    "mocha": "^9.2.2",
+    "jest": "^28.1.0",
     "nodemon": "^2.0.15",
     "sequelize-cli": "^6.4.1",
     "sucrase": "^3.20.3",
