@@ -21,6 +21,7 @@ services:
       sh -c "npm run migrate-seed && npm run start"
     container_name: unigether-backend
     environment:
+      - ENV=dev
       - DATABASE_HOST=database
       - DATABASE_PORT=5432
       - DATABASE_DIALECT=postgres

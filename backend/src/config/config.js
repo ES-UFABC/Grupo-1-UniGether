@@ -19,9 +19,17 @@ module.exports = {
     },
     "test":{
         dialect :"sqlite",
+        storage :resolve(__dirname, "..","database","tmp.sqlite"),
+        logging: false,
+        define:{
+            timestamps:true,
+            underscored: true,
+            ssl:true
+        }
     },
     "production":{
         dialect: "postgres",
+        protocol: 'postgres',
         dialectOptions: {
             ssl: {
                 require: process.env.SSL == "true",
@@ -34,6 +42,7 @@ module.exports = {
         database : process.env.DATABASE,
         ssl: process.env.SSL == "true",
         define: {
+            ssl:true,
             timestamp: true, 
             underscored: true, 
             underscoredAll: true,

@@ -1,4 +1,6 @@
 const { Sequelize } = require('sequelize');
+const { resolve } = require("path")
+const config = require("../config/config.js")
 const pg = require("pg");
 const User = require('../app/models/Users.js');
 const Group = require('../app/models/Groups.js');
@@ -16,35 +18,13 @@ class Database {
     }
 
     init() {
-       if(!process.env.DATABASE_URL && process.env.ENV == "test"){
+       if(!process.env.DATABASE_URL && process.env.ENV == "dev"){
             const url = `postgres://${process.env.DATABASE_USER}:${process.env.DATABASE_PASSWORD}@${process.env.DATABASE_HOST}/${process.env.DATABASE}`
-            this.connection = new Sequelize(url, {
-                dialect: process.env.DATABASE_DIALECT,
-                dialectModule: pg,
-                define:{
-                    timestamps:true,
-                    underscored: true
-                }
-            });
+            this.connection = new Sequelize(url, config["development"]);
         }else if(process.env.DATABASE_URL && process.env.ENV == "prod"){
-            this.connection = new Sequelize(process.env.DATABASE_URL, {
-                dialect: "postgres",
-                protocol: 'postgres',
-                ssl: true,
-                dialectOptions: {
-                    ssl: {
-                        require: true,
-                        rejectUnauthorized: false
-                    }
-                },
-                define:{
-                    timestamps:true,
-                    underscored: true,
-                    ssl:true
-                }
-            });
+            this.connection = new Sequelize(process.env.DATABASE_URL, config["production"]);
         } else {
-            this.connection = new Sequelize("sqlite::memory");
+            this.connection = new Sequelize(config["test"]);
         }
 
         models.map(model => model.init(this.connection))

@@ -1,7 +1,9 @@
-require("../../../database/index.js");
-const container = require('../../../shared/container.js')
+const sequelize = require("../../../database/index.js");
+const container = require('../../../shared/container.js');
+const User = require("../../models/Users.js");
 const repository = container.get("repository.user");
 
+beforeAll( async () => await User.sync({force: true}) );
 
 describe('UserRepository', () => {
 
@@ -15,12 +17,14 @@ describe('UserRepository', () => {
 
     it('When save user should return user', async () => {
         const user = await repository.insert(mockUser);
-        const result = {};
-        Object.keys(user).forEach(key => {
-            if(mockUser.hasOwnProperty(key)) result.key = user.key;
+        var result = {};
+        Object.keys(user.dataValues).forEach(key => {
+            if(mockUser.hasOwnProperty(key)){
+                result[key] = user.dataValues[key];
+            }    
         });
 
-        expect(user).toEqual(mockUser);
+        expect(mockUser).toEqual(result);
     });
 
     it('Search user by id should be return user', async () => {
