@@ -4,7 +4,8 @@ const { Op } = require('sequelize');
 class UserRepository{
 
     async insert(user) {
-        return await User.create(user);
+        const newUser = await User.create(user);
+        return newUser;
     }
 
     async findById(id) {
@@ -18,7 +19,7 @@ class UserRepository{
     }
     
     async findAll(){
-        return User.findAll();
+        return await User.findAll();
     }
 
     async update(id, newUser){
@@ -33,7 +34,7 @@ class UserRepository{
     }
 
     async findByName(name) {
-        let condition = {where: { name: {[Op.like]: `%${name}`}} };
+        let condition = {where: { name: {[Op.like]: `${name}%`}} };
         const users = await User.findAll(condition);
         return users;
     }

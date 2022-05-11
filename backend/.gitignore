@@ -1,5 +1,6 @@
 node_modules
 auth.js
+coverage/
 database.js
 .env
 .pgdata
