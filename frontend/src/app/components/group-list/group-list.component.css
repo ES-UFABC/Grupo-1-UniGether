@@ -29,3 +29,11 @@ th {
   background-color: #6c8077;
   border-color: #6c8077;
 }
+
+::ng-deep.mat-header-cell {
+  color: #0a0a0a;
+}
+
+::ng-deep.mat-paginator, .mat-paginator-page-size .mat-select-trigger {
+  color: #0000008a;
+}
