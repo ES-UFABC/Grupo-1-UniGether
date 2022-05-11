@@ -1,40 +1,136 @@
 <div class="container-fluid d-flex justify-content-center">
-  <div class="bg-card col-md-10 mt-4">
+  <div class="bg-card col-md-10 mt-4 mb-4 m-4">
+
     <div class="p-5">
       <div class="d-flex justify-content-between">
         <h1>Eventos</h1>
-        <button (click)="openDialog()" type="button" class="btn btn-secondary btn-color">
+        <!-- <button (click)="openDialog()" type="button" class="btn btn-secondary btn-color">
+          Criar
+        </button> -->
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-secondary btn-color" data-bs-toggle="modal" data-bs-target="#eventModal">
           Criar
         </button>
+        <!-- /Button trigger modal -->
       </div>
       <hr>
-      <p>#contaEventos</p>
-      <hr>
-      <!-- Eventos -->
-      <ul class="nav nav-tabs">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page">Eventos</a>
-          <div *ngIf="!false">
-            <mat-card>
-              <mat-card-header>
-                <mat-card-title>Nome</mat-card-title>
-              </mat-card-header>
-              <img matCardImage src="Card wide image source">
-              <mat-card-content>
-                Descrição
-              </mat-card-content>
-              <!-- <mat-card-actions align="start"> -->
-              <!-- <button mat-button (click)="onAction1">Action1</button> -->
-              <!-- </mat-card-actions> -->
-            </mat-card>
-          </div>
+
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="Eventos-tab" data-bs-toggle="tab" data-bs-target="#Eventos" type="button"
+            role="tab" aria-controls="Eventos" aria-selected="true">Eventos ({{listEvents ? listEvents.length : 0}})</button>
         </li>
-        <li class="nav-item">
-          <a class="nav-link">Meus Eventos</a>
+        <li class="nav-item" role="presentation">
+          <button (click)="getAllEvents()" class="nav-link" id="allEventos-tab" data-bs-toggle="tab" data-bs-target="#allEventos" type="button"
+            role="tab" aria-controls="allEventos" aria-selected="false">Buscar Eventos</button>
         </li>
       </ul>
-      <!-- /Eventos -->
+
+      <div class="tab-content" id="myTabContent">
+        <!-- Events User -->
+        <div class="tab-pane fade show active" id="Eventos" role="tabpanel" aria-labelledby="Eventos-tab">
+        <!-- Inicio Card -->
+
+          <div class="row align-items-center">
+            <div class="card mt-3 w-100 bg-card"  *ngFor="let i of listEvents">
+              <div class="m-3">
+
+                <div class="d-flex justify-content-between">
+                  <h6>{{i.type}}</h6>
+                  <div><a [routerLink]="" class="text-danger dropdown-item">Sair</a></div>
+                  
+                </div>
+
+                <div class="h5 m-0">{{i.name}}</div>
+                <div>
+                  <p class="text-muted m-0 p-0 b-0">Descrição: {{i.description}}</p>
+                  <p class="text-muted m-0 p-0 b-0">Início: {{i.start_date}} às {{i.start_date}}, Término:  {{i.end_date}}às {{i.end_date}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+      <!-- Fim Card -->
+      <!-- \Events User -->
+      <!-- all Events -->
+
+      <div class="tab-pane fade" id="allEventos" role="tabpanel" aria-labelledby="allEventos-tab">
+        <!-- Inicio Card -->
+        <div class="row align-items-center">
+          <div class="card mt-3 w-100 bg-card"  *ngFor="let i of listEvents">
+            <div class="m-3">
+
+              <div class="d-flex justify-content-between">
+                <h6>{{i.type}}</h6>
+                <div><a [routerLink]="" class="text-danger dropdown-item">Participar</a></div>
+                
+              </div>
+
+              <div class="h5 m-0">{{i.name}}</div>
+              <div>
+                <p class="text-muted m-0 p-0 b-0">Descrição: {{i.description}}</p>
+                <p class="text-muted m-0 p-0 b-0">Início: {{i.start_date}}às {{i.start_date}}, Término:  {{i.end_date}}às {{i.end_date}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
+    <!-- Fim Card -->
+
+
+
+      </div>
+      <!-- all Events -->
+    </div>
+
   </div>
 </div>
 
+
+
+<!-- Modal -->
+<div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header btn-color text-white">
+        <h4 class="modal-title" id="eventModalLabel">Novo Evento</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+        <div class="form-group">
+          <label for="typeEvent" class="modaltitle">Tipo do Evento:</label>
+          <select class="form-control" name="typeEvent" id="typeEvent" [(ngModel)]="typeEvent" >
+            <option *ngFor="let item of listTypeEvent" value="{{ item.value }}">
+              {{ item.nome }}
+            </option>
+          </select>
+
+          <label for="Nome" class="modaltitle">Nome</label>
+          <input [(ngModel)]="event.name" type="text" class="form-control" id="Nome"
+            placeholder="Digite o título" />
+
+          <label for="texto" class="modaltitle">Descrição</label>
+          <textarea [(ngModel)]="event.description" class="form-control" name="texto" id="texto" rows="3"
+            placeholder="Do que se trata o evento?"></textarea>
+         
+            <label for="Local" class="modaltitle">Local</label>
+            <input [(ngModel)]="event.address" type="text" class="form-control" id="Local"
+              placeholder="Digite o endereço" />
+
+              <label for="Privado" class="modaltitle">Privado</label>
+                <select class="form-control" name="Privado" id="Privado" [(ngModel)]="privateEvent" >
+                  <option *ngFor="let item of listPrivateEvent" value="{{ item.value }}">
+                    {{ item.nome }}
+                  </option>
+                </select>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button (click)="newEvent()" type="button" class="btn btn-primary btn-color" data-bs-dismiss="modal">Criar Evento</button>
+      </div>
+    </div>
+  </div>
+</div>
