@@ -5,7 +5,7 @@
   "main": "src/server.js",
   "type": "commonjs",
   "scripts": {
-    "test": "npx sequelize db:migrate --env test && jest",
+    "test": "jest",
     "dev": "npx sequelize db:migrate --env development && npx sequelize db:seed:undo:all --env development && npx sequelize db:seed:all --env development",
     "migrate-seed": "npx sequelize-cli db:migrate && npx sequelize-cli db:seed:undo:all && npx sequelize-cli db:seed:all",
     "heroku-postbuild": "npx sequelize db:migrate --env production && npx sequelize db:seed:undo:all --env production",

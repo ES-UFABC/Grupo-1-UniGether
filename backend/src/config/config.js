@@ -17,16 +17,6 @@ module.exports = {
             underscoredAll: true,
         },
     },
-    "test":{
-        dialect :"sqlite",
-        storage :resolve(__dirname, "..","database","tmp.sqlite"),
-        logging: false,
-        define:{
-            timestamps:true,
-            underscored: true,
-            ssl:true
-        }
-    },
     "production":{
         dialect: "postgres",
         protocol: 'postgres',

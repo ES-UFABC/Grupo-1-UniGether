@@ -23,14 +23,17 @@ class Database {
             this.connection = new Sequelize(url, config["development"]);
         }else if(process.env.DATABASE_URL && process.env.ENV == "prod"){
             this.connection = new Sequelize(process.env.DATABASE_URL, config["production"]);
-        } else {
-            this.connection = new Sequelize(config["test"]);
+        }else{
+            this.connection = new Sequelize("sqlite::memory", {
+                logging: false,
+            });
         }
 
         models.map(model => model.init(this.connection))
-            .map(model => model.associate && model.associate(this.connection.models));
-
+            .map(model => model.associate && model.associate(this.connection.models));  
     }
+
+    async sync(){ await this.connection.sync({force: true}) }
 }
 
-module.exports = new Database()
+module.exports = new Database();
