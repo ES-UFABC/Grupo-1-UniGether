@@ -34,7 +34,7 @@ class UserRepository{
     }
 
     async findByName(name) {
-        let condition = {where: { name: {[Op.like]: `%${name}`}} };
+        let condition = {where: { name: {[Op.like]: `${name}%`}} };
         const users = await User.findAll(condition);
         return users;
     }
