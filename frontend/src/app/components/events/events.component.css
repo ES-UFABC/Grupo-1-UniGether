@@ -7,6 +7,9 @@
   overflow: hidden;
   border-radius: 5px;
 }
+.bg-transparent{
+  background-color: transparent;
+}
 
 mat-card {
   margin-top: 3vh;
