@@ -1,10 +1,12 @@
 <div class="container">
   <div style="margin-top: 20px;">
-    <mat-form-field appearance="standard">
-      <mat-label>Filter</mat-label>
-      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
-    </mat-form-field>
-    <button (click)="openDialog()" type="button" class="btn btn-primary">Criar grupo</button>
+    <div class="d-flex">
+      <mat-form-field appearance="standard">
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+      </mat-form-field>
+      <button (click)="openDialog()" type="button" class="btn btn-primary btn-create">Criar</button>
+    </div>
 
     <div class="mat-elevation-z8">
       <table mat-table [dataSource]="dataSource" matSort>

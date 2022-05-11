@@ -16,3 +16,16 @@ th {
   max-width: 900px;
   margin: 0 auto;
 }
+
+.btn-create {
+  margin-left: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  background-color:  #009688;
+  border-color: #009688;
+}
+
+.btn-create:hover {
+  background-color: #6c8077;
+  border-color: #6c8077;
+}
