@@ -1,0 +1,82 @@
+<h1 mat-dialog-title>Adicione grupo</h1>
+<div mat-dialog-content>
+  <form [formGroup]="eventForm">
+    <div class="modal-body">
+      <div class="profile">
+        <label class="hoverable" for="file">
+          <img [src]="file ? file : 'https://www.w3schools.com/howto/img_avatar.png'">
+          <div class="hover-text">Escolha uma foto de perfil</div>
+          <div class="background"></div>
+        </label>
+        <br />
+        <input id="file" type="file" name="file" (change)="onSelectFile($event)">
+        <button type="button" id="button-delete-file" class="btn btn-danger" *ngIf="file"
+          (click)="delete()">delete</button>
+        <button *ngIf="file" (click)="upload()" type="button" class="btn btn-primary">Upload</button>
+      </div>
+      <mat-form-field appearance="outline">
+        <mat-label>Nome</mat-label>
+        <input matInput placeholder="Nome">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Descrição</mat-label>
+        <textarea matInput placeholder="Descricao"></textarea>
+      </mat-form-field>
+      <div class="btn-group">
+        <input
+          mdbRadio
+          type="radio"
+          class="btn-check"
+          name="options"
+          id="Online"
+          autocomplete="off"
+          [checked]="true"
+        />
+        <label class="btn btn-secondary" for="Online">Online</label>
+        <input
+          mdbRadio
+          type="radio"
+          class="btn-check"
+          name="options"
+          id="Presencial"
+          autocomplete="off"
+        />
+        <label class="btn btn-secondary" for="Presencial">Presencial</label>
+        <input
+          mdbRadio
+          type="radio"
+          class="btn-check"
+          name="options"
+          id="Hibrido"
+          autocomplete="off"
+        />
+        <label class="btn btn-secondary" for="Hibrido">Hibrido</label>
+      </div>
+      <mat-form-field appearance="outline">
+        <mat-label>Local</mat-label>
+        <input matInput placeholder="Local">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <input matInput [ngxMatDatetimePicker]="pickerFrom" placeholder="Horário de inicio">
+        <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+        <ngx-mat-datetime-picker #pickerFrom></ngx-mat-datetime-picker>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <input matInput [ngxMatDatetimePicker]="pickerTo" placeholder="Horário de fim">
+        <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+        <ngx-mat-datetime-picker #pickerTo></ngx-mat-datetime-picker>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Privado</mat-label>
+        <mat-select formControlName="closed" placeholder="Selecione">
+          <mat-option value="true">Sim</mat-option>
+          <mat-option value="false">Não</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div mat-dialog-action [align]="'end'">
+      <button mat-raised-button color="warn" mat-dialog-close>Fechar</button>
+      <button mat-raised-button style="margin-left: 8px;" color="primary" (click)="addEvent()">{{actionBtn}}</button>
+    </div>
+  </form>
+</div>

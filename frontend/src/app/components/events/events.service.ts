@@ -4,7 +4,8 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class GroupListService {
+export class EventsService {
+
   baseUrl = environment.apiURL
 
   constructor() { }

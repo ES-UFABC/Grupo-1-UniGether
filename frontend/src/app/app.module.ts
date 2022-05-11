@@ -14,6 +14,9 @@ import { MatSelectModule } from '@angular/material/select'
 import { MatTableModule } from '@angular/material/table'
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
 
 import { AuthGuardService } from './services/auth.guard'
 
@@ -40,6 +43,14 @@ import { ItsMatchComponent } from './components/templates/its-match/its-match.co
 import { IConfig, NgxMaskModule } from 'ngx-mask';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
+
+import {
+  NgxMatDatetimePickerModule,
+  NgxMatNativeDateModule,
+  NgxMatTimepickerModule
+} from '@angular-material-components/datetime-picker';
+import { DialogEventComponent } from './components/templates/dialog-event/dialog-event.component';
+import { NotFoundComponent } from './components/templates/not-found/not-found.component';
 
 declare var Hammer: any;
 
@@ -70,6 +81,8 @@ export class HammerConfig extends HammerGestureConfig {
     DialogComponent,
     PostComponent,
     ItsMatchComponent,
+    DialogEventComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -91,6 +104,11 @@ export class HammerConfig extends HammerGestureConfig {
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    NgxMatDatetimePickerModule,
+    NgxMatTimepickerModule,
+    NgxMatNativeDateModule,
     NgxMaskModule.forRoot()
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }, authInterceptorProviders, AuthGuardService, { provide: HAMMER_GESTURE_CONFIG, useClass: HammerConfig }],

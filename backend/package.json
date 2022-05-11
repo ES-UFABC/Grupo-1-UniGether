@@ -6,7 +6,7 @@
   "type": "commonjs",
   "scripts": {
     "test": "mocha src/test.js --exit",
-    "dev": "npx sequelize-cli db:migrate && npx sequelize-cli db:seed:undo:all && npx sequelize-cli db:seed:all && nodemon",
+    "migrate-seed": "npx sequelize-cli db:migrate && npx sequelize-cli db:seed:undo:all && npx sequelize-cli db:seed:all",
     "heroku-postbuild":"npx sequelize db:migrate production && npx sequelize db:seed:undo:all production",
     "start": "node src/server.js"
   },

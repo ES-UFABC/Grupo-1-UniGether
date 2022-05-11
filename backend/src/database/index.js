@@ -6,7 +6,8 @@ const Matches = require('../app/models/Matches.js');
 const Message = require('../app/models/Messages.js');
 const Events = require('../app/models/Events.js')
 
-pg.defaults.ssl = process.env.SSL;
+delete pg.native
+pg.defaults.ssl = process.env.SSL == "true";
 const models = [User, Group, Matches, Message, Events];
 
 class Database {
@@ -27,14 +28,19 @@ class Database {
             });
         }else{
             this.connection = new Sequelize(process.env.DATABASE_URL, {
-                dialect: process.env.DATABASE_DIALECT,
-                dialectModule: pg,
-                ssl:process.env.SSL,
-                native:true,
+                dialect: "postgres",
+                protocol: 'postgres',
+                ssl: true,
+                dialectOptions: {
+                    ssl: {
+                        require: true,
+                        rejectUnauthorized: false
+                    }
+                },
                 define:{
                     timestamps:true,
                     underscored: true,
-                    ssl:process.env.SSL
+                    ssl:true
                 }
             });
         }
