@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  test:
+  test-backend:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -28,9 +28,11 @@ jobs:
             ${{ runner.os }}-
 
       - name: Install Dependencies
+        working-directory: ./backend
         run: npm install
 
       - name: Run the tests
+        working-directory: ./backend
         run: npm test
   build:
     runs-on: ubuntu-latest
