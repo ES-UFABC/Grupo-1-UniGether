@@ -1,8 +1,27 @@
-.container{
+/* .container{
   width: 40vw;
   margin-top: 15vh;
   display: flex;
   justify-content: space-between;
+} */
+
+.container-fluid {
+  min-height: 100%;
+}
+
+.main-col {
+  min-height: 100%;
+}
+
+div.title-container {
+  display: flex;
+  justify-content: center;
+}
+
+h2.title {
+  font-family: 'Pacifico', cursive;
+  font-size: 1.6rem;
+  color: #555555;
 }
 
 img {
@@ -15,10 +34,10 @@ img {
   margin-left: 2vw;
 }
 
-li {
+/* li {
   list-style-image: url(../../../assets/greenbook.png);
   margin: 0 0 0.03vh 0.05vw;
-}
+} */
 
 
 input{
@@ -29,8 +48,7 @@ input{
 }
 
 textarea {
-  margin-top: 2vh;
   resize: none;
   height: 100px;
-  width: 400px;
+  min-width: 100%;
 }

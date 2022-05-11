@@ -7,11 +7,15 @@
   border-radius: 4%;
   padding: 2vh;
   box-shadow: 3px 3px 1px 0px #00000060;
-  height: 43vh;
-  width: 20vw;
+  height: 55vh;
+  width: 25vw;
   margin-top: 100px;
 }
 
+::ng-deep.alert.alert-danger {
+  padding: 0.3rem !important;
+  margin-top: 0.5rem !important;
+}
 
 
 @keyframes flutuar {
@@ -62,6 +66,7 @@ input {
   font-family: 'Pacifico', cursive;
   text-align: center;
   font-size: 22px;
+  color: #555555;
 }
 
 @media(max-width: 770px) {
@@ -80,7 +85,7 @@ input {
   div.row.global {
     display: flex;
     flex-direction: column-reverse;
-    height: 76vh;
+    flex-wrap: nowrap;
   }
   .card {
     width: auto;

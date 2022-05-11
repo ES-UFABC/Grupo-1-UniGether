@@ -1,26 +1,48 @@
-<main>
-  <section>
-    <div class="container">
-      <div class="name-image">
-        <h2>{{cadastro?.name}}</h2>
-        <img src="{{image}}" alt="Imagem de perfil" />
+<div class="container-fluid">
+  <div class="row">
+    <div class="col main-col">
+      <!-- TITULO -->
+      <div class="row">
+        <div class="col">
+          <div class="my-4 title-container">
+            <h2 class="title">{{cadastro?.name}}</h2>
+          </div>
+        </div>
       </div>
-      <div class="infos-relacao">
-        <ul>
-          <li><input type="text" id="university" name="university" placeholder="{{cadastro?.university}}"
-              disabled="true"></li>
-          <li><input type="text" id="course" name="course" placeholder="{{cadastro?.course}}" disabled="true"></li>
-          <li><input type="text" id="age" name="age" placeholder="{{cadastro?.age}}" disabled="true"></li>
-          <li><input type="text" id="initialYear" name="initialYear" value="{{cadastro?.initial_year}}" disabled="true">
-          </li>
-          <li><input type="text" id="gender" name="gender" placeholder="{{cadastro?.gender}}" disabled="true"></li>
-          <li><input type="text" id="shift" name="shift" placeholder="{{cadastro?.shift}}" disabled="true"></li>
-          <li><textarea cols="5" rows="3" disabled="true" placeholder="{{cadastro?.bio}}"></textarea></li>
-          <li><input type="text" id="searchFor" name="searchFor" placeholder="{{cadastro?.search_for}}" disabled="true">
-          </li>
-        </ul>
+      <!-- PARTE INFERIOR -->
+      <div class="row">
+        <!-- LADO ESQUERDO -->
+        <div class="col-sm-6">
+          <img class="ml-3" src="{{image}}" alt="Imagem de perfil" />
+        </div>
+        <!-- LADO DIREITO -->
+        <div class="col-sm-6">
+          <div class="mb-2">
+            <input type="text" id="university" name="university" placeholder="{{cadastro?.university}}" disabled="true">
+          </div>
+          <div class="mb-2">
+            <input type="text" id="course" name="course" placeholder="{{cadastro?.course}}" disabled="true">
+          </div>
+          <div class="mb-2">
+            <input type="text" id="age" name="age" placeholder="{{cadastro?.age}}" disabled="true">
+          </div>
+          <div class="mb-2">
+            <input type="text" id="initialYear" name="initialYear" value="{{cadastro?.initial_year}}" disabled="true">
+          </div>
+          <div class="mb-2">
+            <input type="text" id="gender" name="gender" placeholder="{{cadastro?.gender}}" disabled="true">
+          </div>
+          <div class="mb-2">
+            <input type="text" id="shift" name="shift" placeholder="{{cadastro?.shift}}" disabled="true">
+          </div>
+          <div class="mb-2">
+            <textarea cols="5" rows="3" disabled="true" placeholder="{{cadastro?.bio}}"></textarea>
+          </div>
+          <div class="mb-2">
+            <input type="text" id="searchFor" name="searchFor" placeholder="{{cadastro?.search_for}}" disabled="true">
+          </div>
+        </div>
       </div>
-
     </div>
-  </section>
-</main>
+  </div>
+</div>

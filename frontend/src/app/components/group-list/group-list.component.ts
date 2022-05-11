@@ -37,6 +37,7 @@ export class GroupListComponent implements OnInit, AfterViewInit {
       var tokenDec = this.currentUser.token;
       this.decoded = jwt_decode(tokenDec);
       this.userId = this.decoded.id;
+      console.log(this.userId + ' id');
     }
     this.getAllGroups(this.userId);
   }
@@ -45,13 +46,13 @@ export class GroupListComponent implements OnInit, AfterViewInit {
     this.dialog.open(DialogComponent, {
       width: '30%'
     }).afterClosed().subscribe(val => {
-      if (val == 'save') {
+      if (val === 'Salvar') {
         this.getAllGroups(this.userId);
       }
     })
   }
 
-  getAllGroups(user_id) {
+  getAllGroups(user_id: number) {
     this.dialogService.getGroup(user_id)
       .subscribe({
         next: (res) => {

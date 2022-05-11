@@ -93,3 +93,16 @@ mat-icon:hover{
     height: 30%;
   }
 }
+
+/* MEDIA QUERY */
+
+@media (max-width: 500px) {
+  header nav ul {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+

@@ -11,3 +11,13 @@
 mat-card {
   margin-top: 3vh;
 }
+
+.container-fluid {
+  min-height: 100%;
+}
+
+h1 {
+  font-family: 'Pacifico', cursive;
+  font-size: 1.6rem;
+  color: #555555;
+}

@@ -10,6 +10,7 @@
   font-family: 'Pacifico', cursive;
   text-align: center;
   font-size: 22px;
+  color: #555555;
 }
 
 ::ng-deep .btn {

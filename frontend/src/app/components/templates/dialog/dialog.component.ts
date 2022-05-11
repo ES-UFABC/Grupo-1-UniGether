@@ -19,7 +19,7 @@ export class DialogComponent implements OnInit {
   currentUser: any;
   decoded: any;
   userId: any;
-  actionBtn: string = "Save"
+  actionBtn: string = "Salvar"
 
   constructor(private formBuilder: FormBuilder, private dialogService: DialogService, private dialogRef: MatDialogRef<DialogComponent>, @Inject(MAT_DIALOG_DATA) public editData: any, private tokenStorage: TokenStorageService, private snackBar: MatSnackBar) { }
   groupForm !: FormGroup

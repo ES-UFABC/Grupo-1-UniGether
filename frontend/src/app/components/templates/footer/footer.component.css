@@ -1,13 +1,14 @@
 *{
   text-decoration: none;
-  color:#fff;
-  font-weight: 700;
+  color: #8b8989;
+  font-weight: 550;
+  font-family: 'Roboto';
 }
 
 footer {
   text-align: center;
-  background-color: #C4C4C4;
-  bottom:0;
+  background-color: #e9ecef;
+  /* bottom:0; */
   position: absolute;
   margin-bottom: -1px;
   width:100%;
@@ -15,11 +16,15 @@ footer {
 }
 
 .links-footer{
-  text-align: start;
-  width:10%;
-  display: flex;
-  justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    align-content: space-around;
+    flex-wrap: nowrap;
+    width: 100%;
 }
+
 
 a:hover {
   color: #555555;

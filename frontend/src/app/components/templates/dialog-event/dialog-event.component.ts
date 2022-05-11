@@ -16,7 +16,7 @@ export class DialogEventComponent implements OnInit {
   isActive = false;
   file: any
   fileForUpload: any
-  actionBtn: string = "Save"
+  actionBtn: string = "Salvar"
   constructor(private formBuilder: FormBuilder, private dialogRef: MatDialogRef<DialogEventComponent>, @Inject(MAT_DIALOG_DATA) public editData: any, private tokenStorage: TokenStorageService, private snackBar: MatSnackBar) { }
   eventForm !: FormGroup
 

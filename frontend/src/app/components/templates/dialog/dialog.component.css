@@ -1,3 +1,13 @@
 mat-form-field {
   width: 100%;
 }
+
+/* MEDIA QUERY */
+
+@media(max-width: 500px) {
+  ::ng-deep.cdk-overlay-pane {
+    max-width: unset !important;
+    width: unset !important;
+  }
+}
+
