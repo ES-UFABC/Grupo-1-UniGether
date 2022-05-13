@@ -7,7 +7,7 @@ const groups = new Router();
 
 groups.get("/:id", ensureAuthenticated, groupController.getGroupById);
 groups.get("/user/:user_id", ensureAuthenticated, groupController.findUserGroups);
-groups.get("/opened/:user_id", ensureAuthenticated, groupController.findAllGroupsOpen);
+groups.get("/", ensureAuthenticated, groupController.findAllGroupsOpen);
 groups.post("/", ensureAuthenticated, groupController.createGroup);
 groups.post("/:id/user/:user_id", ensureAuthenticated, groupController.addUserInGroup);
 groups.put("/:id", ensureAuthenticated, groupController.updateGroup);

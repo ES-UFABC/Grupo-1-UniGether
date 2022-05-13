@@ -15,14 +15,8 @@ class GroupRepository {
         return Group.findAll();
     }
 
-    async findAllOpen(user_id) {
-        return Group.findAll({
-            where: {
-                closed: false, [Op.ne]: {
-                    user_id: user_id
-                }
-            }
-        });
+    async findAllOpen() {
+        return Group.findAll({ where: { closed: false } });
     }
 
     async findAllUserGroups(user_id) {
@@ -41,4 +35,4 @@ class GroupRepository {
     }
 }
 
-module.exports =  GroupRepository;
+module.exports = GroupRepository;

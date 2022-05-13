@@ -15,8 +15,7 @@ class GroupController {
     }
 
     async findAllGroupsOpen(req, res) {
-        const { user_id } = req.params;
-        const groups = await groupService.getAllOpenGroups(user_id);
+        const groups = await groupService.getAllOpenGroups();
         return res.status(200).json(groups);
     }
 

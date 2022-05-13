@@ -1,7 +1,7 @@
 const { AppError } = require("../../errors/AppError.js");
 
 class OutputGroup {
-    constructor(group){
+    constructor(group) {
         this.id = group.id;
         this.name = group.name;
         this.description = group.description;
@@ -15,13 +15,13 @@ class GroupService {
         this.userRepository = userRepository;
     }
 
-    async getGroupById(group_id){
+    async getGroupById(group_id) {
         var group = await this.groupRepository.findById(group_id);
-        if(!group) throw new AppError("O grupo não existe");
+        if (!group) throw new AppError("O grupo não existe");
         return new OutputGroup(group);
     }
 
-    async addUserInGroup(user_id, group_id){
+    async addUserInGroup(user_id, group_id) {
         var user = await this.userRepository.findById(user_id);
         if (!user) throw new AppError("O usuario não existe");
 
@@ -32,7 +32,7 @@ class GroupService {
         return new OutputGroup(group);
     }
 
-    async removeUserFromGroup(user_id, group_id){
+    async removeUserFromGroup(user_id, group_id) {
         var user = await this.userRepository.findById(user_id);
         if (!user) throw new AppError("O usuario não existe");
 
@@ -42,15 +42,15 @@ class GroupService {
         await user.removeGroup(group);
     }
 
-    async getUserGroups(user_id){
+    async getUserGroups(user_id) {
         const user = await this.userRepository.findById(user_id);
-        if(!user) throw new AppError("O usuario não existe");
+        if (!user) throw new AppError("O usuario não existe");
         const groups = await user.getGroups()
         return groups.map(g => new OutputGroup(g));
     }
 
-    async getAllOpenGroups(user_id) {
-        var groups = await this.groupRepository.findAllOpen(user_id);
+    async getAllOpenGroups() {
+        var groups = await this.groupRepository.findAllOpen()
         if (groups.length < 1) {
             throw new AppError("Nenhum grupo foi encontrado");
         }
@@ -70,13 +70,13 @@ class GroupService {
 
     async updateGroup(group_id, inputGroup) {
         const group = await this.groupRepository.update(group_id, inputGroup);
-        if(!group) throw new AppError("O grupo não foi atualizado");
+        if (!group) throw new AppError("O grupo não foi atualizado");
         return new OutputGroup(group);
     }
 
     async deleteGroup(user_id) {
         const deleted = await this.groupRepository.delete(user_id);
-        if(!deleted) throw new AppError("O grupo não foi deletado");
+        if (!deleted) throw new AppError("O grupo não foi deletado");
     }
 }
 
