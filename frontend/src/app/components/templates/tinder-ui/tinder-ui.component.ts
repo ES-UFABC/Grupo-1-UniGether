@@ -55,7 +55,7 @@ export class TinderUIComponent implements OnInit {
         //   this.swiped = res;
         // })
         this.cadastroService.readUsers().subscribe((res: DadosPessoais[]) => {
-          res = res.filter(u => u.id != this.userLogged);
+          // res = res.filter(u => u.id != this.userLogged);
           // if (this.swiped.length > 0) {
           //   var result = res.filter((elem) => !this.swiped.find(({ user_id2 }) => elem.id === user_id2));
           //   res = result
